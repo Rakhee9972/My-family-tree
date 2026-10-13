@@ -690,7 +690,34 @@ onAuthStateChanged(auth, async user => {
   } catch (error) {
     message("Profile unavailable. Check Firestore security rules.");
   }
+}); async function loadRelatedMembers() {
+const relatedTo = document.getElementById("relatedTo");
+if (!relatedTo) return;
+
+relatedTo.replaceChildren();
+
+const defaultOption = document.createElement("option");
+defaultOption.value = "";
+defaultOption.textContent = "Choose family member";
+relatedTo.appendChild(defaultOption);
+
+try {
+const snapshot = await getDocs(collection(db, "members"));
+
+snapshot.forEach((memberDoc) => {
+  const member = memberDoc.data();
+
+  const option = document.createElement("option");
+  option.value = memberDoc.id;
+  option.textContent = member.name || "Unnamed member";
+
+  relatedTo.appendChild(option);
 });
+
+} catch (error) {
+console.error("Could not load family members:", error);
+}
+}
 </script>
 </body>
 </html>
