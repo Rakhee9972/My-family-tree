@@ -440,9 +440,31 @@ async function loadPendingUsers() {
         <button class="btn green" type="button">Approve</button>
       `;
 
-      row.querySelector("button").addEventListener("click", async () => {
-        message("Approval requires the owner-secured admin workflow and Firestore rules.");
-      });
+      
+row.querySelector("button").addEventListener("click", async () => {
+  if (!isOwner()) {
+    message("Only the website owner can approve members.");
+    return;
+  }
+
+  if (!confirm(`Approve ${user.name || user.email || "this member"}?`)) {
+    return;
+  }
+
+  try {
+    await updateDoc(doc(db, "users", item.id), {
+      status: "approved",
+      approvedAt: serverTimestamp(),
+      approvedBy: currentUser.uid
+    });
+
+    message("Member approved successfully!");
+    await loadPendingUsers();
+  } catch (error) {
+    message("Approval failed: " + error.message);
+  }
+});
+;
       $("pendingUsers").appendChild(row);
     });
 
