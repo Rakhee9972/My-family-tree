@@ -53,6 +53,36 @@ footer p{font-size:12px;color:#d7e0d9;margin:5px}
 footer strong{color:#e6c781}
 hr{border:0;border-top:1px solid #e5e5dc;margin:18px 0}
 @media(max-width:600px){header{align-items:flex-start}nav{width:100%;gap:10px}nav a{font-size:12px}.formgrid{grid-template-columns:1fr}.full{grid-column:auto}.hero{padding:48px 6%}main{padding:25px 13px}}
+
+/* Family tree layout */
+#familyTreeView {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+}
+
+#familyTreeView .card {
+  width: 100%;
+  max-width: 420px;
+  box-sizing: border-box;
+  position: relative;
+}
+
+#familyTreeView .card h3 {
+  text-align: center;
+}
+
+#familyTreeView .card p {
+  overflow-wrap: anywhere;
+}
+
+#familyTreeView .tree-connection {
+  text-align: center;
+  color: #285d4b;
+  font-weight: bold;
+  }
+  
 </style>
 </head>
 <body>
