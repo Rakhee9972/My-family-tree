@@ -516,7 +516,8 @@ async function loadMembers() {
     renderMembers();
     renderBirthdays();
   } catch (error) {
-    message("Cannot load family members. Check Firestore security rules.");
+    message("Cannot load family members: " + error.code + " — " + error.message);
+console.error("Family members loading error:", error);
   }
 }
 
