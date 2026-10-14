@@ -514,6 +514,7 @@ async function loadMembers() {
   try {
     const snap = await getDocs(collection(db, "members"));
     members = snap.docs.map(d => ({ id: d.id, ...d.data() }));
+    updateRelatedToOptions();
     renderMembers();
     renderBirthdays();
   } catch (error) {
@@ -615,7 +616,27 @@ function renderBirthdays() {
     list.appendChild(card);
   });
 }
+function updateRelatedToOptions() {
+  const select = $("relatedTo");
+  if (!select) return;
 
+  const previousValue = select.value;
+  select.replaceChildren();
+
+  const firstOption = document.createElement("option");
+  firstOption.value = "";
+  firstOption.textContent = "Choose family member";
+  select.appendChild(firstOption);
+
+  members.forEach(member => {
+    const option = document.createElement("option");
+    option.value = member.id;
+    option.textContent = member.name;
+    select.appendChild(option);
+  });
+
+  select.value = previousValue;
+  }
 $("memberForm").addEventListener("submit", async event => {
   event.preventDefault();
 
