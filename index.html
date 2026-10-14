@@ -1648,6 +1648,33 @@ function loadRelatedMembers() {
   }
 }
 
+async function loadEvents() {
+  if (!canUse("viewEvents")) {
+    events = [];
+    renderEvents();
+    return;
+  }
+
+  try {
+    const snapshot = await getDocs(collection(db, "events"));
+
+    events = snapshot.docs.map(item => ({
+      id: item.id,
+      ...item.data()
+    }));
+
+    renderEvents();
+    checkEventReminders();
+  } catch (error) {
+    console.error("Load events error:", error);
+    showMessage(
+      "Unable to load events: " + error.message,
+      "error"
+    );
+  }
+}
+
+    
 function renderMembers() {
   const list = $("familyList");
   if (!list) return;
