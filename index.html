@@ -574,7 +574,7 @@ card.querySelector(".edit-member-btn").addEventListener("click", () => {
   $("lifeStatus").value = m.lifeStatus || "";
   $("phone").value = m.phone || "";
   $("memberEmail").value = m.memberEmail || "";
-
+$("relatedTo").value = m.relatedTo || "";
   message("Edit the details in the family member form, then save.");
   document.getElementById("addMember").scrollIntoView({ behavior: "smooth" });
 });
@@ -654,6 +654,7 @@ const data = {
   lifeStatus: $("lifeStatus").value,
   phone: clean($("phone").value),
   memberEmail: clean($("memberEmail").value),
+  relatedTo: $("relatedTo").value,
   createdBy: editingMemberId
     ? (members.find(m => m.id === editingMemberId)?.createdBy || currentUser.uid)
     : currentUser.uid,
