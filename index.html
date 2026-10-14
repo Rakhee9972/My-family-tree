@@ -2073,12 +2073,27 @@ return `
       : "🎂 Wishing you a wonderful birthday filled with happiness and love!"}
   </p>
 
-  ${commentsOpen ? `
-    <div class="birthday-comments">
-      <h4>💌 Birthday Wishes & Comments</h4>
-      <p>Birthday wishes section</p>
+
+${commentsOpen ? `
+  <div class="birthday-comments">
+    <h4>💌 Birthday Wishes & Comments</h4>
+    <div id="birthdayComments-${escapeHTML(member.id)}">
+      <p>Loading birthday wishes...</p>
     </div>
-  ` : ""}
+    <form class="birthday-comment-form"
+          data-member-id="${escapeHTML(member.id)}">
+      <textarea name="comment"
+        rows="2"
+        maxlength="500"
+        placeholder="Write your birthday wish..."
+        required></textarea>
+      <button class="btn green" type="submit">
+        Send Wish 💌
+      </button>
+    </form>
+  </div>
+` : ""}
+
 </div>
 
 `;
