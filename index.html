@@ -120,56 +120,80 @@ hr{border:0;border-top:1px solid #e5e5dc;margin:18px 0}
     <div class="panel">
       <form id="memberForm">
         <div class="formgrid">
-          <div class="field">
-            <label for="memberName">Full name *</label>
-            <input id="memberName" required placeholder="e.g. Ramesh Reddy">
-          </div>
-          <div class="field">
-            <label for="relationship">Relationship *</label>
-            <select id="relationship" required>
-              <option value="">Choose</option>
-              <option>Father</option>
-              <option>Mother</option>
-              <option>Grandfather</option>
-              <option>Grandmother</option>
-              <option>Son</option>
-              <option>Daughter</option>
-              <option>Brother</option>
-              <option>Sister</option>
-              <option>Spouse</option>
-              <option>Other Relative</option>
-            </select>
-          </div>
-          <div class="field full">
-            <label for="address">Village name or full address *</label>
-            <input id="address" required placeholder="Village, Mandal, District, State">
-          </div>
-          <div class="field">
-            <label for="dob">Date of birth (optional)</label> <div class="field">
+      <div class="field">
+        <label for="memberName">Full name *</label>
+        <input id="memberName" required placeholder="e.g. Ramesh Reddy">
+      </div>
+
+      <div class="field">
+        <label for="relationship">Relationship *</label>
+        <select id="relationship" required>
+          <option value="">Choose</option>
+          <option>Father</option>
+          <option>Mother</option>
+          <option>Wife</option>
+          <option>Husband</option>
+          <option>Pedda Nanna</option>
+          <option>Pedda Amma</option>
+          <option>Babai</option>
+          <option>Pinni</option>
+          <option>Peddamma</option>
+          <option>Maamayya</option>
+          <option>Attha</option>
+          <option>Tatha</option>
+          <option>Nannamma</option>
+          <option>Ammamma</option>
+          <option>Anna</option>
+          <option>Akka</option>
+          <option>Thammudu</option>
+          <option>Chelli</option>
+          <option>Koduku</option>
+          <option>Koothuru</option>
+          <option>Bava</option>
+          <option>Vadina</option>
+          <option>Maradalu</option>
+          <option>Alludu</option>
+          <option>Kodalu</option>
+          <option>Other Relative</option>
+        </select>
+      </div>
+
+      <div class="field full">
+        <label for="address">Village name or full address *</label>
+        <input id="address" required placeholder="Village, Mandal, District, State">
+      </div>
+
+      <div class="field">
         <label for="relatedTo">Related To (optional)</label>
         <select id="relatedTo">
           <option value="">Choose family member</option>
         </select>
-            </div>
-            <input id="dob" type="date">
-          </div>
-          <div class="field">
-            <label for="lifeStatus">Living status *</label>
-            <select id="lifeStatus" required>
-              <option value="">Choose</option>
-              <option>Living</option>
-              <option>Deceased</option>
-            </select>
-          </div>
-          <div class="field">
-            <label for="phone">Phone number (optional)</label>
-            <input id="phone" type="tel" placeholder="Phone number">
-          </div>
-          <div class="field">
-            <label for="memberEmail">Email (optional)</label>
-            <input id="memberEmail" type="email" placeholder="Email address">
-          </div>
-        </div>
+      </div>
+
+      <div class="field">
+        <label for="dob">Date of birth (optional)</label>
+        <input id="dob" type="date">
+      </div>
+
+      <div class="field">
+        <label for="lifeStatus">Living status *</label>
+        <select id="lifeStatus" required>
+          <option value="">Choose</option>
+          <option>Living</option>
+          <option>Deceased</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label for="phone">Phone number (optional)</label>
+        <input id="phone" type="tel" placeholder="Phone number">
+      </div>
+
+      <div class="field">
+        <label for="memberEmail">Email (optional)</label>
+        <input id="memberEmail" type="email" placeholder="Email address">
+      </div>
+    </div>
         <button class="btn green" type="submit">Save Family Member</button>
       </form>
       <div class="notice">
