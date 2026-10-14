@@ -271,6 +271,19 @@ hr{border:0;border-top:1px solid #e5e5dc;margin:18px 0}
       </div>
     </div>
   </section>
+  
+<section id="familyTree">
+  <div class="heading">
+    <h2>🌳 Our Family Tree</h2>
+    <p>Explore how our family members are connected</p>
+  </div>
+  <div id="familyTreeView" class="grid">
+    <div class="card">
+      <p>Family connections will appear here.</p>
+    </div>
+  </div>
+</section>
+  
 </main>
 
 <footer>
@@ -516,6 +529,7 @@ async function loadMembers() {
     members = snap.docs.map(d => ({ id: d.id, ...d.data() }));
     updateRelatedToOptions();
     renderMembers();
+    renderFamilyTree();
     renderBirthdays();
   } catch (error) {
     message("Cannot load family members: " + error.code + " — " + error.message);
@@ -801,6 +815,56 @@ snapshot.forEach((memberDoc) => {
 console.error("Could not load family members:", error);
 }
 }
+ 
+function renderFamilyTree() {
+  const tree = document.getElementById("familyTreeView");
+  if (!tree) return;
+
+  tree.replaceChildren();
+
+  if (!members.length) {
+    tree.textContent = "No family members found.";
+    return;
+  }
+
+  members.forEach(member => {
+    const card = document.createElement("div");
+    card.className = "card";
+
+    const name = document.createElement("h3");
+    name.textContent = "🌳 " + (member.name || "Family Member");
+    card.appendChild(name);
+
+    const relation = document.createElement("p");
+    relation.textContent =
+      "Relationship: " + (member.relationship || "Family member");
+    card.appendChild(relation);
+
+    if (member.relatedTo) {
+      const relative = members.find(
+        person => person.id === member.relatedTo
+      );
+
+      const connection = document.createElement("p");
+      connection.textContent = relative
+        ? "↕ Connected to: " + relative.name
+        : "Connected family member not found";
+
+      card.appendChild(connection);
+
+      if (relative) {
+        const line = document.createElement("p");
+        line.textContent = "│";
+        line.style.textAlign = "center";
+        line.style.fontSize = "24px";
+        card.appendChild(line);
+      }
+    }
+
+    tree.appendChild(card);
+  });
+  }
+      
   loadRelatedMembers();
 </script>
 </body>
