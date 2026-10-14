@@ -894,7 +894,54 @@ function renderFamilyTree() {
     tree.appendChild(card);
   });
   }
-      
+      // Free event reminder notification
+function showEventReminder(message) {
+  let box = document.getElementById("eventReminderNotice");
+
+  if (!box) {
+    box = document.createElement("div");
+    box.id = "eventReminderNotice";
+    box.style.cssText =
+      "padding:14px;margin:15px 0;border-radius:10px;background:#e8f5e9;color:#1b5e20;font-weight:bold;";
+
+    const eventsSection = document.getElementById("events");
+    if (eventsSection) {
+      eventsSection.prepend(box);
+    } else {
+      document.body.prepend(box);
+    }
+  }
+
+  box.textContent = message;
+}
+
+function checkEventReminders() {
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+
+  const upcomingEvents = Array.isArray(events) ? events : [];
+
+  const reminders = upcomingEvents.filter(event => {
+    if (!event.date) return false;
+
+    const eventDate = new Date(event.date);
+    eventDate.setHours(0, 0, 0, 0);
+
+    const daysLeft = Math.round(
+      (eventDate - today) / (1000 * 60 * 60 * 24)
+    );
+
+    return daysLeft >= 0 && daysLeft <= 1;
+  });
+
+  if (reminders.length) {
+    showEventReminder(
+      "🔔 Upcoming reminder: " +
+      reminders.map(event => event.name).join(", ")
+    );
+  }
+  }
+  checkEventReminders();
   loadRelatedMembers();
 </script>
 </body>
