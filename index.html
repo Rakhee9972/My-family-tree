@@ -7,90 +7,309 @@
 <meta name="theme-color" content="#173f35">
 <title>Our Family Tree | Rakhee</title>
 <style>
-:root{--g:#173f35;--g2:#285d4b;--gold:#c9a45c;--cream:#faf7ef;--ink:#29382f;--muted:#718075}
-*{box-sizing:border-box}
-body{margin:0;background:var(--cream);color:var(--ink);font:15px Arial,sans-serif;line-height:1.6}
-button,input,select,textarea{font:inherit}
-button{cursor:pointer}
-header{background:var(--g);color:white;padding:14px 5%;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
-.brand{font-size:21px;font-weight:bold}.brand span{color:var(--gold)}
-nav{display:flex;gap:13px;flex-wrap:wrap}nav a{color:white;text-decoration:none;font-size:13px}
-.hero{padding:58px 6%;text-align:center;color:white;background:linear-gradient(135deg,#12382e,#326b50)}
-.eyebrow{color:#ecd49a;letter-spacing:3px;font-size:11px}
-h1{font:clamp(36px,7vw,60px)/1.12 Georgia,serif;margin:15px 0}
-.hero p{max-width:620px;margin:0 auto 22px;color:#e3ebe5}
-.btn{background:var(--gold);color:#18392e;border:0;border-radius:8px;padding:11px 17px;font-weight:bold;display:inline-block;text-decoration:none}
-.btn.green{background:var(--g);color:white}.btn.light{background:white;border:1px solid #ddd;color:var(--g)}
-.btn:disabled{opacity:.5;cursor:not-allowed}
-main{max-width:1080px;margin:auto;padding:30px 18px}
-section{margin:0 0 42px;scroll-margin-top:15px}
-.heading{text-align:center;margin-bottom:22px}
-.heading h2{font:30px Georgia,serif;color:var(--g);margin:0 0 5px}
-.heading p,.muted{color:var(--muted);font-size:13px}
-.panel,.card{background:white;border:1px solid #e4e5dc;border-radius:14px;padding:20px}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:15px}
-.search{width:100%;padding:14px;border:1px solid #d8ded5;border-radius:10px}
-input,select,textarea{width:100%;padding:11px;border:1px solid #d8ded5;border-radius:8px;background:white}
-label{font-size:12px;font-weight:bold;display:block;margin:0 0 5px}
-.field{margin-bottom:13px;min-width:0}
-.formgrid{display:grid;grid-template-columns:1fr 1fr;gap:0 14px}
-.full{grid-column:1/-1}
-.card h3{color:var(--g);margin:5px 0}
-.card p{font-size:13px;color:var(--muted);margin:5px 0;overflow-wrap:anywhere}
-.icon{font-size:30px}
-.tag{font-size:11px;background:#eaf1e8;color:var(--g2);padding:4px 9px;border-radius:20px;display:inline-block}
-.tree{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
-.person{min-width:135px;max-width:220px;background:white;border:1px solid #d9dfd5;border-radius:12px;padding:14px;text-align:center}
-.person strong{display:block;color:var(--g)}
-.event{display:flex;gap:13px;align-items:center}
-.datebox{background:#f2ecd9;border-radius:9px;padding:10px;text-align:center;min-width:60px;color:var(--g)}
-.datebox strong{display:block;font-size:20px}
-.notice{background:#f4efdf;border-left:4px solid var(--gold);padding:12px;border-radius:5px;font-size:12px;margin:12px 0}
-.hidden{display:none!important}
-.status{padding:12px;background:#edf2e9;border-radius:8px;font-size:13px;margin:12px 0;overflow-wrap:anywhere}
-footer{background:#12352b;color:white;text-align:center;padding:30px 15px}
-footer p{font-size:12px;color:#d7e0d9;margin:5px}
-footer strong{color:#e6c781}
-hr{border:0;border-top:1px solid #e5e5dc;margin:18px 0}
-@media(max-width:600px){header{align-items:flex-start}nav{width:100%;gap:10px}nav a{font-size:12px}.formgrid{grid-template-columns:1fr}.full{grid-column:auto}.hero{padding:48px 6%}main{padding:25px 13px}}
-
-/* Family tree layout */
+:root {
+  --g:#173f35;
+  --g2:#285d4b;
+  --gold:#c9a45c;
+  --cream:#faf7ef;
+  --ink:#29382f;
+  --muted:#718075;
+}
+* { box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+body {
+  margin:0;
+  background:var(--cream);
+  color:var(--ink);
+  font:15px Arial,sans-serif;
+  line-height:1.6;
+}
+button,input,select,textarea { font:inherit; }
+button { cursor:pointer; }
+header {
+  background:var(--g);
+  color:white;
+  padding:14px 5%;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  flex-wrap:wrap;
+  position:sticky;
+  top:0;
+  z-index:100;
+}
+.brand { font-size:21px; font-weight:bold; }
+.brand span { color:var(--gold); }
+.menu-button {
+  background:transparent;
+  border:1px solid #ffffff55;
+  border-radius:8px;
+  color:white;
+  padding:7px 12px;
+  font-size:22px;
+}
+nav {
+  display:flex;
+  gap:13px;
+  flex-wrap:wrap;
+}
+nav a {
+  color:white;
+  text-decoration:none;
+  font-size:13px;
+}
+nav a:hover { color:var(--gold); }
+.hero {
+  padding:58px 6%;
+  text-align:center;
+  color:white;
+  background:linear-gradient(135deg,#12382e,#326b50);
+}
+.eyebrow {
+  color:#ecd49a;
+  letter-spacing:3px;
+  font-size:11px;
+}
+h1 {
+  font:clamp(36px,7vw,60px)/1.12 Georgia,serif;
+  margin:15px 0;
+}
+.hero p {
+  max-width:620px;
+  margin:0 auto 22px;
+  color:#e3ebe5;
+}
+.btn {
+  background:var(--gold);
+  color:#18392e;
+  border:0;
+  border-radius:8px;
+  padding:11px 17px;
+  font-weight:bold;
+  display:inline-block;
+  text-decoration:none;
+}
+.btn.green { background:var(--g); color:white; }
+.btn.light {
+  background:white;
+  border:1px solid #ddd;
+  color:var(--g);
+}
+.btn.danger { background:#a83232; color:white; }
+.btn:disabled { opacity:.5; cursor:not-allowed; }
+main {
+  max-width:1080px;
+  margin:auto;
+  padding:30px 18px;
+}
+section {
+  margin:0 0 42px;
+  scroll-margin-top:85px;
+}
+.heading { text-align:center; margin-bottom:22px; }
+.heading h2 {
+  font:30px Georgia,serif;
+  color:var(--g);
+  margin:0 0 5px;
+}
+.heading p,.muted { color:var(--muted); font-size:13px; }
+.panel,.card {
+  background:white;
+  border:1px solid #e4e5dc;
+  border-radius:14px;
+  padding:20px;
+}
+.grid {
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:15px;
+}
+.search {
+  width:100%;
+  padding:14px;
+  border:1px solid #d8ded5;
+  border-radius:10px;
+}
+input,select,textarea {
+  width:100%;
+  padding:11px;
+  border:1px solid #d8ded5;
+  border-radius:8px;
+  background:white;
+}
+label {
+  font-size:12px;
+  font-weight:bold;
+  display:block;
+  margin:0 0 5px;
+}
+.field { margin-bottom:13px; min-width:0; }
+.formgrid {
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:0 14px;
+}
+.full { grid-column:1/-1; }
+.card h3 { color:var(--g); margin:5px 0; }
+.card p {
+  font-size:13px;
+  color:var(--muted);
+  margin:5px 0;
+  overflow-wrap:anywhere;
+}
+.icon { font-size:30px; }
+.tag {
+  font-size:11px;
+  background:#eaf1e8;
+  color:var(--g2);
+  padding:4px 9px;
+  border-radius:20px;
+  display:inline-block;
+}
+.tree {
+  display:flex;
+  gap:12px;
+  justify-content:center;
+  flex-wrap:wrap;
+}
+.person {
+  min-width:135px;
+  max-width:220px;
+  background:white;
+  border:1px solid #d9dfd5;
+  border-radius:12px;
+  padding:14px;
+  text-align:center;
+}
+.person strong { display:block; color:var(--g); }
+.event { display:flex; gap:13px; align-items:center; }
+.datebox {
+  background:#f2ecd9;
+  border-radius:9px;
+  padding:10px;
+  text-align:center;
+  min-width:60px;
+  color:var(--g);
+}
+.datebox strong { display:block; font-size:20px; }
+.notice {
+  background:#f4efdf;
+  border-left:4px solid var(--gold);
+  padding:12px;
+  border-radius:5px;
+  font-size:12px;
+  margin:12px 0;
+}
+.hidden { display:none!important; }
+.status {
+  padding:12px;
+  background:#edf2e9;
+  border-radius:8px;
+  font-size:13px;
+  margin:12px 0;
+  overflow-wrap:anywhere;
+}
+.action-row {
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
+  margin-top:12px;
+}
+.action-row .btn { font-size:12px; padding:8px 12px; }
+.request-card {
+  background:white;
+  border:1px solid #e4e5dc;
+  border-radius:12px;
+  padding:15px;
+  margin:12px 0;
+}
+.request-card h3 { margin-top:0; }
+.badge-pending {
+  background:#fff0cc;
+  color:#795600;
+  border-radius:20px;
+  padding:4px 9px;
+  font-size:11px;
+}
+.badge-resolved {
+  background:#e2f3e5;
+  color:#245c32;
+  border-radius:20px;
+  padding:4px 9px;
+  font-size:11px;
+}
+.comment {
+  border-left:3px solid var(--gold);
+  padding:8px 12px;
+  margin:10px 0;
+  background:#faf8f1;
+  border-radius:5px;
+  overflow-wrap:anywhere;
+}
+footer {
+  background:#12352b;
+  color:white;
+  text-align:center;
+  padding:30px 15px;
+}
+footer p { font-size:12px; color:#d7e0d9; margin:5px; }
+footer strong { color:#e6c781; }
+hr { border:0; border-top:1px solid #e5e5dc; margin:18px 0; }
 #familyTreeView {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 24px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:24px;
 }
-
 #familyTreeView .card {
-  width: 100%;
-  max-width: 420px;
-  box-sizing: border-box;
-  position: relative;
+  width:100%;
+  max-width:420px;
+  position:relative;
 }
-
-#familyTreeView .card h3 {
-  text-align: center;
-}
-
-#familyTreeView .card p {
-  overflow-wrap: anywhere;
-}
-
+#familyTreeView .card h3 { text-align:center; }
+#familyTreeView .card p { overflow-wrap:anywhere; }
 #familyTreeView .tree-connection {
-  text-align: center;
-  color: #285d4b;
-  font-weight: bold;
+  text-align:center;
+  color:#285d4b;
+  font-weight:bold;
+}
+@media(max-width:600px) {
+  header { align-items:center; }
+  nav {
+    display:none;
+    width:100%;
+    flex-direction:column;
+    gap:0;
   }
-  
+  nav.open { display:flex; }
+  nav a { padding:9px 4px; font-size:14px; }
+  .formgrid { grid-template-columns:1fr; }
+  .full { grid-column:auto; }
+  .hero { padding:48px 6%; }
+  main { padding:25px 13px; }
+}
 </style>
 </head>
 <body>
+
 <header>
   <div class="brand">🌳 Our <span>Family Tree</span></div>
-  <nav>
-    <a href="#home">Home</a><a href="#family">Family</a>
-    <a href="#birthdays">Birthdays</a><a href="#events">Events</a>
+  <button
+    id="menuButton"
+    class="menu-button"
+    type="button"
+    aria-label="Open navigation menu"
+    aria-expanded="false"
+  >☰</button>
+
+  <nav id="mainNav">
+    <a href="#home">Home</a>
+    <a href="#familyTree">Family Tree</a>
+    <a href="#birthdays">Birthdays</a>
+    <a href="#events">Events</a>
+    <a href="#myRequests">My Requests</a>
+    <a href="#helpSupport">Help &amp; Support</a>
     <a href="#account">Account</a>
   </nav>
 </header>
@@ -98,232 +317,381 @@ hr{border:0;border-top:1px solid #e5e5dc;margin:18px 0}
 <section class="hero" id="home">
   <div class="eyebrow">OUR ROOTS · OUR STORIES · OUR MEMORIES</div>
   <h1>Welcome to the<br>Family Tree</h1>
-  <p>Discover our family connections, celebrate birthdays, share special events and preserve our heritage for generations.</p>
+  <p>
+    Discover our family connections, celebrate birthdays,
+    share special events and preserve our heritage for generations.
+  </p>
   <a class="btn" href="#family">Explore Our Family ↓</a>
 </section>
 
 <main>
-  <section>
-    <div class="heading"><h2>Find Your Family</h2><p>Search family names, relationships, villages and events</p></div>
-    <input id="search" class="search" type="search" placeholder="🔎 Search family members and events">
-  </section>
 
-  <section id="account">
-    <div class="heading"><h2>Member Account</h2><p>Sign in or request a new account</p></div>
-    <div class="panel">
-      <div id="accountStatus" class="status">Connect to the website account service to sign in or register.</div>
-      <div id="authForms">
-        <div class="formgrid">
-          <div class="field full"><label for="fullName">Full name (registration only)</label><input id="fullName" autocomplete="name" placeholder="Your full name"></div>
-          <div class="field full"><label for="email">Gmail / Email</label><input id="email" type="email" autocomplete="email" placeholder="you@example.com"></div>
-          <div class="field full"><label for="password">Password</label><input id="password" type="password" autocomplete="current-password" minlength="6" placeholder="At least 6 characters"></div>
-        </div>
-        <div style="display:flex;gap:10px;flex-wrap:wrap">
-          <button id="loginBtn" class="btn green" type="button">Login</button>
-          <button id="registerBtn" class="btn" type="button">Create Account</button>
-          <button id="logoutBtn" class="btn light hidden" type="button">Logout</button>
-        </div>
-      </div>
-      <div class="notice">New registrations must be approved by the website owner. Do not share your password. Real family records remain unavailable until secure database rules are configured.</div>
-      <div id="ownerPanel">
-        <hr><h3>Owner — Account Requests</h3>
-        <div id="pendingUsers" class="muted">Loading requests…</div>
-      </div>
-    </div>
-  </section>
-
-  <section id="birthdays">
-    <div class="heading"><h2>🎂 Today's Birthdays</h2><p>Send warm wishes to our family members</p></div>
-    <div id="birthdayList" class="grid"><div class="card"><div class="icon">🎉</div><h3>Birthday wishes</h3><p>Birthdays will appear here when approved family records are available.</p></div></div>
-  </section>
-
-  <section id="family">
-    <div class="heading"><h2>Our Family Tree</h2><p>Connected by love, growing through generations</p></div>
-    <div id="familyList" class="tree"><div class="notice">Approved family members will appear here.</div></div>
-  </section>
-
-  <section id="addMember">
-    <div class="heading">
-      <h2>Add a Family Member</h2>
-      <p>Preserve a name and its place in our family history</p>
-    </div>
-    <div class="panel">
-      <form id="memberForm">
-        <div class="formgrid">
-      <div class="field">
-        <label for="memberName">Full name *</label>
-        <input id="memberName" required placeholder="e.g. Ramesh Reddy">
-      </div>
-
-      <div class="field">
-        <label for="relationship">Relationship *</label>
-        <select id="relationship" required>
-          <option value="">Choose</option>
-          <option>Father</option>
-          <option>Mother</option>
-          <option>Wife</option>
-          <option>Husband</option>
-          <option>Pedda Nanna</option>
-          <option>Pedda Amma</option>
-          <option>Babai</option>
-          <option>Pinni</option>
-          <option>Peddamma</option>
-          <option>Maamayya</option>
-          <option>Attha</option>
-          <option>Tatha</option>
-          <option>Nannamma</option>
-          <option>Ammamma</option>
-          <option>Anna</option>
-          <option>Akka</option>
-          <option>Thammudu</option>
-          <option>Chelli</option>
-          <option>Koduku</option>
-          <option>Koothuru</option>
-          <option>Bava</option>
-          <option>Vadina</option>
-          <option>Maradalu</option>
-          <option>Alludu</option>
-          <option>Kodalu</option>
-          <option>Other Relative</option>
-        </select>
-      </div>
-
-      <div class="field full">
-        <label for="address">Village name or full address *</label>
-        <input id="address" required placeholder="Village, Mandal, District, State">
-      </div>
-
-      <div class="field">
-        <label for="relatedTo">Related To (optional)</label>
-        <select id="relatedTo">
-          <option value="">Choose family member</option>
-        </select>
-      </div>
-
-      <div class="field">
-        <label for="dob">Date of birth (optional)</label>
-        <input id="dob" type="date">
-      </div>
-
-      <div class="field">
-        <label for="lifeStatus">Living status *</label>
-        <select id="lifeStatus" required>
-          <option value="">Choose</option>
-          <option>Living</option>
-          <option>Deceased</option>
-        </select>
-      </div>
-
-      <div class="field">
-        <label for="phone">Phone number (optional)</label>
-        <input id="phone" type="tel" placeholder="Phone number">
-      </div>
-
-      <div class="field">
-        <label for="memberEmail">Email (optional)</label>
-        <input id="memberEmail" type="email" placeholder="Email address">
-      </div>
-    </div>
-        <button class="btn green" type="submit">Save Family Member</button>
-      </form>
-      <div class="notice">
-        Family member details can be saved by approved users.
-        Database permissions must be configured before using real family data.
-      </div>
-    </div>
-  </section>
-
-  <section id="events">
-    <div class="heading">
-      <h2>Family Functions & Events</h2>
-      <p>Weddings, birthdays, anniversaries and family gatherings</p>
-    </div>
-
-    <div class="grid">
-      <div class="card">
-        <div class="icon">💍</div>
-        <h3>Weddings & Engagements</h3>
-        <p>Celebrate milestones together.</p>
-      </div>
-      <div class="card">
-        <div class="icon">🎂</div>
-        <h3>Birthdays & Anniversaries</h3>
-        <p>Remember the special days.</p>
-      </div>
-      <div class="card">
-        <div class="icon">🪔</div>
-        <h3>Family Gatherings</h3>
-        <p>Keep everyone informed.</p>
-      </div>
-    </div>
-
-    <div class="panel" style="margin-top:16px">
-      <h3>Create a Family Event</h3>
-      <form id="eventForm">
-        <div class="formgrid">
-          <div class="field">
-            <label for="eventName">Event name *</label>
-            <input id="eventName" required placeholder="e.g. Family wedding">
-          </div>
-          <div class="field">
-            <label for="eventType">Event type *</label>
-            <select id="eventType" required>
-              <option value="">Choose</option>
-              <option>Wedding</option>
-              <option>Engagement</option>
-              <option>Birthday</option>
-              <option>Anniversary</option>
-              <option>Festival</option>
-              <option>Family Gathering</option>
-              <option>Other</option>
-            </select>
-          </div>
-          <div class="field">
-            <label for="eventDate">Date *</label>
-            <input id="eventDate" type="date" required>
-          </div>
-          <div class="field">
-            <label for="eventAddress">Venue / village *</label>
-            <input id="eventAddress" required placeholder="Venue or address">
-          </div>
-          <div class="field full">
-            <label for="eventDescription">Description (optional)</label>
-            <textarea id="eventDescription" rows="3" placeholder="Event details"></textarea>
-          </div>
-        </div>
-        <button class="btn green" type="submit">Create Event</button>
-      </form>
-    </div>
-
-    <div id="eventList" class="grid" style="margin-top:16px">
-      <div class="card">
-        <p>Family events will appear here.</p>
-      </div>
-    </div>
-  </section>
-  
-<section id="familyTree">
+<section id="searchSection">
   <div class="heading">
-    <h2>🌳 Our Family Tree</h2>
-    <p>Explore how our family members are connected</p>
+    <h2>Find Your Family</h2>
+    <p>Search family names, relationships, villages and events</p>
   </div>
-  <div id="familyTreeView" class="grid">
-    <div class="card">
-      <p>Family connections will appear here.</p>
+  <input
+    id="search"
+    class="search"
+    type="search"
+    placeholder="🔎 Search family members and events"
+  >
+</section>
+
+<section id="account">
+  <div class="heading">
+    <h2>Member Account</h2>
+    <p>Sign in or request a new account</p>
+  </div>
+
+  <div class="panel">
+    <div id="accountStatus" class="status">
+      Sign in or register to access approved family records.
+    </div>
+
+    <div id="authForms">
+      <div class="formgrid">
+        <div class="field full">
+          <label for="fullName">Full name (registration only)</label>
+          <input id="fullName" autocomplete="name" placeholder="Your full name">
+        </div>
+        <div class="field full">
+          <label for="email">Gmail / Email</label>
+          <input id="email" type="email" autocomplete="email" placeholder="you@example.com">
+        </div>
+        <div class="field full">
+          <label for="password">Password</label>
+          <input
+            id="password"
+            type="password"
+            autocomplete="current-password"
+            minlength="6"
+            placeholder="At least 6 characters"
+          >
+        </div>
+      </div>
+
+      <div class="action-row">
+        <button id="loginBtn" class="btn green" type="button">Login</button>
+        <button id="registerBtn" class="btn" type="button">Create Account</button>
+        <button id="logoutBtn" class="btn light hidden" type="button">Logout</button>
+      </div>
+    </div>
+
+    <div class="notice">
+      New registrations require owner approval. Never share your password.
+    </div>
+
+    <div id="ownerPanel" class="hidden">
+      <hr>
+      <h3>Owner — Account Requests</h3>
+      <div id="pendingUsers" class="muted">Loading requests…</div>
     </div>
   </div>
 </section>
-  
+
+<section id="birthdays">
+  <div class="heading">
+    <h2>🎂 Birthdays</h2>
+    <p>Remember and celebrate our family members</p>
+  </div>
+  <div id="birthdayList" class="grid">
+    <div class="card">
+      <div class="icon">🎉</div>
+      <h3>Birthday wishes</h3>
+      <p>Birthdays will appear here after approved family records load.</p>
+    </div>
+  </div>
+</section>
+
+<section id="family">
+  <div class="heading">
+    <h2>Our Family Members</h2>
+    <p>Connected by love, growing through generations</p>
+  </div>
+  <div id="familyList" class="tree">
+    <div class="notice">Approved family members will appear here.</div>
+  </div>
+</section>
+
+<section id="addMember">
+  <div class="heading">
+    <h2>Add a Family Member</h2>
+    <p>Preserve a name and its place in our family history</p>
+  </div>
+
+  <div class="panel">
+    <form id="memberForm">
+      <div class="formgrid">
+        <div class="field">
+          <label for="memberName">Full name *</label>
+          <input id="memberName" required placeholder="Full name">
+        </div>
+
+        <div class="field">
+          <label for="relationship">Relationship *</label>
+          <select id="relationship" required>
+            <option value="">Choose</option>
+            <option>Father</option>
+            <option>Mother</option>
+            <option>Wife</option>
+            <option>Husband</option>
+            <option>Pedda Nanna</option>
+            <option>Pedda Amma</option>
+            <option>Babai</option>
+            <option>Pinni</option>
+            <option>Peddamma</option>
+            <option>Maamayya</option>
+            <option>Attha</option>
+            <option>Tatha</option>
+            <option>Nannamma</option>
+            <option>Ammamma</option>
+            <option>Anna</option>
+            <option>Akka</option>
+            <option>Thammudu</option>
+            <option>Chelli</option>
+            <option>Koduku</option>
+            <option>Koothuru</option>
+            <option>Bava</option>
+            <option>Vadina</option>
+            <option>Maradalu</option>
+            <option>Alludu</option>
+            <option>Kodalu</option>
+            <option>Other Relative</option>
+          </select>
+        </div>
+
+        <div class="field full">
+          <label for="address">Village name or full address *</label>
+          <input id="address" required placeholder="Village, Mandal, District, State">
+        </div>
+
+        <div class="field">
+          <label for="relatedTo">Related To (optional)</label>
+          <select id="relatedTo">
+            <option value="">Choose family member</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label for="dob">Date of birth (optional)</label>
+          <input id="dob" type="date">
+        </div>
+
+        <div class="field">
+          <label for="lifeStatus">Living status *</label>
+          <select id="lifeStatus" required>
+            <option value="">Choose</option>
+            <option>Living</option>
+            <option>Deceased</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label for="phone">Phone number (optional)</label>
+          <input id="phone" type="tel" placeholder="Phone number">
+        </div>
+
+        <div class="field full">
+          <label for="memberEmail">Email (optional)</label>
+          <input id="memberEmail" type="email" placeholder="Email address">
+        </div>
+      </div>
+
+      <button id="memberSaveBtn" class="btn green" type="submit">
+        Save Family Member
+      </button>
+      <button id="memberCancelBtn" class="btn light hidden" type="button">
+        Cancel Edit
+      </button>
+    </form>
+
+    <div class="notice">
+      Approved members can add family records. A record can be edited by
+      its creator or the owner. Only the owner can delete a family record.
+    </div>
+  </div>
+</section>
+
+</main>
+<main>
+
+<section id="familyTree">
+  <div class="heading">
+    <h2>🌳 Family Tree</h2>
+    <p>Explore the family connections</p>
+  </div>
+  <div class="panel">
+    <div id="familyTreeView">
+      <p class="muted">Family tree will appear after records load.</p>
+    </div>
+  </div>
+</section>
+
+<section id="events">
+  <div class="heading">
+    <h2>🎉 Family Events</h2>
+    <p>Create and share important family occasions</p>
+  </div>
+
+  <div class="panel">
+    <h3 id="eventFormTitle">Add a Family Event</h3>
+
+    <form id="eventForm">
+      <div class="formgrid">
+        <div class="field">
+          <label for="eventName">Event name *</label>
+          <input id="eventName" required placeholder="Birthday, wedding, function...">
+        </div>
+
+        <div class="field">
+          <label for="eventType">Event type *</label>
+          <select id="eventType" required>
+            <option value="">Choose event type</option>
+            <option>Birthday</option>
+            <option>Wedding</option>
+            <option>Engagement</option>
+            <option>Family Function</option>
+            <option>Festival</option>
+            <option>Memorial</option>
+            <option>Temple Function</option>
+            <option>Other</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label for="eventDate">Event date *</label>
+          <input id="eventDate" type="date" required>
+        </div>
+
+        <div class="field">
+          <label for="eventAddress">Venue / Address *</label>
+          <input id="eventAddress" required placeholder="Event location">
+        </div>
+
+        <div class="field full">
+          <label for="eventDescription">Description (optional)</label>
+          <textarea id="eventDescription" rows="3"
+            placeholder="Add event details"></textarea>
+        </div>
+      </div>
+
+      <div class="action-row">
+        <button id="eventSaveBtn" class="btn green" type="submit">
+          Save Event
+        </button>
+        <button id="eventCancelBtn" class="btn light hidden" type="button">
+          Cancel Edit
+        </button>
+      </div>
+    </form>
+
+    <div class="notice">
+      Approved members can create events. Only the owner can edit or delete
+      events. Other members can request event deletion with a reason.
+    </div>
+  </div>
+
+  <div id="eventList" class="grid" style="margin-top:18px">
+    <div class="card">
+      <h3>Family Events</h3>
+      <p>Events will appear here after loading.</p>
+    </div>
+  </div>
+</section>
+
+<section id="myRequests">
+  <div class="heading">
+    <h2>📨 My Requests</h2>
+    <p>Follow the status of your requests and owner replies</p>
+  </div>
+
+  <div class="panel">
+    <div id="myRequestsList">
+      <p class="muted">Login with an approved account to view your requests.</p>
+    </div>
+  </div>
+</section>
+
+<section id="helpSupport">
+  <div class="heading">
+    <h2>💬 Help &amp; Support</h2>
+    <p>Ask for help or suggest an improvement</p>
+  </div>
+
+  <div class="panel">
+    <form id="helpForm">
+      <div class="field">
+        <label for="helpType">Request category *</label>
+        <select id="helpType" required>
+          <option value="">Select a category</option>
+          <option value="Family detail correction">Family detail correction</option>
+          <option value="Event correction">Event correction</option>
+          <option value="Website problem">Website problem</option>
+          <option value="New feature suggestion">New feature suggestion</option>
+          <option value="Other">Other</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label for="helpSubject">Subject *</label>
+        <input id="helpSubject" required maxlength="200"
+          placeholder="Briefly describe your request">
+      </div>
+
+      <div class="field">
+        <label for="helpDescription">Description *</label>
+        <textarea id="helpDescription" required maxlength="3000" rows="5"
+          placeholder="Explain the issue or suggestion clearly"></textarea>
+      </div>
+
+      <button class="btn green" type="submit">Submit Request</button>
+    </form>
+
+    <div class="notice">
+      Please do not include passwords or sensitive personal information
+      in your support request. The owner can review and reply to your request.
+    </div>
+  </div>
+</section>
+
+<section id="ownerRequests" class="hidden">
+  <div class="heading">
+    <h2>🛠️ Owner Dashboard</h2>
+    <p>Manage event deletion requests and support requests</p>
+  </div>
+
+  <div class="grid">
+    <div class="card">
+      <div class="icon">🗑️</div>
+      <h3>Event Deletion Requests</h3>
+      <p id="eventRequestCount">Loading…</p>
+      <div id="eventRequestsList"></div>
+    </div>
+
+    <div class="card">
+      <div class="icon">💬</div>
+      <h3>Help &amp; Support Requests</h3>
+      <p id="helpRequestCount">Loading…</p>
+      <div id="helpRequestsList"></div>
+    </div>
+  </div>
+</section>
+
 </main>
 
 <footer>
-  <div style="font-size:27px">🌳</div>
-  <strong>This website was created by Rakhee</strong>
-  <p>Our Family Tree · Preserving memories for generations</p>
+  <p><strong>Our Family Tree</strong></p>
+  <p>Keeping our family connected across generations.</p>
+  <p>This website created by Rakhee</p>
 </footer>
+</body>
+</html>
 
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/13.0.0/firebase-app.js";
+
 import {
   getAuth,
   createUserWithEmailAndPassword,
@@ -332,6 +700,7 @@ import {
   onAuthStateChanged,
   updateProfile
 } from "https://www.gstatic.com/firebasejs/13.0.0/firebase-auth.js";
+
 import {
   getFirestore,
   doc,
@@ -343,7 +712,8 @@ import {
   query,
   where,
   serverTimestamp,
-  updateDoc
+  updateDoc,
+  deleteDoc
 } from "https://www.gstatic.com/firebasejs/13.0.0/firebase-firestore.js";
 
 const firebaseConfig = {
@@ -361,82 +731,151 @@ const auth = getAuth(app);
 const db = getFirestore(app);
 const $ = id => document.getElementById(id);
 
+const OWNER_UID = "rNAnvgU4zTPizXf9Mbg7CV5JVi12";
+
 let currentUser = null;
 let currentProfile = null;
 let editingMemberId = null;
-  let members = [];
+let editingEventId = null;
+let members = [];
 let events = [];
-
-function message(text) {
-  $("accountStatus").textContent = text;
-}
+let eventDeleteRequests = [];
+let helpRequests = [];
+let activeRequestId = null;
 
 function clean(value) {
-  return String(value || "").trim();
+  return String(value ?? "").trim();
 }
 
 function escapeHTML(value) {
-  return String(value ?? "").replace(/[&<>"']/g, c => ({
+  return String(value ?? "").replace(/[&<>"']/g, character => ({
     "&": "&amp;",
     "<": "&lt;",
     ">": "&gt;",
     '"': "&quot;",
     "'": "&#39;"
-  })[c]);
+  })[character]);
 }
 
-function dateText(value) {
-  if (!value) return "";
-  const d = new Date(value + "T12:00:00");
-  return Number.isNaN(d.getTime()) ? "" : d.toLocaleDateString();
+function message(text) {
+  $("accountStatus").textContent = text;
+}
+
+function showMessage(elementId, text) {
+  const element = $(elementId);
+  if (element) element.textContent = text;
 }
 
 function isOwner() {
-  return !!currentUser &&
-    !!currentProfile &&
-    currentProfile.role === "owner";
+  return Boolean(
+    currentUser &&
+    currentUser.uid === OWNER_UID &&
+    currentProfile?.role === "owner"
+  );
 }
 
 function canUse() {
-  return !!currentUser &&
-    !!currentProfile &&
-    (currentProfile.status === "approved" || isOwner());
+  return Boolean(
+    currentUser &&
+    currentProfile &&
+    (currentProfile.status === "approved" || isOwner())
+  );
+}
+
+function dateText(value) {
+  if (!value) return "Date not provided";
+  const date = new Date(value + "T12:00:00");
+  return Number.isNaN(date.getTime())
+    ? "Date not provided"
+    : date.toLocaleDateString("en-IN", {
+        day: "numeric",
+        month: "short",
+        year: "numeric"
+      });
+}
+
+function setHidden(id, hidden) {
+  const element = $(id);
+  if (element) element.classList.toggle("hidden", hidden);
 }
 
 function showAuth() {
-  $("authForms").hidden = !!currentUser;
-  $("logoutBtn").hidden = !currentUser;
-  $("ownerPanel").hidden = !isOwner();
+  setHidden("authForms", Boolean(currentUser));
+  setHidden("logoutBtn", !currentUser);
+  setHidden("ownerPanel", !isOwner());
+  setHidden("ownerRequests", !isOwner());
 
   if (!currentUser) {
-    $("accountStatus").textContent =
-      "Register or sign in. New accounts need owner approval.";
-  } else if (isOwner()) {
+    message("Sign in or register. New accounts require owner approval.");
+    return;
+  }
+
+  if (isOwner()) {
     message("Owner account signed in.");
   } else if (currentProfile?.status === "approved") {
     message("Your account is approved. Welcome!");
   } else {
-    message("Your registration is pending owner approval.");
+    message("Your account is pending owner approval.");
   }
 }
 
-async function loadProfile(user) {
-  const snap = await getDoc(doc(db, "users", user.uid));
-  currentProfile = snap.exists() ? snap.data() : null;
-  showAuth();
+async function loadPendingUsers() {
+  if (!isOwner()) return;
 
-  if (isOwner()) {
-    await loadPendingUsers();
-  }
-  if (canUse()) {
-    await loadMembers();
-    await loadEvents();
-  } else {
-    members = [];
-    events = [];
-    renderMembers();
-    renderBirthdays();
-    renderEvents();
+  const container = $("pendingUsers");
+  container.replaceChildren();
+
+  try {
+    const snapshot = await getDocs(
+      query(collection(db, "users"), where("status", "==", "pending"))
+    );
+
+    if (snapshot.empty) {
+      container.textContent = "No pending account requests.";
+      return;
+    }
+
+    snapshot.forEach(userDoc => {
+      const user = userDoc.data();
+      const card = document.createElement("div");
+      card.className = "request-card";
+
+      const title = document.createElement("h3");
+      title.textContent = user.name || user.email || "New member";
+
+      const email = document.createElement("p");
+      email.textContent = user.email || "";
+
+      const approve = document.createElement("button");
+      approve.type = "button";
+      approve.className = "btn green";
+      approve.textContent = "Approve Account";
+
+      approve.addEventListener("click", async () => {
+        if (!isOwner()) return;
+
+        approve.disabled = true;
+        try {
+          await updateDoc(doc(db, "users", userDoc.id), {
+            status: "approved",
+            role: "member",
+            approvedAt: serverTimestamp()
+          });
+          await loadPendingUsers();
+          message("Account approved successfully.");
+        } catch (error) {
+          console.error(error);
+          message("Could not approve account. Check Firestore rules.");
+          approve.disabled = false;
+        }
+      });
+
+      card.append(title, email, approve);
+      container.append(card);
+    });
+  } catch (error) {
+    console.error(error);
+    container.textContent = "Could not load account requests.";
   }
 }
 
@@ -446,17 +885,19 @@ $("registerBtn").addEventListener("click", async () => {
   const password = $("password").value;
 
   if (!name || !email || password.length < 6) {
-    message("Enter your name, email and a password with at least 6 characters.");
+    message("Enter your name, valid email and password of at least 6 characters.");
     return;
   }
 
   try {
-    message("Creating your account...");
-    const result = await createUserWithEmailAndPassword(auth, email, password);
+    message("Creating your account…");
+
+    const result = await createUserWithEmailAndPassword(
+      auth, email, password
+    );
+
     await updateProfile(result.user, { displayName: name });
 
-    // New users remain pending. Only secure Firestore rules/admin
-    // actions should grant approval or owner privileges.
     await setDoc(doc(db, "users", result.user.uid), {
       name,
       email,
@@ -471,10 +912,12 @@ $("registerBtn").addEventListener("click", async () => {
       role: "member",
       status: "pending"
     };
+
     showAuth();
     message("Registration successful. Wait for owner approval.");
   } catch (error) {
-    message("Registration error: " + error.message);
+    console.error(error);
+    message(error.message || "Registration failed.");
   }
 });
 
@@ -482,470 +925,1193 @@ $("loginBtn").addEventListener("click", async () => {
   const email = clean($("email").value);
   const password = $("password").value;
 
+  if (!email || !password) {
+    message("Enter your email and password.");
+    return;
+  }
+
   try {
-    message("Signing in...");
+    message("Signing in…");
     await signInWithEmailAndPassword(auth, email, password);
   } catch (error) {
-    message("Login error: " + error.message);
+    console.error(error);
+    message("Login failed. Check your email and password.");
   }
 });
 
 $("logoutBtn").addEventListener("click", async () => {
-  await signOut(auth);
-  currentProfile = null;
-  message("You have signed out.");
-});
-
-async function loadPendingUsers() {
-  if (!isOwner()) return;
-
   try {
-    const q = query(collection(db, "users"), where("status", "==", "pending"));
-    const snap = await getDocs(q);
-    $("pendingUsers").replaceChildren();
-
-    snap.forEach(item => {
-      const user = item.data();
-      const row = document.createElement("div");
-      row.className = "card";
-      row.innerHTML = `
-        <h3>${escapeHTML(user.name || "New member")}</h3>
-        <p>${escapeHTML(user.email || "")}</p>
-        <button class="btn green" type="button">Approve</button>
-      `;
-
-      
-row.querySelector("button").addEventListener("click", async () => {
-  if (!isOwner()) {
-    message("Only the website owner can approve members.");
-    return;
-  }
-
-  if (!confirm(`Approve ${user.name || user.email || "this member"}?`)) {
-    return;
-  }
-
-  try {
-    await updateDoc(doc(db, "users", item.id), {
-      status: "approved",
-      approvedAt: serverTimestamp(),
-      approvedBy: currentUser.uid
-    });
-
-    message("Member approved successfully!");
-    await loadPendingUsers();
+    await signOut(auth);
+    message("You have signed out.");
   } catch (error) {
-    message("Approval failed: " + error.message);
+    console.error(error);
+    message("Could not sign out. Please try again.");
   }
 });
-;
-      $("pendingUsers").appendChild(row);
-    });
 
-    if (!snap.size) {
-      $("pendingUsers").textContent = "No pending registrations.";
+$("menuButton").addEventListener("click", () => {
+  const nav = $("mainNav");
+  const opened = nav.classList.toggle("open");
+  $("menuButton").setAttribute("aria-expanded", String(opened));
+});
+
+$("mainNav").querySelectorAll("a").forEach(link => {
+  link.addEventListener("click", () => {
+    $("mainNav").classList.remove("open");
+    $("menuButton").setAttribute("aria-expanded", "false");
+  });
+});
+
+onAuthStateChanged(auth, async user => {
+  currentUser = user;
+  currentProfile = null;
+
+  if (!user) {
+    members = [];
+    events = [];
+    eventDeleteRequests = [];
+    helpRequests = [];
+    showAuth();
+    renderMembers();
+    renderBirthdays();
+    renderEvents();
+    renderFamilyTree();
+    renderMyRequests();
+    return;
+  }
+
+  try {
+    const profileSnapshot = await getDoc(doc(db, "users", user.uid));
+    currentProfile = profileSnapshot.exists()
+      ? profileSnapshot.data()
+      : null;
+
+    showAuth();
+
+    if (isOwner()) {
+      await loadPendingUsers();
+      await loadOwnerRequests();
+    }
+
+    if (canUse()) {
+      await loadMembers();
+      await loadEvents();
+      await loadMyRequests();
+    } else {
+      members = [];
+      events = [];
+      renderMembers();
+      renderBirthdays();
+      renderEvents();
+      renderFamilyTree();
+      renderMyRequests();
     }
   } catch (error) {
-    $("pendingUsers").textContent =
-      "Could not load pending users. Check Firebase security rules.";
+    console.error(error);
+    message("Could not load your account. Check your internet and Firestore rules.");
   }
-}
+});
+
 
 async function loadMembers() {
   if (!canUse()) return;
 
   try {
-    const snap = await getDocs(collection(db, "members"));
-    members = snap.docs.map(d => ({ id: d.id, ...d.data() }));
-    updateRelatedToOptions();
+    const snapshot = await getDocs(collection(db, "members"));
+    members = snapshot.docs.map(item => ({
+      id: item.id,
+      ...item.data()
+    }));
+
     renderMembers();
-    renderFamilyTree();
     renderBirthdays();
+    renderFamilyTree();
+    loadRelatedMembers();
   } catch (error) {
-    message("Cannot load family members: " + error.code + " — " + error.message);
-console.error("Family members loading error:", error);
+    console.error(error);
+    showMessage("accountStatus", "Unable to load family members.");
   }
 }
 
 function renderMembers() {
-  const list = $("familyList");
-  list.replaceChildren();
+  const container = $("familyList");
+  container.replaceChildren();
 
   const term = clean($("search").value).toLowerCase();
-  const visible = members.filter(m =>
-    [m.name, m.relationship, m.address]
-      .some(v => String(v || "").toLowerCase().includes(term))
-  );
 
-  if (!canUse()) {
-    list.innerHTML = '<div class="card"><p>Sign in and wait for owner approval to view family records.</p></div>';
-    return;
-  }
+  const filtered = members.filter(member => {
+    const text = [
+      member.name,
+      member.relationship,
+      member.address,
+      member.lifeStatus
+    ].join(" ").toLowerCase();
 
-  if (!visible.length) {
-    list.innerHTML = '<div class="card"><p>No family members found.</p></div>';
-    return;
-  }
-
-  visible.forEach(m => {
-    const card = document.createElement("article");
-    card.className = "card";
-    
-card.innerHTML = `
-  <div class="icon">🌳</div>
-  <h3>${escapeHTML(m.name)}</h3>
-  <p><strong>Relationship:</strong> ${escapeHTML(m.relationship || "")}</p>
-  <p><strong>Address:</strong> ${escapeHTML(m.address || "")}</p>
-  <p><strong>Date of birth:</strong> ${escapeHTML(dateText(m.dob))}</p>
-  <p><strong>Status:</strong> ${escapeHTML(m.lifeStatus || "")}</p>
-  ${m.phone ? `<p><strong>Phone:</strong> ${escapeHTML(m.phone)}</p>` : ""}
-  ${m.memberEmail ? `<p><strong>Email:</strong> ${escapeHTML(m.memberEmail)}</p>` : ""}
-  <button type="button" class="btn edit-member-btn">Edit Member</button>
-`;
-list.appendChild(card);
-card.querySelector(".edit-member-btn").addEventListener("click", () => {
-  if (!isOwner()) {
-    message("Only the website owner can edit family members.");
-    return;
-  }
-
-  editingMemberId = m.id;
-
-  $("memberName").value = m.name || "";
-  $("relationship").value = m.relationship || "";
-  $("address").value = m.address || "";
-  $("dob").value = m.dob || "";
-  $("lifeStatus").value = m.lifeStatus || "";
-  $("phone").value = m.phone || "";
-  $("memberEmail").value = m.memberEmail || "";
-$("relatedTo").value = m.relatedTo || "";
-  message("Edit the details in the family member form, then save.");
-  document.getElementById("addMember").scrollIntoView({ behavior: "smooth" });
-});
-  });
-}
-
-function renderBirthdays() {
-  const list = $("birthdayList");
-  if (!list) return;
-
-  list.replaceChildren();
-
-  if (!canUse()) {
-    list.textContent = "Birthdays will appear after sign-in and approval.";
-    return;
-  }
-
-  const now = new Date();
-  const today = members.filter(m => {
-    if (!m.dob) return false;
-    const d = new Date(m.dob + "T12:00:00");
-    return d.getMonth() === now.getMonth() &&
-      d.getDate() === now.getDate();
+    return text.includes(term);
   });
 
-  if (!today.length) {
-    list.textContent = "No birthdays today. Have a wonderful day!";
+  if (!filtered.length) {
+    const empty = document.createElement("div");
+    empty.className = "notice";
+    empty.textContent = term
+      ? "No family members match your search."
+      : "No family members added yet.";
+    container.append(empty);
     return;
   }
 
-  today.forEach(m => {
+  filtered.forEach(member => {
     const card = document.createElement("div");
-    card.className = "card";
-    card.innerHTML = `
-      <h3>🎂 ${escapeHTML(m.name)}</h3>
-      <p>${escapeHTML(m.relationship || "Family member")}</p>
-      <p>Wishing you a very happy birthday!</p>
-    `;
-    list.appendChild(card);
+    card.className = "person";
+
+    const icon = document.createElement("div");
+    icon.className = "icon";
+    icon.textContent = member.lifeStatus === "Deceased" ? "🕊️" : "👤";
+
+    const name = document.createElement("strong");
+    name.textContent = member.name || "Unnamed member";
+
+    const relation = document.createElement("p");
+    relation.textContent = member.relationship || "Family member";
+
+    const address = document.createElement("p");
+    address.textContent = member.address || "";
+
+    const status = document.createElement("span");
+    status.className = "tag";
+    status.textContent = member.lifeStatus || "Not specified";
+
+    card.append(icon, name, relation, address, status);
+
+    const canEdit = isOwner() ||
+      (currentUser && member.createdBy === currentUser.uid);
+
+    if (canEdit) {
+      const edit = document.createElement("button");
+      edit.type = "button";
+      edit.className = "btn green";
+      edit.style.marginTop = "10px";
+      edit.textContent = "Edit";
+      edit.addEventListener("click", () => startMemberEdit(member));
+      card.append(edit);
+    }
+
+    if (isOwner()) {
+      const remove = document.createElement("button");
+      remove.type = "button";
+      remove.className = "btn danger";
+      remove.style.marginTop = "8px";
+      remove.textContent = "Delete";
+      remove.addEventListener("click", () => deleteMember(member));
+      card.append(remove);
+    }
+
+    container.append(card);
   });
 }
-function updateRelatedToOptions() {
-  const select = $("relatedTo");
-  if (!select) return;
 
-  const previousValue = select.value;
-  select.replaceChildren();
+function startMemberEdit(member) {
+  if (!canUse()) return;
 
-  const firstOption = document.createElement("option");
-  firstOption.value = "";
-  firstOption.textContent = "Choose family member";
-  select.appendChild(firstOption);
-
-  members.forEach(member => {
-    const option = document.createElement("option");
-    option.value = member.id;
-    option.textContent = member.name;
-    select.appendChild(option);
-  });
-
-  select.value = previousValue;
+  if (!isOwner() && member.createdBy !== currentUser.uid) {
+    showMessage("accountStatus", "You can edit only records you created.");
+    return;
   }
+
+  editingMemberId = member.id;
+  $("memberName").value = member.name || "";
+  $("relationship").value = member.relationship || "";
+  $("address").value = member.address || "";
+  $("relatedTo").value = member.relatedTo || "";
+  $("dob").value = member.dob || "";
+  $("lifeStatus").value = member.lifeStatus || "";
+  $("phone").value = member.phone || "";
+  $("memberEmail").value = member.memberEmail || "";
+
+  $("memberSaveBtn").textContent = "Update Family Member";
+  setHidden("memberCancelBtn", false);
+  $("addMember").scrollIntoView({ behavior: "smooth" });
+}
+
+function resetMemberForm() {
+  editingMemberId = null;
+  $("memberForm").reset();
+  $("memberSaveBtn").textContent = "Save Family Member";
+  setHidden("memberCancelBtn", true);
+}
+
+$("memberCancelBtn").addEventListener("click", resetMemberForm);
+
 $("memberForm").addEventListener("submit", async event => {
   event.preventDefault();
 
   if (!canUse()) {
-    message("You need owner approval before adding family members.");
+    showMessage("accountStatus", "An approved account is required.");
     return;
   }
 
-  
-const data = {
-  name: clean($("memberName").value),
-  relationship: $("relationship").value,
-  address: clean($("address").value),
-  dob: $("dob").value,
-  lifeStatus: $("lifeStatus").value,
-  phone: clean($("phone").value),
-  memberEmail: clean($("memberEmail").value),
-  relatedTo: $("relatedTo").value,
-  createdBy: editingMemberId
-    ? (members.find(m => m.id === editingMemberId)?.createdBy || currentUser.uid)
-    : currentUser.uid,
-  ...(editingMemberId ? {} : { createdAt: serverTimestamp() })
-};
+  const data = {
+    name: clean($("memberName").value),
+    relationship: clean($("relationship").value),
+    address: clean($("address").value),
+    relatedTo: clean($("relatedTo").value),
+    dob: $("dob").value || "",
+    lifeStatus: clean($("lifeStatus").value),
+    phone: clean($("phone").value),
+    memberEmail: clean($("memberEmail").value),
+    updatedAt: serverTimestamp()
+  };
 
-try {
-  if (editingMemberId) {
-    await updateDoc(doc(db, "members", editingMemberId), data);
-    editingMemberId = null;
-    message("Family member updated successfully!");
-  } else {
-    await addDoc(collection(db, "members"), data);
-    message("Family member saved.");
+  if (!data.name || !data.relationship || !data.address || !data.lifeStatus) {
+    showMessage("accountStatus", "Fill all required family member fields.");
+    return;
   }
 
-  $("memberForm").reset();
-  await loadMembers();
-} catch (error) {
-  message("Could not save member: " + error.message);
-}
+  try {
+    $("memberSaveBtn").disabled = true;
 
+    if (editingMemberId) {
+      const existing = members.find(item => item.id === editingMemberId);
+
+      if (!existing ||
+          (!isOwner() && existing.createdBy !== currentUser.uid)) {
+        throw new Error("You can edit only your own records.");
+      }
+
+      // Do not change createdBy when editing.
+      await updateDoc(doc(db, "members", editingMemberId), data);
+      showMessage("accountStatus", "Family member updated.");
+    } else {
+      data.createdBy = currentUser.uid;
+      data.createdAt = serverTimestamp();
+
+      await addDoc(collection(db, "members"), data);
+      showMessage("accountStatus", "Family member added.");
+    }
+
+    resetMemberForm();
+    await loadMembers();
+  } catch (error) {
+    console.error(error);
+    showMessage("accountStatus", error.message || "Could not save family member.");
+  } finally {
+    $("memberSaveBtn").disabled = false;
+  }
 });
 
+async function deleteMember(member) {
+  if (!isOwner()) {
+    showMessage("accountStatus", "Only the owner can delete family records.");
+    return;
+  }
+
+  if (!confirm(`Delete ${member.name || "this family member"}?`)) return;
+
+  try {
+    await deleteDoc(doc(db, "members", member.id));
+    await loadMembers();
+    showMessage("accountStatus", "Family member deleted.");
+  } catch (error) {
+    console.error(error);
+    showMessage("accountStatus", "Could not delete family member.");
+  }
+}
+
+function loadRelatedMembers() {
+  const select = $("relatedTo");
+  const previous = select.value;
+
+  select.replaceChildren();
+  const blank = document.createElement("option");
+  blank.value = "";
+  blank.textContent = "Choose family member";
+  select.append(blank);
+
+  members.forEach(member => {
+    const option = document.createElement("option");
+    option.value = member.id;
+    option.textContent = member.name || "Unnamed member";
+    select.append(option);
+  });
+
+  if (members.some(member => member.id === previous)) {
+    select.value = previous;
+  }
+}
+
+function renderBirthdays() {
+  const container = $("birthdayList");
+  container.replaceChildren();
+
+  const today = new Date();
+  const month = today.getMonth();
+  const day = today.getDate();
+
+  const upcoming = members
+    .filter(member => member.dob && member.lifeStatus !== "Deceased")
+    .map(member => {
+      const parts = member.dob.split("-").map(Number);
+      const date = new Date(today.getFullYear(), parts[1] - 1, parts[2]);
+      date.setHours(12, 0, 0, 0);
+
+      const todayDate = new Date(today.getFullYear(), month, day);
+      todayDate.setHours(12, 0, 0, 0);
+
+      if (date < todayDate) {
+        date.setFullYear(today.getFullYear() + 1);
+      }
+
+      return { ...member, birthdayDate: date };
+    })
+    .sort((a, b) => a.birthdayDate - b.birthdayDate);
+
+  if (!upcoming.length) {
+    const empty = document.createElement("div");
+    empty.className = "card";
+    empty.textContent = "No upcoming birthdays available.";
+    container.append(empty);
+    return;
+  }
+
+  upcoming.slice(0, 12).forEach(member => {
+    const card = document.createElement("div");
+    card.className = "card";
+
+    const icon = document.createElement("div");
+    icon.className = "icon";
+    icon.textContent = "🎂";
+
+    const name = document.createElement("h3");
+    name.textContent = member.name || "Family member";
+
+    const date = document.createElement("p");
+    date.textContent = member.birthdayDate.toLocaleDateString("en-IN", {
+      day: "numeric",
+      month: "long"
+    });
+
+    card.append(icon, name, date);
+    container.append(card);
+  });
+}
+
+function renderFamilyTree() {
+  const container = $("familyTreeView");
+  container.replaceChildren();
+
+  if (!members.length) {
+    const empty = document.createElement("p");
+    empty.className = "muted";
+    empty.textContent = "Add family members to build your family tree.";
+    container.append(empty);
+    return;
+  }
+
+  const term = clean($("search").value).toLowerCase();
+
+  const filtered = members.filter(member => {
+    const searchable = [
+      member.name,
+      member.relationship,
+      member.address
+    ].join(" ").toLowerCase();
+
+    return searchable.includes(term);
+  });
+
+  if (!filtered.length) {
+    container.textContent = "No matching family members.";
+    return;
+  }
+
+  filtered.forEach(member => {
+    const card = document.createElement("div");
+    card.className = "card";
+
+    const name = document.createElement("h3");
+    name.textContent = "🌳 " + (member.name || "Unnamed member");
+
+    const relation = document.createElement("p");
+    relation.textContent = "Relationship: " + (member.relationship || "Not specified");
+
+    const address = document.createElement("p");
+    address.textContent = "Village: " + (member.address || "Not specified");
+
+    card.append(name, relation, address);
+
+    if (member.relatedTo) {
+      const related = members.find(item => item.id === member.relatedTo);
+      const link = document.createElement("p");
+      link.textContent = "Connected to: " +
+        (related?.name || "Family member");
+      card.append(link);
+    }
+
+    container.append(card);
+  });
+}
+
+$("search").addEventListener("input", () => {
+  renderMembers();
+  renderFamilyTree();
+  renderEvents();
+});
+  
 async function loadEvents() {
   if (!canUse()) return;
 
   try {
-    const snap = await getDocs(collection(db, "events"));
-    events = snap.docs.map(d => ({ id: d.id, ...d.data() }));
+    const snapshot = await getDocs(collection(db, "events"));
+    events = snapshot.docs.map(item => ({
+      id: item.id,
+      ...item.data()
+    }));
+
     renderEvents();
     checkEventReminders();
   } catch (error) {
-    message("Cannot load events. Check Firestore security rules.");
+    console.error(error);
+    showMessage("accountStatus", "Could not load family events.");
   }
 }
 
 function renderEvents() {
-  const list = $("eventList");
-  list.replaceChildren();
+  const container = $("eventList");
+  if (!container) return;
 
-  if (!canUse()) {
-    list.innerHTML = '<div class="card"><p>Sign in and get approval to view family events.</p></div>';
+  container.replaceChildren();
+  const term = clean($("search").value).toLowerCase();
+
+  const filtered = events.filter(event => [
+    event.name, event.type, event.address, event.description
+  ].join(" ").toLowerCase().includes(term));
+
+  if (!filtered.length) {
+    const empty = document.createElement("div");
+    empty.className = "card";
+    empty.textContent = term
+      ? "No events match your search."
+      : "No family events have been added yet.";
+    container.append(empty);
     return;
   }
 
-  if (!events.length) {
-    list.innerHTML = '<div class="card"><p>No family events added yet.</p></div>';
-    return;
-  }
+  filtered.sort((a, b) => (a.date || "").localeCompare(b.date || ""));
 
-  events.sort((a, b) => String(a.date || "").localeCompare(String(b.date || "")));
-
-  events.forEach(e => {
+  filtered.forEach(item => {
     const card = document.createElement("div");
-    card.className = "card";
-    card.innerHTML = `
-      <div class="icon">📅</div>
-      <h3>${escapeHTML(e.name)}</h3>
-      <p><strong>Type:</strong> ${escapeHTML(e.type)}</p>
-      <p><strong>Date:</strong> ${escapeHTML(dateText(e.date))}</p>
-      <p><strong>Venue:</strong> ${escapeHTML(e.address)}</p>
-      <p>${escapeHTML(e.description || "")}</p>
-    `;
-    list.appendChild(card);
+    card.className = "card event";
+
+    const date = document.createElement("div");
+    date.className = "datebox";
+
+    const dateValue = item.date ? new Date(item.date + "T12:00:00") : null;
+    const day = document.createElement("strong");
+    day.textContent = dateValue && !Number.isNaN(dateValue.getTime())
+      ? String(dateValue.getDate())
+      : "—";
+
+    const month = document.createElement("span");
+    month.textContent = dateValue && !Number.isNaN(dateValue.getTime())
+      ? dateValue.toLocaleDateString("en-IN", { month: "short" })
+      : "Date";
+
+    date.append(day, month);
+
+    const content = document.createElement("div");
+    content.style.flex = "1";
+    content.style.minWidth = "0";
+
+    const title = document.createElement("h3");
+    title.textContent = item.name || "Family event";
+
+    const type = document.createElement("p");
+    type.textContent = item.type || "Event";
+
+    const venue = document.createElement("p");
+    venue.textContent = "📍 " + (item.address || "Venue not provided");
+
+    const description = document.createElement("p");
+    description.textContent = item.description || "";
+
+    content.append(title, type, venue, description);
+    card.append(date, content);
+
+    const actions = document.createElement("div");
+    actions.className = "action-row full";
+
+    if (isOwner()) {
+      const edit = document.createElement("button");
+      edit.type = "button";
+      edit.className = "btn green";
+      edit.textContent = "Edit";
+      edit.addEventListener("click", () => startEventEdit(item));
+
+      const remove = document.createElement("button");
+      remove.type = "button";
+      remove.className = "btn danger";
+      remove.textContent = "Delete";
+      remove.addEventListener("click", () => deleteEvent(item));
+
+      actions.append(edit, remove);
+    } else {
+      const request = document.createElement("button");
+      request.type = "button";
+      request.className = "btn light";
+      request.textContent = "Request Deletion";
+      request.addEventListener("click", () => requestEventDeletion(item));
+      actions.append(request);
+    }
+
+    content.append(actions);
+    container.append(card);
   });
 }
+
+function startEventEdit(item) {
+  if (!isOwner()) return;
+
+  editingEventId = item.id;
+  $("eventName").value = item.name || "";
+  $("eventType").value = item.type || "";
+  $("eventDate").value = item.date || "";
+  $("eventAddress").value = item.address || "";
+  $("eventDescription").value = item.description || "";
+  $("eventFormTitle").textContent = "Edit Family Event";
+  $("eventSaveBtn").textContent = "Update Event";
+  setHidden("eventCancelBtn", false);
+  $("events").scrollIntoView({ behavior: "smooth" });
+}
+
+function resetEventForm() {
+  editingEventId = null;
+  $("eventForm").reset();
+  $("eventFormTitle").textContent = "Add a Family Event";
+  $("eventSaveBtn").textContent = "Save Event";
+  setHidden("eventCancelBtn", true);
+}
+
+$("eventCancelBtn").addEventListener("click", resetEventForm);
 
 $("eventForm").addEventListener("submit", async event => {
   event.preventDefault();
 
   if (!canUse()) {
-    message("You need owner approval before creating events.");
+    message("An approved account is required to create events.");
     return;
   }
 
   const data = {
     name: clean($("eventName").value),
-    type: $("eventType").value,
+    type: clean($("eventType").value),
     date: $("eventDate").value,
     address: clean($("eventAddress").value),
     description: clean($("eventDescription").value),
-    createdBy: currentUser.uid,
-    createdAt: serverTimestamp()
+    updatedAt: serverTimestamp()
   };
 
+  if (!data.name || !data.type || !data.date || !data.address) {
+    message("Fill all required event fields.");
+    return;
+  }
+
   try {
-    await addDoc(collection(db, "events"), data);
-    $("eventForm").reset();
-    message("Event saved.");
+    $("eventSaveBtn").disabled = true;
+
+    if (editingEventId) {
+      if (!isOwner()) throw new Error("Only the owner can edit events.");
+
+      await updateDoc(doc(db, "events", editingEventId), data);
+      message("Event updated successfully.");
+    } else {
+      data.createdBy = currentUser.uid;
+      data.createdAt = serverTimestamp();
+
+      await addDoc(collection(db, "events"), data);
+      message("Event created successfully.");
+    }
+
+    resetEventForm();
     await loadEvents();
   } catch (error) {
-    message("Could not save event. Check Firestore security rules.");
+    console.error(error);
+    message(error.message || "Could not save event.");
+  } finally {
+    $("eventSaveBtn").disabled = false;
   }
 });
 
-$("search").addEventListener("input", renderMembers);
+async function deleteEvent(item) {
+  if (!isOwner()) return;
 
-onAuthStateChanged(auth, async user => {
-  currentUser = user;
-  currentProfile = null;
-  showAuth();
+  if (!confirm(`Delete event "${item.name}"?`)) return;
 
-  if (!user) {
-    members = [];
-    events = [];
-    renderMembers();
-    renderBirthdays();
-    renderEvents();
+  try {
+    await deleteDoc(doc(db, "events", item.id));
+    await loadEvents();
+    await loadOwnerRequests();
+    message("Event deleted successfully.");
+  } catch (error) {
+    console.error(error);
+    message("Could not delete event.");
+  }
+}
+
+async function requestEventDeletion(item) {
+  if (!canUse() || isOwner()) return;
+
+  const reason = prompt(
+    `Why should "${item.name}" be deleted? Please provide a reason:`
+  );
+
+  if (reason === null) return;
+
+  const cleanReason = clean(reason);
+  if (!cleanReason || cleanReason.length > 2000) {
+    message("Enter a reason between 1 and 2000 characters.");
     return;
   }
 
   try {
-    await loadProfile(user);
-    await loadRelatedMembers();
+    await addDoc(collection(db, "eventDeleteRequests"), {
+      requesterUid: currentUser.uid,
+      eventId: item.id,
+      eventName: item.name || "Family event",
+      reason: cleanReason,
+      status: "pending",
+      createdAt: serverTimestamp()
+    });
+
+    message("Event deletion request submitted to the owner.");
+    await loadMyRequests();
+    if (isOwner()) await loadOwnerRequests();
   } catch (error) {
-    message("Profile unavailable. Check Firestore security rules.");
+    console.error(error);
+    message("Could not submit deletion request.");
   }
-});
-  async function loadRelatedMembers() {
-const relatedTo = document.getElementById("relatedTo");
-if (!relatedTo) return;
-
-relatedTo.replaceChildren();
-
-const defaultOption = document.createElement("option");
-defaultOption.value = "";
-defaultOption.textContent = "Choose family member";
-relatedTo.appendChild(defaultOption);
-
-try {
-const snapshot = await getDocs(collection(db, "members"));
-
-snapshot.forEach((memberDoc) => {
-  const member = memberDoc.data();
-
-  const option = document.createElement("option");
-  option.value = memberDoc.id;
-  option.textContent = member.name || "Unnamed member";
-
-  relatedTo.appendChild(option);
-});
-
-} catch (error) {
-console.error("Could not load family members:", error);
 }
-}
- 
-function renderFamilyTree() {
-  const tree = document.getElementById("familyTreeView");
-  if (!tree) return;
 
-  tree.replaceChildren();
-
-  if (!members.length) {
-    tree.textContent = "No family members found.";
+async function loadMyRequests() {
+  if (!canUse()) {
+    renderMyRequests();
     return;
   }
 
-  members.forEach(member => {
+  try {
+    const [eventsSnapshot, helpSnapshot] = await Promise.all([
+      getDocs(query(
+        collection(db, "eventDeleteRequests"),
+        where("requesterUid", "==", currentUser.uid)
+      )),
+      getDocs(query(
+        collection(db, "helpRequests"),
+        where("requesterUid", "==", currentUser.uid)
+      ))
+    ]);
+
+    eventDeleteRequests = eventsSnapshot.docs.map(item => ({
+      id: item.id,
+      ...item.data(),
+      requestKind: "event"
+    }));
+
+    helpRequests = helpSnapshot.docs.map(item => ({
+      id: item.id,
+      ...item.data(),
+      requestKind: "help"
+    }));
+
+    renderMyRequests();
+  } catch (error) {
+    console.error(error);
+    showMessage("myRequestsList", "Could not load your requests.");
+  }
+}
+
+function renderMyRequests() {
+  const container = $("myRequestsList");
+  container.replaceChildren();
+
+  if (!canUse()) {
+    container.textContent = "Login with an approved account to view requests.";
+    return;
+  }
+
+  const all = [...eventDeleteRequests, ...helpRequests];
+
+  if (!all.length) {
+    container.textContent = "You have not submitted any requests yet.";
+    return;
+  }
+
+  all.sort((a, b) => {
+    const first = a.createdAt?.seconds || 0;
+    const second = b.createdAt?.seconds || 0;
+    return second - first;
+  });
+
+  all.forEach(item => {
     const card = document.createElement("div");
-    card.className = "card";
+    card.className = "request-card";
 
-    const name = document.createElement("h3");
-    name.textContent = "🌳 " + (member.name || "Family Member");
-    card.appendChild(name);
+    const title = document.createElement("h3");
+    title.textContent = item.requestKind === "event"
+      ? "Event deletion: " + (item.eventName || "Family event")
+      : item.subject || "Support request";
 
-    const relation = document.createElement("p");
-    relation.textContent =
-      "Relationship: " + (member.relationship || "Family member");
-    card.appendChild(relation);
+    const description = document.createElement("p");
+    description.textContent = item.reason || item.description || "";
 
-    if (member.relatedTo) {
-      const relative = members.find(
-        person => person.id === member.relatedTo
-      );
+    const status = document.createElement("span");
+    status.className = item.status === "resolved"
+      ? "badge-resolved"
+      : "badge-pending";
+    status.textContent = item.status || "pending";
 
-      const connection = document.createElement("p");
-      connection.textContent = relative
-        ? "↕ Connected to: " + relative.name
-        : "Connected family member not found";
+    card.append(title, description, status);
 
-      card.appendChild(connection);
+    if (item.requestKind === "help") {
+      const replyBox = document.createElement("div");
+      replyBox.className = "comment";
+      replyBox.textContent = item.ownerReply
+        ? "Owner reply: " + item.ownerReply
+        : "No owner reply yet.";
 
-      if (relative) {
-        const line = document.createElement("p");
-        line.textContent = "│";
-        line.style.textAlign = "center";
-        line.style.fontSize = "24px";
-        card.appendChild(line);
+      card.append(replyBox);
+
+      if (item.status !== "resolved" && item.status !== "rejected") {
+        const followUp = document.createElement("button");
+        followUp.type = "button";
+        followUp.className = "btn light";
+        followUp.textContent = "Add Comment";
+        followUp.addEventListener("click", () => addRequestComment(item));
+        card.append(followUp);
       }
     }
 
-    tree.appendChild(card);
+    container.append(card);
   });
+}
+
+async function addRequestComment(item) {
+  if (!canUse() || item.requestKind !== "help") return;
+
+  const text = clean(prompt("Enter your follow-up comment:"));
+  if (!text) return;
+
+  if (text.length > 2000) {
+    message("Comment must be 2000 characters or less.");
+    return;
   }
-      // Free event reminder notification
-function showEventReminder(message) {
-  let box = document.getElementById("eventReminderNotice");
 
-  if (!box) {
-    box = document.createElement("div");
-    box.id = "eventReminderNotice";
-    box.style.cssText =
-      "padding:14px;margin:15px 0;border-radius:10px;background:#e8f5e9;color:#1b5e20;font-weight:bold;";
+  try {
+    await addDoc(
+      collection(db, "helpRequests", item.id, "comments"),
+      {
+        authorUid: currentUser.uid,
+        authorRole: isOwner() ? "owner" : "member",
+        text,
+        createdAt: serverTimestamp()
+      }
+    );
 
-    const eventsSection = document.getElementById("events");
-    if (eventsSection) {
-      eventsSection.prepend(box);
-    } else {
-      document.body.prepend(box);
+    message("Comment added.");
+    await loadMyRequests();
+    if (isOwner()) await loadOwnerRequests();
+  } catch (error) {
+    console.error(error);
+    message("Could not add comment.");
+  }
+}
+
+$("helpForm").addEventListener("submit", async event => {
+  event.preventDefault();
+
+  if (!canUse()) {
+    message("Please sign in with an approved account first.");
+    return;
+  }
+
+  const subject = clean($("helpSubject").value);
+  const description = clean($("helpDescription").value);
+  const type = clean($("helpType").value);
+
+  if (!type || !subject || !description) {
+    message("Fill all support request fields.");
+    return;
+  }
+
+  try {
+    await addDoc(collection(db, "helpRequests"), {
+      requesterUid: currentUser.uid,
+      type,
+      subject,
+      description,
+      status: "pending",
+      createdAt: serverTimestamp(),
+      updatedAt: serverTimestamp()
+    });
+
+    $("helpForm").reset();
+    message("Support request submitted successfully.");
+    await loadMyRequests();
+    if (isOwner()) await loadOwnerRequests();
+  } catch (error) {
+    console.error(error);
+    message("Could not submit your support request.");
+  }
+});
+
+async function loadOwnerRequests() {
+  if (!isOwner()) return;
+
+  try {
+    const [eventSnapshot, helpSnapshot] = await Promise.all([
+      getDocs(collection(db, "eventDeleteRequests")),
+      getDocs(collection(db, "helpRequests"))
+    ]);
+
+    eventDeleteRequests = eventSnapshot.docs.map(item => ({
+      id: item.id,
+      ...item.data(),
+      requestKind: "event"
+    }));
+
+    helpRequests = helpSnapshot.docs.map(item => ({
+      id: item.id,
+      ...item.data(),
+      requestKind: "help"
+    }));
+
+    renderOwnerRequests();
+  } catch (error) {
+    console.error(error);
+    showMessage("eventRequestsList", "Could not load owner requests.");
+  }
+}
+
+function renderOwnerRequests() {
+  if (!isOwner()) return;
+
+  const eventContainer = $("eventRequestsList");
+  const helpContainer = $("helpRequestsList");
+
+  eventContainer.replaceChildren();
+  helpContainer.replaceChildren();
+
+  const pendingEvents = eventDeleteRequests.filter(
+    item => item.status === "pending"
+  );
+  const pendingHelp = helpRequests.filter(
+    item => item.status === "pending"
+  );
+
+  $("eventRequestCount").textContent =
+    `${pendingEvents.length} pending request(s)`;
+
+  $("helpRequestCount").textContent =
+    `${pendingHelp.length} pending request(s)`;
+
+  if (!eventDeleteRequests.length) {
+    eventContainer.textContent = "No event deletion requests.";
+  }
+
+  eventDeleteRequests.forEach(item => {
+    const card = document.createElement("div");
+    card.className = "request-card";
+
+    const title = document.createElement("h3");
+    title.textContent = item.eventName || "Event deletion request";
+
+    const reason = document.createElement("p");
+    reason.textContent = "Reason: " + (item.reason || "");
+
+    const status = document.createElement("p");
+    status.textContent = "Status: " + (item.status || "pending");
+
+    card.append(title, reason, status);
+
+    if (item.status === "pending") {
+      const approve = document.createElement("button");
+      approve.type = "button";
+      approve.className = "btn danger";
+      approve.textContent = "Approve & Delete Event";
+
+      approve.addEventListener("click", async () => {
+        if (!isOwner()) return;
+
+        if (!confirm("Approve this request and delete the event?")) return;
+
+        approve.disabled = true;
+
+        try {
+          const eventRef = doc(db, "events", item.eventId);
+          const eventSnapshot = await getDoc(eventRef);
+
+          if (eventSnapshot.exists()) {
+            await deleteDoc(eventRef);
+          }
+
+          await updateDoc(
+            doc(db, "eventDeleteRequests", item.id),
+            {
+              status: "approved",
+              reviewedAt: serverTimestamp(),
+              reviewedBy: currentUser.uid
+            }
+          );
+
+          await loadEvents();
+          await loadOwnerRequests();
+          await loadMyRequests();
+
+          message("Request approved. Event deletion processed.");
+        } catch (error) {
+          console.error(error);
+          message("Could not complete the deletion request.");
+          approve.disabled = false;
+        }
+      });
+
+      const reject = document.createElement("button");
+      reject.type = "button";
+      reject.className = "btn light";
+      reject.textContent = "Reject";
+
+      reject.addEventListener("click", async () => {
+        if (!isOwner()) return;
+
+        try {
+          await updateDoc(
+            doc(db, "eventDeleteRequests", item.id),
+            {
+              status: "rejected",
+              reviewedAt: serverTimestamp(),
+              reviewedBy: currentUser.uid
+            }
+          );
+
+          await loadOwnerRequests();
+          await loadMyRequests();
+          message("Event deletion request rejected.");
+        } catch (error) {
+          console.error(error);
+          message("Could not reject request.");
+        }
+      });
+
+      card.append(approve, reject);
     }
+
+    eventContainer.append(card);
+  });
+
+  if (!helpRequests.length) {
+    helpContainer.textContent = "No support requests.";
   }
 
-  box.textContent = message;
+  helpRequests.forEach(item => {
+    const card = document.createElement("div");
+    card.className = "request-card";
+
+    const title = document.createElement("h3");
+    title.textContent = item.subject || "Support request";
+
+    const category = document.createElement("p");
+    category.textContent = "Category: " + (item.type || "Other");
+
+    const description = document.createElement("p");
+    description.textContent = item.description || "";
+
+    const status = document.createElement("p");
+    status.textContent = "Status: " + (item.status || "pending");
+
+    card.append(title, category, description, status);
+
+    const replyLabel = document.createElement("label");
+    replyLabel.textContent = "Owner reply";
+
+    const reply = document.createElement("textarea");
+    reply.rows = 3;
+    reply.maxLength = 3000;
+    reply.placeholder = "Write a reply to this member";
+    reply.value = item.ownerReply || "";
+
+    const saveReply = document.createElement("button");
+    saveReply.type = "button";
+    saveReply.className = "btn green";
+    saveReply.textContent = "Save Reply";
+
+    saveReply.addEventListener("click", async () => {
+      if (!isOwner()) return;
+
+      const text = clean(reply.value);
+
+      if (!text) {
+        message("Enter a reply first.");
+        return;
+      }
+
+      try {
+        await updateDoc(doc(db, "helpRequests", item.id), {
+          ownerReply: text,
+          repliedAt: serverTimestamp(),
+          updatedAt: serverTimestamp()
+        });
+
+        await loadOwnerRequests();
+        await loadMyRequests();
+        message("Owner reply saved.");
+      } catch (error) {
+        console.error(error);
+        message("Could not save reply.");
+      }
+    });
+
+    const statusSelect = document.createElement("select");
+    [
+      ["pending", "Pending"],
+      ["in progress", "In Progress"],
+      ["resolved", "Resolved"],
+      ["rejected", "Rejected"]
+    ].forEach(([value, label]) => {
+      const option = document.createElement("option");
+      option.value = value;
+      option.textContent = label;
+      statusSelect.append(option);
+    });
+
+    statusSelect.value = [
+      "pending", "in progress", "resolved", "rejected"
+    ].includes(item.status) ? item.status : "pending";
+
+    const updateStatus = document.createElement("button");
+    updateStatus.type = "button";
+    updateStatus.className = "btn light";
+    updateStatus.textContent = "Update Status";
+
+    updateStatus.addEventListener("click", async () => {
+      if (!isOwner()) return;
+
+      try {
+        await updateDoc(doc(db, "helpRequests", item.id), {
+          status: statusSelect.value,
+          updatedAt: serverTimestamp()
+        });
+
+        await loadOwnerRequests();
+        await loadMyRequests();
+        message("Request status updated.");
+      } catch (error) {
+        console.error(error);
+        message("Could not update request status.");
+      }
+    });
+
+    const commentsHeading = document.createElement("h3");
+    commentsHeading.textContent = "Comments";
+
+    const commentsArea = document.createElement("div");
+    commentsArea.textContent = "Loading comments…";
+
+    card.append(
+      replyLabel, reply, saveReply,
+      statusSelect, updateStatus,
+      commentsHeading, commentsArea
+    );
+
+    helpContainer.append(card);
+
+    loadRequestComments(item.id, commentsArea);
+  });
+}
+
+async function loadRequestComments(requestId, container) {
+  try {
+    const snapshot = await getDocs(
+      collection(db, "helpRequests", requestId, "comments")
+    );
+
+    container.replaceChildren();
+
+    if (snapshot.empty) {
+      container.textContent = "No comments yet.";
+      return;
+    }
+
+    snapshot.forEach(commentDoc => {
+      const data = commentDoc.data();
+      const comment = document.createElement("div");
+      comment.className = "comment";
+
+      const role = document.createElement("strong");
+      role.textContent = data.authorRole === "owner"
+        ? "Owner"
+        : "Member";
+
+      const text = document.createElement("p");
+      text.textContent = data.text || "";
+
+      comment.append(role, text);
+      container.append(comment);
+    });
+  } catch (error) {
+    console.error(error);
+    container.textContent = "Could not load comments.";
+  }
 }
 
 function checkEventReminders() {
+  if (!canUse()) return;
+
   const today = new Date();
   today.setHours(0, 0, 0, 0);
 
-  const upcomingEvents = Array.isArray(events) ? events : [];
+  const tomorrow = new Date(today);
+  tomorrow.setDate(tomorrow.getDate() + 1);
 
-  const reminders = upcomingEvents.filter(event => {
-    if (!event.date) return false;
+  const upcoming = events.filter(item => {
+    if (!item.date) return false;
 
-    const eventDate = new Date(event.date);
-    eventDate.setHours(0, 0, 0, 0);
-
-    const daysLeft = Math.round(
-      (eventDate - today) / (1000 * 60 * 60 * 24)
-    );
-
-    return daysLeft >= 0 && daysLeft <= 1;
+    const date = new Date(item.date + "T00:00:00");
+    return date.getTime() === today.getTime() ||
+      date.getTime() === tomorrow.getTime();
   });
 
-  if (reminders.length) {
-    showEventReminder(
-      "🔔 Upcoming reminder: " +
-      reminders.map(event => event.name).join(", ")
-    );
-  }
-  }
-  checkEventReminders();
-  loadRelatedMembers();
+  const previous = $("eventReminder");
+  if (previous) previous.remove();
+
+  if (!upcoming.length) return;
+
+  const reminder = document.createElement("div");
+  reminder.id = "eventReminder";
+  reminder.className = "notice";
+
+  const heading = document.createElement("strong");
+  heading.textContent = "🔔 Upcoming family events";
+
+  reminder.append(heading);
+
+  upcoming.forEach(item => {
+    const line = document.createElement("p");
+    const date = new Date(item.date + "T12:00:00");
+
+    line.textContent =
+      `${item.name || "Family event"} — ${date.toLocaleDateString("en-IN")}`;
+
+    reminder.append(line);
+  });
+
+  const searchSection = $("searchSection");
+  searchSection.insertAdjacentElement("afterend", reminder);
+}
+
+// Initial display
+renderMembers();
+renderBirthdays();
+renderEvents();
+renderFamilyTree();
+renderMyRequests();
 </script>
 </body>
-</html>
-
-                                                         
+</html>      
