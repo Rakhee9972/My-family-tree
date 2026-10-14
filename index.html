@@ -690,7 +690,8 @@ onAuthStateChanged(auth, async user => {
   } catch (error) {
     message("Profile unavailable. Check Firestore security rules.");
   }
-}); async function loadRelatedMembers() {
+});
+  async function loadRelatedMembers() {
 const relatedTo = document.getElementById("relatedTo");
 if (!relatedTo) return;
 
@@ -718,6 +719,7 @@ snapshot.forEach((memberDoc) => {
 console.error("Could not load family members:", error);
 }
 }
+  loadRelatedMembers();
 </script>
 </body>
 </html>
