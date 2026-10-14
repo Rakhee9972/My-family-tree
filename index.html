@@ -808,7 +808,7 @@ footer p {
             <option>Marriage</option>
             <option>Housewarming</option>
             <option>Other</option>
-          </select>
+   </select>
         </div>
 
         <div class="field">
@@ -951,7 +951,7 @@ footer p {
 
       <p class="notice">
         New accounts require owner approval before accessing protected family information.
-      </p>
+         </p>
     </div>
   </div>
 
@@ -1048,6 +1048,9 @@ let editingMemberId = null;
 let editingEventId = null;
 let eventDeleteRequests = [];
 let helpRequests = [];
+let myEventDeleteRequests = [];
+let myHelpRequests = [];
+let lastReminderKey = "";
 
 function clean(value) {
   return String(value || "").trim();
@@ -1172,12 +1175,11 @@ function updateAccountView() {
 
   document.querySelectorAll('a[href="#family"], a[href="#familyTree"], a[href="#birthdays"]')
     .forEach(link => setHidden(link, !canViewFamily));
-
   document.querySelectorAll('a[href="#events"]')
     .forEach(link => setHidden(link, !canViewEvents));
 
   setHidden($("memberForm"), !canUse("addFamily") && !editingMemberId);
-  setHidden($("eventForm"), !canUse("createEvents") && !editingEventId);
+  setHidden($("eventForm"), !canUse("createEvents") && !isOwner() && !editingEventId);
 }
 
 $("registerForm")?.addEventListener("submit", async event => {
@@ -1277,6 +1279,8 @@ onAuthStateChanged(auth, async user => {
   allUsers = [];
   eventDeleteRequests = [];
   helpRequests = [];
+  myEventDeleteRequests = [];
+  myHelpRequests = [];
 
   if (user) {
     try {
@@ -1380,7 +1384,6 @@ function renderOwnerAccounts() {
   const pending = allUsers.filter(user => user.status === "pending").length;
   const approved = allUsers.filter(user => user.status === "approved").length;
   const disabled = allUsers.filter(user => user.status === "disabled").length;
-
   dashboard.innerHTML = `
     <div class="stats-grid">
       <div class="card">
@@ -1672,9 +1675,199 @@ async function loadEvents() {
       "error"
     );
   }
+  }
+    function renderEvents() {
+  const list = $("eventList");
+  if (!list) return;
+
+  if (!canUse("viewEvents")) {
+    list.innerHTML = '<div class="empty-state">You do not have permission to view events.</div>';
+    return;
+  }
+
+  if (!events.length) {
+    list.innerHTML = '<div class="empty-state">No family events have been added yet.</div>';
+    return;
+  }
+
+  const sorted = [...events].sort((a, b) => String(a.date || "").localeCompare(String(b.date || "")));
+  list.innerHTML = sorted.map(item => `
+    <article class="card">
+      <h3>🎉 ${escapeHTML(item.name || "Family Event")}</h3>
+      <p><strong>Type:</strong> ${escapeHTML(item.type || "Other")}</p>
+      <p><strong>Date:</strong> ${escapeHTML(dateText(item.date) || "Not set")}</p>
+      <p><strong>Venue:</strong> ${escapeHTML(item.address || "Not specified")}</p>
+      ${item.description ? `<p>${escapeHTML(item.description)}</p>` : ""}
+      <div class="button-row">
+        ${isOwner() ? `<button class="btn btn-secondary" type="button" data-edit-event="${item.id}">Edit</button>` : ""}
+        ${isOwner() ? `<button class="btn btn-danger" type="button" data-delete-event="${item.id}">Delete</button>` : (currentUser && currentProfile?.status === "approved" ? `<button class="btn btn-secondary" type="button" data-request-event-delete="${item.id}">Request Deletion</button>` : "")}
+      </div>
+    </article>
+  `).join("");
 }
 
-    
+function checkEventReminders() {
+  const notice = $("eventReminderNotice");
+  if (!notice || !currentUser || !canUse("viewEvents")) return;
+
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+  const tomorrow = new Date(today);
+  tomorrow.setDate(tomorrow.getDate() + 1);
+
+  const upcoming = events.filter(item => {
+    if (!item.date) return false;
+    const date = new Date(`${item.date}T00:00:00`);
+    return date.getTime() === today.getTime() || date.getTime() === tomorrow.getTime();
+  });
+
+  if (!upcoming.length) {
+    notice.classList.add("hidden");
+    notice.textContent = "";
+    lastReminderKey = "";
+    return;
+  }
+
+  const key = `${today.toISOString().slice(0, 10)}:${upcoming.map(item => item.id).sort().join(",")}`;
+  notice.textContent = upcoming.map(item => {
+    const date = item.date === today.toISOString().slice(0, 10) ? "Today" : "Tomorrow";
+    return `${date}: ${item.name || "Family event"} (${dateText(item.date)})`;
+  }).join(" • ");
+  notice.classList.remove("hidden");
+
+  if (lastReminderKey !== key) {
+    lastReminderKey = key;
+  }
+}
+
+$("eventForm")?.addEventListener("submit", async event => {
+  event.preventDefault();
+  if (!currentUser || currentProfile?.status !== "approved") {
+    showMessage("Please log in with an approved account.", "error");
+    return;
+  }
+
+  const name = clean($("eventName")?.value);
+  const type = clean($("eventType")?.value);
+  const date = clean($("eventDate")?.value);
+  const address = clean($("eventAddress")?.value);
+  const description = clean($("eventDescription")?.value);
+
+  if (!name || !type || !date || !address) {
+    showMessage("Please complete all required event fields.", "error");
+    return;
+  }
+
+  try {
+    if (editingEventId) {
+      if (!isOwner()) {
+        showMessage("Only the owner can edit existing events.", "error");
+        return;
+      }
+      await updateDoc(doc(db, "events", editingEventId), {
+        name, type, date, address, description, updatedAt: serverTimestamp()
+      });
+      showMessage("Event updated successfully.");
+    } else {
+      if (!canUse("createEvents")) {
+        showMessage("You do not have permission to create events.", "error");
+        return;
+      }
+      await addDoc(collection(db, "events"), {
+        name, type, date, address, description,
+        createdBy: currentUser.uid,
+        createdAt: serverTimestamp(),
+        updatedAt: serverTimestamp()
+      });
+      showMessage("Event created successfully.");
+    }
+
+    editingEventId = null;
+    $("eventForm").reset();
+    if ($("eventSaveBtn")) $("eventSaveBtn").textContent = "Create Event";
+    if ($("eventCancelBtn")) $("eventCancelBtn").hidden = true;
+    updateAccountView();
+    await loadEvents();
+  } catch (error) {
+    console.error("Save event error:", error);
+    showMessage("Could not save event: " + error.message, "error");
+  }
+});
+
+$("eventCancelBtn")?.addEventListener("click", () => {
+  editingEventId = null;
+  $("eventForm")?.reset();
+  if ($("eventSaveBtn")) $("eventSaveBtn").textContent = "Create Event";
+  if ($("eventCancelBtn")) $("eventCancelBtn").hidden = true;
+  updateAccountView();
+});
+
+$("eventList")?.addEventListener("click", async event => {
+  const editButton = event.target.closest("[data-edit-event]");
+  const deleteButton = event.target.closest("[data-delete-event]");
+  const requestButton = event.target.closest("[data-request-event-delete]");
+
+  if (editButton) {
+    if (!isOwner()) return;
+    const item = events.find(entry => entry.id === editButton.dataset.editEvent);
+    if (!item) return;
+    editingEventId = item.id;
+    $("eventName").value = item.name || "";
+    $("eventType").value = item.type || "Other";
+    $("eventDate").value = item.date || "";
+    $("eventAddress").value = item.address || "";
+    $("eventDescription").value = item.description || "";
+    if ($("eventSaveBtn")) $("eventSaveBtn").textContent = "Update Event";
+    if ($("eventCancelBtn")) $("eventCancelBtn").hidden = false;
+    updateAccountView();
+    $("eventForm")?.scrollIntoView({ behavior: "smooth", block: "start" });
+    return;
+  }
+
+  if (deleteButton) {
+    if (!isOwner()) return;
+    if (!confirm("Delete this event permanently?")) return;
+    try {
+      await deleteDoc(doc(db, "events", deleteButton.dataset.deleteEvent));
+      showMessage("Event deleted.");
+      await loadEvents();
+    } catch (error) {
+      showMessage("Could not delete event: " + error.message, "error");
+    }
+    return;
+  }
+
+  if (requestButton) {
+    if (!currentUser || currentProfile?.status !== "approved") {
+      showMessage("Please log in with an approved account.", "error");
+      return;
+    }
+    const item = events.find(entry => entry.id === requestButton.dataset.requestEventDelete);
+    if (!item) return;
+    const reason = clean(prompt(`Why should “${item.name || "this event"}” be deleted?`));
+    if (!reason) {
+      showMessage("Please enter a reason for the deletion request.", "error");
+      return;
+    }
+    try {
+      await addDoc(collection(db, "eventDeleteRequests"), {
+        eventId: item.id,
+        eventName: item.name || "Family Event",
+        reason,
+        requesterUid: currentUser.uid,
+        requesterName: currentProfile?.name || currentUser.displayName || "",
+        status: "pending",
+        createdAt: serverTimestamp()
+      });
+      showMessage("Event deletion request sent to the owner.");
+      await loadMyRequests();
+    } catch (error) {
+      console.error("Create deletion request error:", error);
+      showMessage("Could not submit request: " + error.message, "error");
+    }
+  }
+});
+
 function renderMembers() {
   const list = $("familyList");
   if (!list) return;
@@ -1706,7 +1899,6 @@ function renderMembers() {
         canUse("editOwnFamily") &&
         member.createdBy === currentUser?.uid
       );
-
     return `
       <article class="card">
         <h3>🌳 ${escapeHTML(member.name || "Family Member")}</h3>
@@ -1964,8 +2156,7 @@ $("familyList")?.addEventListener("click", async event => {
     if (!allowed) {
       showMessage("You can edit only records you created.", "error");
       return;
-    }
-
+  }
     editingMemberId = member.id;
 
     $("memberName").value = member.name || "";
@@ -2027,38 +2218,25 @@ $("memberCancelBtn")?.addEventListener("click", () => {
 
   updateAccountView();
 });
-    async function loadMyRequests() {
+async function loadMyRequests() {
   if (!currentUser) {
+    myEventDeleteRequests = [];
+    myHelpRequests = [];
     renderMyRequests();
+    renderHelpRequests();
     return;
   }
 
   try {
-    const deleteQuery = query(
-      collection(db, "eventDeleteRequests"),
-      where("requesterUid", "==", currentUser.uid)
-    );
+    const deleteQuery = query(collection(db, "eventDeleteRequests"), where("requesterUid", "==", currentUser.uid));
+    const helpQuery = query(collection(db, "helpRequests"), where("requesterUid", "==", currentUser.uid));
+    const [deleteSnapshot, helpSnapshot] = await Promise.all([getDocs(deleteQuery), getDocs(helpQuery)]);
 
-    const helpQuery = query(
-      collection(db, "helpRequests"),
-      where("requesterUid", "==", currentUser.uid)
-    );
-
-    const [deleteSnapshot, helpSnapshot] = await Promise.all([
-      getDocs(deleteQuery),
-      getDocs(helpQuery)
-    ]);
-
-    eventDeleteRequests = deleteSnapshot.docs.map(item => ({
-      id: item.id,
-      requestType: "Event Deletion",
-      ...item.data()
+    myEventDeleteRequests = deleteSnapshot.docs.map(item => ({
+      id: item.id, requestType: "Event Deletion", ...item.data()
     }));
-
-    helpRequests = helpSnapshot.docs.map(item => ({
-      id: item.id,
-      requestType: "Help & Support",
-      ...item.data()
+    myHelpRequests = helpSnapshot.docs.map(item => ({
+      id: item.id, requestType: "Help & Support", ...item.data()
     }));
 
     renderMyRequests();
@@ -2080,8 +2258,8 @@ function renderMyRequests() {
   }
 
   const combined = [
-    ...eventDeleteRequests,
-    ...helpRequests
+    ...myEventDeleteRequests,
+    ...myHelpRequests
   ].sort((a, b) => {
     const timeA = a.createdAt?.toMillis?.() || 0;
     const timeB = b.createdAt?.toMillis?.() || 0;
@@ -2245,9 +2423,8 @@ function renderOwnerRequests() {
       `).join("");
     }
   }
-}
-
-$("ownerEventDeleteRequests")?.addEventListener("click", async event => {
+  }
+  $("ownerEventDeleteRequests")?.addEventListener("click", async event => {
   const button = event.target.closest("[data-delete-request-action]");
   if (!button || !isOwner()) return;
 
@@ -2353,6 +2530,27 @@ $("helpForm")?.addEventListener("submit", async event => {
   }
 });
 
+
+async function loadHelpRequests() {
+  if (!currentUser || currentProfile?.status !== "approved") {
+    myHelpRequests = [];
+    renderHelpRequests();
+    return;
+  }
+
+  try {
+    const helpQuery = query(collection(db, "helpRequests"), where("requesterUid", "==", currentUser.uid));
+    const snapshot = await getDocs(helpQuery);
+    myHelpRequests = snapshot.docs.map(item => ({
+      id: item.id, requestType: "Help & Support", ...item.data()
+    }));
+    renderHelpRequests();
+  } catch (error) {
+    console.error("Load help requests error:", error);
+    showMessage("Unable to load support requests: " + error.message, "error");
+  }
+}
+
 function renderHelpRequests() {
   const container = $("helpRequestsList");
   if (!container) return;
@@ -2363,9 +2561,7 @@ function renderHelpRequests() {
     return;
   }
 
-  const requests = helpRequests.filter(
-    item => item.requesterUid === currentUser.uid
-  );
+  const requests = myHelpRequests;
 
   if (!requests.length) {
     container.innerHTML =
@@ -2386,67 +2582,12 @@ function renderHelpRequests() {
     </article>
   `).join("");
     }
-    // Refresh account information and page data after actions.
-async function refreshPageData() {
-  if (!currentUser) return;
-
-  try {
-    await loadMembers();
-    await loadEvents();
-    await loadMyRequests();
-
-    if (isOwner()) {
-      await loadOwnerAccounts();
-      await loadOwnerRequests();
-    }
-
-    updateAccountView();
-  } catch (error) {
-    console.error("Refresh error:", error);
-  }
-}
-
-// Initial UI setup
-document.addEventListener("DOMContentLoaded", () => {
-  const menuToggle = $("menuToggle");
-  const mainNav = $("mainNav");
-
-  if (menuToggle && mainNav) {
-    menuToggle.addEventListener("click", () => {
-      mainNav.classList.toggle("open");
-    });
-  }
-
-  mainNav?.querySelectorAll("a").forEach(link => {
-    link.addEventListener("click", () => {
-      mainNav.classList.remove("open");
-    });
-  });
-
-  $("familySearch")?.addEventListener("input", renderMembers);
-
-  $("loginForm")?.addEventListener("submit", loginUser);
-  $("registerForm")?.addEventListener("submit", registerUser);
-
-  $("logoutBtn")?.addEventListener("click", async () => {
-    try {
-      await signOut(auth);
-      showMessage("Logged out successfully.");
-    } catch (error) {
-      showMessage("Logout failed: " + error.message, "error");
-    }
-  });
-});
-
-// Keep reminders updated while the website remains open.
-checkEventReminders();
-
+// Reminders refresh while the website is open. This does not send background notifications.
 setInterval(() => {
-  if (currentUser && currentProfile?.status === "approved") {
-    checkEventReminders();
-  }
+  if (currentUser && canUse("viewEvents")) checkEventReminders();
 }, 60000);
 
 </script>
 </body>
 </html>
+  
