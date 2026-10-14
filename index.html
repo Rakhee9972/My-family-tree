@@ -730,6 +730,7 @@ async function loadEvents() {
     const snap = await getDocs(collection(db, "events"));
     events = snap.docs.map(d => ({ id: d.id, ...d.data() }));
     renderEvents();
+    checkEventReminders();
   } catch (error) {
     message("Cannot load events. Check Firestore security rules.");
   }
