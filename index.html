@@ -545,17 +545,20 @@ function renderMembers() {
   visible.forEach(m => {
     const card = document.createElement("article");
     card.className = "card";
-    card.innerHTML = `
-      <div class="icon">🌳</div>
-      <h3>${escapeHTML(m.name)}</h3>
-      <p><strong>Relationship:</strong> ${escapeHTML(m.relationship)}</p>
-      <p><strong>Address:</strong> ${escapeHTML(m.address)}</p>
-      <p><strong>Date of birth:</strong> ${escapeHTML(dateText(m.dob) || "Not provided")}</p>
-      <p><strong>Status:</strong> ${escapeHTML(m.lifeStatus)}</p>
-      ${m.phone ? `<p><strong>Phone:</strong> ${escapeHTML(m.phone)}</p>` : ""}
-      ${m.memberEmail ? `<p><strong>Email:</strong> ${escapeHTML(m.memberEmail)}</p>` : ""}
-    `;
-    list.appendChild(card);
+    
+card.innerHTML = `
+  <div class="icon">🌳</div>
+  <h3>${escapeHTML(m.name)}</h3>
+  <p><strong>Relationship:</strong> ${escapeHTML(m.relationship || "")}</p>
+  <p><strong>Address:</strong> ${escapeHTML(m.address || "")}</p>
+  <p><strong>Date of birth:</strong> ${escapeHTML(dateText(m.dob))}</p>
+  <p><strong>Status:</strong> ${escapeHTML(m.lifeStatus || "")}</p>
+  ${m.phone ? `<p><strong>Phone:</strong> ${escapeHTML(m.phone)}</p>` : ""}
+  ${m.memberEmail ? `<p><strong>Email:</strong> ${escapeHTML(m.memberEmail)}</p>` : ""}
+  <button type="button" class="btn edit-member-btn">Edit Member</button>
+`;
+list.appendChild(card);
+
   });
 }
 
