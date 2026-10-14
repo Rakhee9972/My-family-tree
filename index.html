@@ -7,309 +7,100 @@
 <meta name="theme-color" content="#173f35">
 <title>Our Family Tree | Rakhee</title>
 <style>
-:root {
-  --g:#173f35;
-  --g2:#285d4b;
-  --gold:#c9a45c;
-  --cream:#faf7ef;
-  --ink:#29382f;
-  --muted:#718075;
-}
-* { box-sizing:border-box; }
-html { scroll-behavior:smooth; }
-body {
-  margin:0;
-  background:var(--cream);
-  color:var(--ink);
-  font:15px Arial,sans-serif;
-  line-height:1.6;
-}
-button,input,select,textarea { font:inherit; }
-button { cursor:pointer; }
-header {
-  background:var(--g);
-  color:white;
-  padding:14px 5%;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:12px;
-  flex-wrap:wrap;
-  position:sticky;
-  top:0;
-  z-index:100;
-}
-.brand { font-size:21px; font-weight:bold; }
-.brand span { color:var(--gold); }
-.menu-button {
-  background:transparent;
-  border:1px solid #ffffff55;
-  border-radius:8px;
-  color:white;
-  padding:7px 12px;
-  font-size:22px;
-}
-nav {
-  display:flex;
-  gap:13px;
-  flex-wrap:wrap;
-}
-nav a {
-  color:white;
-  text-decoration:none;
-  font-size:13px;
-}
-nav a:hover { color:var(--gold); }
-.hero {
-  padding:58px 6%;
-  text-align:center;
-  color:white;
-  background:linear-gradient(135deg,#12382e,#326b50);
-}
-.eyebrow {
-  color:#ecd49a;
-  letter-spacing:3px;
-  font-size:11px;
-}
-h1 {
-  font:clamp(36px,7vw,60px)/1.12 Georgia,serif;
-  margin:15px 0;
-}
-.hero p {
-  max-width:620px;
-  margin:0 auto 22px;
-  color:#e3ebe5;
-}
-.btn {
-  background:var(--gold);
-  color:#18392e;
-  border:0;
-  border-radius:8px;
-  padding:11px 17px;
-  font-weight:bold;
-  display:inline-block;
-  text-decoration:none;
-}
-.btn.green { background:var(--g); color:white; }
-.btn.light {
-  background:white;
-  border:1px solid #ddd;
-  color:var(--g);
-}
-.btn.danger { background:#a83232; color:white; }
-.btn:disabled { opacity:.5; cursor:not-allowed; }
-main {
-  max-width:1080px;
-  margin:auto;
-  padding:30px 18px;
-}
-section {
-  margin:0 0 42px;
-  scroll-margin-top:85px;
-}
-.heading { text-align:center; margin-bottom:22px; }
-.heading h2 {
-  font:30px Georgia,serif;
-  color:var(--g);
-  margin:0 0 5px;
-}
-.heading p,.muted { color:var(--muted); font-size:13px; }
-.panel,.card {
-  background:white;
-  border:1px solid #e4e5dc;
-  border-radius:14px;
-  padding:20px;
-}
-.grid {
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-  gap:15px;
-}
-.search {
-  width:100%;
-  padding:14px;
-  border:1px solid #d8ded5;
-  border-radius:10px;
-}
-input,select,textarea {
-  width:100%;
-  padding:11px;
-  border:1px solid #d8ded5;
-  border-radius:8px;
-  background:white;
-}
-label {
-  font-size:12px;
-  font-weight:bold;
-  display:block;
-  margin:0 0 5px;
-}
-.field { margin-bottom:13px; min-width:0; }
-.formgrid {
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:0 14px;
-}
-.full { grid-column:1/-1; }
-.card h3 { color:var(--g); margin:5px 0; }
-.card p {
-  font-size:13px;
-  color:var(--muted);
-  margin:5px 0;
-  overflow-wrap:anywhere;
-}
-.icon { font-size:30px; }
-.tag {
-  font-size:11px;
-  background:#eaf1e8;
-  color:var(--g2);
-  padding:4px 9px;
-  border-radius:20px;
-  display:inline-block;
-}
-.tree {
-  display:flex;
-  gap:12px;
-  justify-content:center;
-  flex-wrap:wrap;
-}
-.person {
-  min-width:135px;
-  max-width:220px;
-  background:white;
-  border:1px solid #d9dfd5;
-  border-radius:12px;
-  padding:14px;
-  text-align:center;
-}
-.person strong { display:block; color:var(--g); }
-.event { display:flex; gap:13px; align-items:center; }
-.datebox {
-  background:#f2ecd9;
-  border-radius:9px;
-  padding:10px;
-  text-align:center;
-  min-width:60px;
-  color:var(--g);
-}
-.datebox strong { display:block; font-size:20px; }
-.notice {
-  background:#f4efdf;
-  border-left:4px solid var(--gold);
-  padding:12px;
-  border-radius:5px;
-  font-size:12px;
-  margin:12px 0;
-}
-.hidden { display:none!important; }
-.status {
-  padding:12px;
-  background:#edf2e9;
-  border-radius:8px;
-  font-size:13px;
-  margin:12px 0;
-  overflow-wrap:anywhere;
-}
-.action-row {
-  display:flex;
-  gap:8px;
-  flex-wrap:wrap;
-  margin-top:12px;
-}
-.action-row .btn { font-size:12px; padding:8px 12px; }
-.request-card {
-  background:white;
-  border:1px solid #e4e5dc;
-  border-radius:12px;
-  padding:15px;
-  margin:12px 0;
-}
-.request-card h3 { margin-top:0; }
-.badge-pending {
-  background:#fff0cc;
-  color:#795600;
-  border-radius:20px;
-  padding:4px 9px;
-  font-size:11px;
-}
-.badge-resolved {
-  background:#e2f3e5;
-  color:#245c32;
-  border-radius:20px;
-  padding:4px 9px;
-  font-size:11px;
-}
-.comment {
-  border-left:3px solid var(--gold);
-  padding:8px 12px;
-  margin:10px 0;
-  background:#faf8f1;
-  border-radius:5px;
-  overflow-wrap:anywhere;
-}
-footer {
-  background:#12352b;
-  color:white;
-  text-align:center;
-  padding:30px 15px;
-}
-footer p { font-size:12px; color:#d7e0d9; margin:5px; }
-footer strong { color:#e6c781; }
-hr { border:0; border-top:1px solid #e5e5dc; margin:18px 0; }
+:root{--g:#173f35;--g2:#285d4b;--gold:#c9a45c;--cream:#faf7ef;--ink:#29382f;--muted:#718075}
+*{box-sizing:border-box}
+body{margin:0;background:var(--cream);color:var(--ink);font:15px Arial,sans-serif;line-height:1.6}
+button,input,select,textarea{font:inherit}
+button{cursor:pointer}
+header{background:var(--g);color:white;padding:14px 5%;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.brand{font-size:21px;font-weight:bold}.brand span{color:var(--gold)}
+nav{display:flex;gap:13px;flex-wrap:wrap}nav a{color:white;text-decoration:none;font-size:13px}
+.hero{padding:58px 6%;text-align:center;color:white;background:linear-gradient(135deg,#12382e,#326b50)}
+.eyebrow{color:#ecd49a;letter-spacing:3px;font-size:11px}
+h1{font:clamp(36px,7vw,60px)/1.12 Georgia,serif;margin:15px 0}
+.hero p{max-width:620px;margin:0 auto 22px;color:#e3ebe5}
+.btn{background:var(--gold);color:#18392e;border:0;border-radius:8px;padding:11px 17px;font-weight:bold;display:inline-block;text-decoration:none}
+.btn.green{background:var(--g);color:white}.btn.light{background:white;border:1px solid #ddd;color:var(--g)}
+.btn:disabled{opacity:.5;cursor:not-allowed}
+main{max-width:1080px;margin:auto;padding:30px 18px}
+section{margin:0 0 42px;scroll-margin-top:15px}
+.heading{text-align:center;margin-bottom:22px}
+.heading h2{font:30px Georgia,serif;color:var(--g);margin:0 0 5px}
+.heading p,.muted{color:var(--muted);font-size:13px}
+.panel,.card{background:white;border:1px solid #e4e5dc;border-radius:14px;padding:20px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:15px}
+.search{width:100%;padding:14px;border:1px solid #d8ded5;border-radius:10px}
+input,select,textarea{width:100%;padding:11px;border:1px solid #d8ded5;border-radius:8px;background:white}
+label{font-size:12px;font-weight:bold;display:block;margin:0 0 5px}
+.field{margin-bottom:13px;min-width:0}
+.formgrid{display:grid;grid-template-columns:1fr 1fr;gap:0 14px}
+.full{grid-column:1/-1}
+.card h3{color:var(--g);margin:5px 0}
+.card p{font-size:13px;color:var(--muted);margin:5px 0;overflow-wrap:anywhere}
+.icon{font-size:30px}
+.tag{font-size:11px;background:#eaf1e8;color:var(--g2);padding:4px 9px;border-radius:20px;display:inline-block}
+.tree{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.person{min-width:135px;max-width:220px;background:white;border:1px solid #d9dfd5;border-radius:12px;padding:14px;text-align:center}
+.person strong{display:block;color:var(--g)}
+.event{display:flex;gap:13px;align-items:center}
+.datebox{background:#f2ecd9;border-radius:9px;padding:10px;text-align:center;min-width:60px;color:var(--g)}
+.datebox strong{display:block;font-size:20px}
+.notice{background:#f4efdf;border-left:4px solid var(--gold);padding:12px;border-radius:5px;font-size:12px;margin:12px 0}
+.hidden{display:none!important}
+.status{padding:12px;background:#edf2e9;border-radius:8px;font-size:13px;margin:12px 0;overflow-wrap:anywhere}
+footer{background:#12352b;color:white;text-align:center;padding:30px 15px}
+footer p{font-size:12px;color:#d7e0d9;margin:5px}
+footer strong{color:#e6c781}
+hr{border:0;border-top:1px solid #e5e5dc;margin:18px 0}
+@media(max-width:600px){header{align-items:flex-start}nav{width:100%;gap:10px}nav a{font-size:12px}.formgrid{grid-template-columns:1fr}.full{grid-column:auto}.hero{padding:48px 6%}main{padding:25px 13px}}
+
+/* Family tree layout */
 #familyTreeView {
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  gap:24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
 }
+
 #familyTreeView .card {
-  width:100%;
-  max-width:420px;
-  position:relative;
+  width: 100%;
+  max-width: 420px;
+  box-sizing: border-box;
+  position: relative;
 }
-#familyTreeView .card h3 { text-align:center; }
-#familyTreeView .card p { overflow-wrap:anywhere; }
+
+#familyTreeView .card h3 {
+  text-align: center;
+}
+
+#familyTreeView .card p {
+  overflow-wrap: anywhere;
+}
+
 #familyTreeView .tree-connection {
-  text-align:center;
-  color:#285d4b;
-  font-weight:bold;
-}
-@media(max-width:600px) {
-  header { align-items:center; }
-  nav {
-    display:none;
-    width:100%;
-    flex-direction:column;
-    gap:0;
+  text-align: center;
+  color: #285d4b;
+  font-weight: bold;
   }
-  nav.open { display:flex; }
-  nav a { padding:9px 4px; font-size:14px; }
-  .formgrid { grid-template-columns:1fr; }
-  .full { grid-column:auto; }
-  .hero { padding:48px 6%; }
-  main { padding:25px 13px; }
-}
+  
+
+.menu-button{display:none;background:transparent;color:white;border:1px solid #ffffff66;padding:6px 12px;border-radius:8px;font-size:22px}
+.action-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}.action-row .btn{font-size:12px;padding:8px 12px}
+.request-card{background:white;border:1px solid #e4e5dc;border-radius:12px;padding:14px;margin:10px 0;overflow-wrap:anywhere}
+.badge-pending{display:inline-block;background:#fff0cc;color:#795600;padding:4px 9px;border-radius:20px;font-size:11px}
+.badge-resolved{display:inline-block;background:#e2f3e5;color:#245c32;padding:4px 9px;border-radius:20px;font-size:11px}
+.comment{background:#faf8f1;border-left:3px solid var(--gold);padding:9px 12px;margin:8px 0;border-radius:5px;overflow-wrap:anywhere}
+@media(max-width:600px){.menu-button{display:block}nav{display:none;flex-direction:column;width:100%;gap:0}nav.open{display:flex}nav a{padding:8px 2px;font-size:14px}}
+
 </style>
 </head>
 <body>
-
 <header>
   <div class="brand">🌳 Our <span>Family Tree</span></div>
-  <button
-    id="menuButton"
-    class="menu-button"
-    type="button"
-    aria-label="Open navigation menu"
-    aria-expanded="false"
-  >☰</button>
-
+  <button id="menuButton" class="btn light" type="button" aria-label="Toggle menu" aria-expanded="false">☰</button>
   <nav id="mainNav">
-    <a href="#home">Home</a>
-    <a href="#familyTree">Family Tree</a>
-    <a href="#birthdays">Birthdays</a>
-    <a href="#events">Events</a>
-    <a href="#myRequests">My Requests</a>
-    <a href="#helpSupport">Help &amp; Support</a>
+    <a href="#home">Home</a><a href="#familyTree">Family Tree</a><a href="#family">Family</a>
+    <a href="#birthdays">Birthdays</a><a href="#events">Events</a><a href="#myRequests">My Requests</a><a href="#helpSupport">Help &amp; Support</a>
     <a href="#account">Account</a>
   </nav>
 </header>
@@ -317,404 +108,268 @@ hr { border:0; border-top:1px solid #e5e5dc; margin:18px 0; }
 <section class="hero" id="home">
   <div class="eyebrow">OUR ROOTS · OUR STORIES · OUR MEMORIES</div>
   <h1>Welcome to the<br>Family Tree</h1>
-  <p>
-    Discover our family connections, celebrate birthdays,
-    share special events and preserve our heritage for generations.
-  </p>
+  <p>Discover our family connections, celebrate birthdays, share special events and preserve our heritage for generations.</p>
   <a class="btn" href="#family">Explore Our Family ↓</a>
 </section>
 
 <main>
+  <section>
+    <div class="heading"><h2>Find Your Family</h2><p>Search family names, relationships, villages and events</p></div>
+    <input id="search" class="search" type="search" placeholder="🔎 Search family members and events">
+  </section>
 
-<section id="searchSection">
-  <div class="heading">
-    <h2>Find Your Family</h2>
-    <p>Search family names, relationships, villages and events</p>
-  </div>
-  <input
-    id="search"
-    class="search"
-    type="search"
-    placeholder="🔎 Search family members and events"
-  >
-</section>
-
-<section id="account">
-  <div class="heading">
-    <h2>Member Account</h2>
-    <p>Sign in or request a new account</p>
-  </div>
-
-  <div class="panel">
-    <div id="accountStatus" class="status">
-      Sign in or register to access approved family records.
-    </div>
-
-    <div id="authForms">
-      <div class="formgrid">
-        <div class="field full">
-          <label for="fullName">Full name (registration only)</label>
-          <input id="fullName" autocomplete="name" placeholder="Your full name">
+  <section id="account">
+    <div class="heading"><h2>Member Account</h2><p>Sign in or request a new account</p></div>
+    <div class="panel">
+      <div id="accountStatus" class="status">Connect to the website account service to sign in or register.</div>
+      <div id="authForms">
+        <div class="formgrid">
+          <div class="field full"><label for="fullName">Full name (registration only)</label><input id="fullName" autocomplete="name" placeholder="Your full name"></div>
+          <div class="field full"><label for="email">Gmail / Email</label><input id="email" type="email" autocomplete="email" placeholder="you@example.com"></div>
+          <div class="field full"><label for="password">Password</label><input id="password" type="password" autocomplete="current-password" minlength="6" placeholder="At least 6 characters"></div>
         </div>
-        <div class="field full">
-          <label for="email">Gmail / Email</label>
-          <input id="email" type="email" autocomplete="email" placeholder="you@example.com">
-        </div>
-        <div class="field full">
-          <label for="password">Password</label>
-          <input
-            id="password"
-            type="password"
-            autocomplete="current-password"
-            minlength="6"
-            placeholder="At least 6 characters"
-          >
+        <div style="display:flex;gap:10px;flex-wrap:wrap">
+          <button id="loginBtn" class="btn green" type="button">Login</button>
+          <button id="registerBtn" class="btn" type="button">Create Account</button>
+          <button id="logoutBtn" class="btn light hidden" type="button">Logout</button>
         </div>
       </div>
-
-      <div class="action-row">
-        <button id="loginBtn" class="btn green" type="button">Login</button>
-        <button id="registerBtn" class="btn" type="button">Create Account</button>
-        <button id="logoutBtn" class="btn light hidden" type="button">Logout</button>
+      <div class="notice">New registrations must be approved by the website owner. Do not share your password. Real family records remain unavailable until secure database rules are configured.</div>
+      <div id="ownerPanel">
+        <hr><h3>Owner — Account Management</h3>
+        <div class="grid" style="margin:12px 0">
+          <div class="card"><h3 id="accountTotal">0</h3><p>Total accounts</p></div>
+          <div class="card"><h3 id="accountPending">0</h3><p>Pending approval</p></div>
+          <div class="card"><h3 id="accountApproved">0</h3><p>Approved accounts</p></div>
+          <div class="card"><h3 id="accountDisabled">0</h3><p>Disabled accounts</p></div>
+        </div>
+        <p class="muted">Select the permissions for each account. Changes are saved to that user's profile.</p>
+        <div id="pendingUsers" class="muted">Loading accounts…</div>
       </div>
     </div>
+  </section>
 
-    <div class="notice">
-      New registrations require owner approval. Never share your password.
+  <section id="birthdays">
+    <div class="heading"><h2>🎂 Today's Birthdays</h2><p>Send warm wishes to our family members</p></div>
+    <div id="birthdayList" class="grid"><div class="card"><div class="icon">🎉</div><h3>Birthday wishes</h3><p>Birthdays will appear here when approved family records are available.</p></div></div>
+  </section>
+
+  <section id="family">
+    <div class="heading"><h2>Our Family Tree</h2><p>Connected by love, growing through generations</p></div>
+    <div id="familyList" class="tree"><div class="notice">Approved family members will appear here.</div></div>
+  </section>
+
+  <section id="addMember">
+    <div class="heading">
+      <h2>Add a Family Member</h2>
+      <p>Preserve a name and its place in our family history</p>
     </div>
-
-    <div id="ownerPanel" class="hidden">
-      <hr>
-      <h3>Owner — Account Requests</h3>
-      <div id="pendingUsers" class="muted">Loading requests…</div>
-    </div>
-  </div>
-</section>
-
-<section id="birthdays">
-  <div class="heading">
-    <h2>🎂 Birthdays</h2>
-    <p>Remember and celebrate our family members</p>
-  </div>
-  <div id="birthdayList" class="grid">
-    <div class="card">
-      <div class="icon">🎉</div>
-      <h3>Birthday wishes</h3>
-      <p>Birthdays will appear here after approved family records load.</p>
-    </div>
-  </div>
-</section>
-
-<section id="family">
-  <div class="heading">
-    <h2>Our Family Members</h2>
-    <p>Connected by love, growing through generations</p>
-  </div>
-  <div id="familyList" class="tree">
-    <div class="notice">Approved family members will appear here.</div>
-  </div>
-</section>
-
-<section id="addMember">
-  <div class="heading">
-    <h2>Add a Family Member</h2>
-    <p>Preserve a name and its place in our family history</p>
-  </div>
-
-  <div class="panel">
-    <form id="memberForm">
-      <div class="formgrid">
-        <div class="field">
-          <label for="memberName">Full name *</label>
-          <input id="memberName" required placeholder="Full name">
-        </div>
-
-        <div class="field">
-          <label for="relationship">Relationship *</label>
-          <select id="relationship" required>
-            <option value="">Choose</option>
-            <option>Father</option>
-            <option>Mother</option>
-            <option>Wife</option>
-            <option>Husband</option>
-            <option>Pedda Nanna</option>
-            <option>Pedda Amma</option>
-            <option>Babai</option>
-            <option>Pinni</option>
-            <option>Peddamma</option>
-            <option>Maamayya</option>
-            <option>Attha</option>
-            <option>Tatha</option>
-            <option>Nannamma</option>
-            <option>Ammamma</option>
-            <option>Anna</option>
-            <option>Akka</option>
-            <option>Thammudu</option>
-            <option>Chelli</option>
-            <option>Koduku</option>
-            <option>Koothuru</option>
-            <option>Bava</option>
-            <option>Vadina</option>
-            <option>Maradalu</option>
-            <option>Alludu</option>
-            <option>Kodalu</option>
-            <option>Other Relative</option>
-          </select>
-        </div>
-
-        <div class="field full">
-          <label for="address">Village name or full address *</label>
-          <input id="address" required placeholder="Village, Mandal, District, State">
-        </div>
-
-        <div class="field">
-          <label for="relatedTo">Related To (optional)</label>
-          <select id="relatedTo">
-            <option value="">Choose family member</option>
-          </select>
-        </div>
-
-        <div class="field">
-          <label for="dob">Date of birth (optional)</label>
-          <input id="dob" type="date">
-        </div>
-
-        <div class="field">
-          <label for="lifeStatus">Living status *</label>
-          <select id="lifeStatus" required>
-            <option value="">Choose</option>
-            <option>Living</option>
-            <option>Deceased</option>
-          </select>
-        </div>
-
-        <div class="field">
-          <label for="phone">Phone number (optional)</label>
-          <input id="phone" type="tel" placeholder="Phone number">
-        </div>
-
-        <div class="field full">
-          <label for="memberEmail">Email (optional)</label>
-          <input id="memberEmail" type="email" placeholder="Email address">
-        </div>
-      </div>
-
-      <button id="memberSaveBtn" class="btn green" type="submit">
-        Save Family Member
-      </button>
-      <button id="memberCancelBtn" class="btn light hidden" type="button">
-        Cancel Edit
-      </button>
-    </form>
-
-    <div class="notice">
-      Approved members can add family records. A record can be edited by
-      its creator or the owner. Only the owner can delete a family record.
-    </div>
-  </div>
-</section>
-
-</main>
-<main>
-
-<section id="familyTree">
-  <div class="heading">
-    <h2>🌳 Family Tree</h2>
-    <p>Explore the family connections</p>
-  </div>
-  <div class="panel">
-    <div id="familyTreeView">
-      <p class="muted">Family tree will appear after records load.</p>
-    </div>
-  </div>
-</section>
-
-<section id="events">
-  <div class="heading">
-    <h2>🎉 Family Events</h2>
-    <p>Create and share important family occasions</p>
-  </div>
-
-  <div class="panel">
-    <h3 id="eventFormTitle">Add a Family Event</h3>
-
-    <form id="eventForm">
-      <div class="formgrid">
-        <div class="field">
-          <label for="eventName">Event name *</label>
-          <input id="eventName" required placeholder="Birthday, wedding, function...">
-        </div>
-
-        <div class="field">
-          <label for="eventType">Event type *</label>
-          <select id="eventType" required>
-            <option value="">Choose event type</option>
-            <option>Birthday</option>
-            <option>Wedding</option>
-            <option>Engagement</option>
-            <option>Family Function</option>
-            <option>Festival</option>
-            <option>Memorial</option>
-            <option>Temple Function</option>
-            <option>Other</option>
-          </select>
-        </div>
-
-        <div class="field">
-          <label for="eventDate">Event date *</label>
-          <input id="eventDate" type="date" required>
-        </div>
-
-        <div class="field">
-          <label for="eventAddress">Venue / Address *</label>
-          <input id="eventAddress" required placeholder="Event location">
-        </div>
-
-        <div class="field full">
-          <label for="eventDescription">Description (optional)</label>
-          <textarea id="eventDescription" rows="3"
-            placeholder="Add event details"></textarea>
-        </div>
-      </div>
-
-      <div class="action-row">
-        <button id="eventSaveBtn" class="btn green" type="submit">
-          Save Event
-        </button>
-        <button id="eventCancelBtn" class="btn light hidden" type="button">
-          Cancel Edit
-        </button>
-      </div>
-    </form>
-
-    <div class="notice">
-      Approved members can create events. Only the owner can edit or delete
-      events. Other members can request event deletion with a reason.
-    </div>
-  </div>
-
-  <div id="eventList" class="grid" style="margin-top:18px">
-    <div class="card">
-      <h3>Family Events</h3>
-      <p>Events will appear here after loading.</p>
-    </div>
-  </div>
-</section>
-
-<section id="myRequests">
-  <div class="heading">
-    <h2>📨 My Requests</h2>
-    <p>Follow the status of your requests and owner replies</p>
-  </div>
-
-  <div class="panel">
-    <div id="myRequestsList">
-      <p class="muted">Login with an approved account to view your requests.</p>
-    </div>
-  </div>
-</section>
-
-<section id="helpSupport">
-  <div class="heading">
-    <h2>💬 Help &amp; Support</h2>
-    <p>Ask for help or suggest an improvement</p>
-  </div>
-
-  <div class="panel">
-    <form id="helpForm">
+    <div class="panel">
+      <form id="memberForm">
+        <div class="formgrid">
       <div class="field">
-        <label for="helpType">Request category *</label>
-        <select id="helpType" required>
-          <option value="">Select a category</option>
-          <option value="Family detail correction">Family detail correction</option>
-          <option value="Event correction">Event correction</option>
-          <option value="Website problem">Website problem</option>
-          <option value="New feature suggestion">New feature suggestion</option>
-          <option value="Other">Other</option>
+        <label for="memberName">Full name *</label>
+        <input id="memberName" required placeholder="e.g. Ramesh Reddy">
+      </div>
+
+      <div class="field">
+        <label for="relationship">Relationship *</label>
+        <select id="relationship" required>
+          <option value="">Choose</option>
+          <option>Father</option>
+          <option>Mother</option>
+          <option>Wife</option>
+          <option>Husband</option>
+          <option>Pedda Nanna</option>
+          <option>Pedda Amma</option>
+          <option>Babai</option>
+          <option>Pinni</option>
+          <option>Peddamma</option>
+          <option>Maamayya</option>
+          <option>Attha</option>
+          <option>Tatha</option>
+          <option>Nannamma</option>
+          <option>Ammamma</option>
+          <option>Anna</option>
+          <option>Akka</option>
+          <option>Thammudu</option>
+          <option>Chelli</option>
+          <option>Koduku</option>
+          <option>Koothuru</option>
+          <option>Bava</option>
+          <option>Vadina</option>
+          <option>Maradalu</option>
+          <option>Alludu</option>
+          <option>Kodalu</option>
+          <option>Other Relative</option>
+        </select>
+      </div>
+
+      <div class="field full">
+        <label for="address">Village name or full address *</label>
+        <input id="address" required placeholder="Village, Mandal, District, State">
+      </div>
+
+      <div class="field">
+        <label for="relatedTo">Related To (optional)</label>
+        <select id="relatedTo">
+          <option value="">Choose family member</option>
         </select>
       </div>
 
       <div class="field">
-        <label for="helpSubject">Subject *</label>
-        <input id="helpSubject" required maxlength="200"
-          placeholder="Briefly describe your request">
+        <label for="dob">Date of birth (optional)</label>
+        <input id="dob" type="date">
       </div>
 
       <div class="field">
-        <label for="helpDescription">Description *</label>
-        <textarea id="helpDescription" required maxlength="3000" rows="5"
-          placeholder="Explain the issue or suggestion clearly"></textarea>
+        <label for="lifeStatus">Living status *</label>
+        <select id="lifeStatus" required>
+          <option value="">Choose</option>
+          <option>Living</option>
+          <option>Deceased</option>
+        </select>
       </div>
 
-      <button class="btn green" type="submit">Submit Request</button>
-    </form>
+      <div class="field">
+        <label for="phone">Phone number (optional)</label>
+        <input id="phone" type="tel" placeholder="Phone number">
+      </div>
 
-    <div class="notice">
-      Please do not include passwords or sensitive personal information
-      in your support request. The owner can review and reply to your request.
+      <div class="field">
+        <label for="memberEmail">Email (optional)</label>
+        <input id="memberEmail" type="email" placeholder="Email address">
+      </div>
     </div>
-  </div>
-</section>
+        <div class="action-row"><button id="memberSaveBtn" class="btn green" type="submit">Save Family Member</button><button id="memberCancelBtn" class="btn light hidden" type="button">Cancel Edit</button></div>
+      </form>
+      <div class="notice">
+        Family member details can be saved by approved users.
+        Database permissions must be configured before using real family data.
+      </div>
+    </div>
+  </section>
 
-<section id="ownerRequests" class="hidden">
+  <section id="events">
+    <div class="heading">
+      <h2>Family Functions & Events</h2>
+      <p>Weddings, birthdays, anniversaries and family gatherings</p>
+    </div>
+
+    <div class="grid">
+      <div class="card">
+        <div class="icon">💍</div>
+        <h3>Weddings & Engagements</h3>
+        <p>Celebrate milestones together.</p>
+      </div>
+      <div class="card">
+        <div class="icon">🎂</div>
+        <h3>Birthdays & Anniversaries</h3>
+        <p>Remember the special days.</p>
+      </div>
+      <div class="card">
+        <div class="icon">🪔</div>
+        <h3>Family Gatherings</h3>
+        <p>Keep everyone informed.</p>
+      </div>
+    </div>
+
+    <div class="panel" style="margin-top:16px">
+      <h3 id="eventFormTitle">Create a Family Event</h3>
+      <form id="eventForm">
+        <div class="formgrid">
+          <div class="field">
+            <label for="eventName">Event name *</label>
+            <input id="eventName" required placeholder="e.g. Family wedding">
+          </div>
+          <div class="field">
+            <label for="eventType">Event type *</label>
+            <select id="eventType" required>
+              <option value="">Choose</option>
+              <option>Wedding</option>
+              <option>Engagement</option>
+              <option>Birthday</option>
+              <option>Anniversary</option>
+              <option>Festival</option>
+              <option>Family Gathering</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="eventDate">Date *</label>
+            <input id="eventDate" type="date" required>
+          </div>
+          <div class="field">
+            <label for="eventAddress">Venue / village *</label>
+            <input id="eventAddress" required placeholder="Venue or address">
+          </div>
+          <div class="field full">
+            <label for="eventDescription">Description (optional)</label>
+            <textarea id="eventDescription" rows="3" placeholder="Event details"></textarea>
+          </div>
+        </div>
+        <div class="action-row"><button id="eventSaveBtn" class="btn green" type="submit">Create Event</button><button id="eventCancelBtn" class="btn light hidden" type="button">Cancel Edit</button></div>
+      </form>
+    </div>
+
+    <div id="eventList" class="grid" style="margin-top:16px">
+      <div class="card">
+        <p>Family events will appear here.</p>
+      </div>
+    </div>
+  </section>
+  
+<section id="familyTree">
   <div class="heading">
-    <h2>🛠️ Owner Dashboard</h2>
-    <p>Manage event deletion requests and support requests</p>
+    <h2>🌳 Our Family Tree</h2>
+    <p>Explore how our family members are connected</p>
   </div>
-
-  <div class="grid">
+  <div id="familyTreeView" class="grid">
     <div class="card">
-      <div class="icon">🗑️</div>
-      <h3>Event Deletion Requests</h3>
-      <p id="eventRequestCount">Loading…</p>
-      <div id="eventRequestsList"></div>
-    </div>
-
-    <div class="card">
-      <div class="icon">💬</div>
-      <h3>Help &amp; Support Requests</h3>
-      <p id="helpRequestCount">Loading…</p>
-      <div id="helpRequestsList"></div>
+      <p>Family connections will appear here.</p>
     </div>
   </div>
 </section>
+  
+
+  <section id="myRequests">
+    <div class="heading"><h2>📨 My Requests</h2><p>Track your requests and owner replies</p></div>
+    <div class="panel"><div id="myRequestsList" class="muted">Sign in with an approved account to view requests.</div></div>
+  </section>
+
+  <section id="helpSupport">
+    <div class="heading"><h2>💬 Help &amp; Support</h2><p>Request a correction or suggest an improvement</p></div>
+    <div class="panel">
+      <form id="helpForm">
+        <div class="field"><label for="helpType">Category *</label><select id="helpType" required><option value="">Choose category</option><option>Family detail correction</option><option>Event correction</option><option>Website problem</option><option>New feature suggestion</option><option>Other</option></select></div>
+        <div class="field"><label for="helpSubject">Subject *</label><input id="helpSubject" maxlength="200" required placeholder="Short summary"></div>
+        <div class="field"><label for="helpDescription">Description *</label><textarea id="helpDescription" maxlength="3000" rows="5" required placeholder="Explain the request"></textarea></div>
+        <button class="btn green" type="submit">Submit Request</button>
+      </form>
+      <div class="notice">Never include passwords or sensitive information in a support request.</div>
+    </div>
+  </section>
+
+  <section id="ownerRequests" class="hidden">
+    <div class="heading"><h2>🛠️ Owner Dashboard</h2><p>Manage event deletion and support requests</p></div>
+    <div class="grid">
+      <div class="card"><h3>Event Deletion Requests</h3><p id="eventRequestCount">0 pending</p><div id="eventRequestsList"></div></div>
+      <div class="card"><h3>Help &amp; Support Requests</h3><p id="helpRequestCount">0 pending</p><div id="helpRequestsList"></div></div>
+    </div>
+  </section>
 
 </main>
 
 <footer>
-  <p><strong>Our Family Tree</strong></p>
-  <p>Keeping our family connected across generations.</p>
-  <p>This website created by Rakhee</p>
+  <div style="font-size:27px">🌳</div>
+  <strong>This website was created by Rakhee</strong>
+  <p>Our Family Tree · Preserving memories for generations</p>
 </footer>
-</body>
-</html>
 
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/13.0.0/firebase-app.js";
-
-import {
-  getAuth,
-  createUserWithEmailAndPassword,
-  signInWithEmailAndPassword,
-  signOut,
-  onAuthStateChanged,
-  updateProfile
-} from "https://www.gstatic.com/firebasejs/13.0.0/firebase-auth.js";
-
-import {
-  getFirestore,
-  doc,
-  setDoc,
-  getDoc,
-  collection,
-  addDoc,
-  getDocs,
-  query,
-  where,
-  serverTimestamp,
-  updateDoc,
-  deleteDoc
-} from "https://www.gstatic.com/firebasejs/13.0.0/firebase-firestore.js";
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged, updateProfile } from "https://www.gstatic.com/firebasejs/13.0.0/firebase-auth.js";
+import { getFirestore, doc, setDoc, getDoc, collection, addDoc, getDocs, query, where, serverTimestamp, updateDoc, deleteDoc } from "https://www.gstatic.com/firebasejs/13.0.0/firebase-firestore.js";
 
 const firebaseConfig = {
   apiKey: "AIzaSyBhD8kB8V30Ae0ymyW51m1q39InoYP_uu0",
@@ -725,1393 +380,144 @@ const firebaseConfig = {
   appId: "1:1077096016092:web:9d09207612108a75176c19",
   measurementId: "G-N934CNME2C"
 };
-
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getFirestore(app);
 const $ = id => document.getElementById(id);
-
 const OWNER_UID = "rNAnvgU4zTPizXf9Mbg7CV5JVi12";
+let currentUser = null, currentProfile = null, editingMemberId = null, editingEventId = null;
+let members = [], events = [], eventDeleteRequests = [], helpRequests = [];
 
-let currentUser = null;
-let currentProfile = null;
-let editingMemberId = null;
-let editingEventId = null;
-let members = [];
-let events = [];
-let eventDeleteRequests = [];
-let helpRequests = [];
-let activeRequestId = null;
+function clean(v){return String(v ?? "").trim()}
+function esc(v){return String(v ?? "").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
+function message(t){if($("accountStatus")) $("accountStatus").textContent=t}
+function hidden(id,value){if($(id)) $(id).classList.toggle("hidden",value)}
+function dateText(v){if(!v)return "Not provided";const d=new Date(v+"T12:00:00");return Number.isNaN(d.getTime())?"Not provided":d.toLocaleDateString("en-IN",{day:"numeric",month:"short",year:"numeric"})}
+function isOwner(){return !!currentUser && currentUser.uid===OWNER_UID && currentProfile?.role==="owner"}
+function hasPermission(key){return isOwner() || (!!currentUser && !!currentProfile && currentProfile.status==="approved" && currentProfile.permissions?.[key]===true)}
+function canUse(){return !!currentUser && !!currentProfile && (currentProfile.status==="approved" || isOwner())}
+function canViewFamily(){return canUse() && hasPermission("viewFamily")}
+function canAddMembers(){return canUse() && hasPermission("addMembers")}
+function canEditOwnMembers(){return canUse() && hasPermission("editOwnMembers")}
+function canCreateEvents(){return canUse() && hasPermission("createEvents")}
+function canRequestEventDeletion(){return canUse() && hasPermission("requestEventDeletion")}
+function canUseSupport(){return canUse() && hasPermission("useSupport")}
+function showAuth(){hidden("authForms",!!currentUser);hidden("logoutBtn",!currentUser);hidden("ownerPanel",!isOwner());hidden("ownerRequests",!isOwner());if(!currentUser)message("Register or sign in. New accounts require owner approval.");else if(isOwner())message("Owner account signed in.");else if(canUse())message("Your account is approved. Welcome!");else message("Your account is pending owner approval.")}
 
-function clean(value) {
-  return String(value ?? "").trim();
-}
+$("menuButton")?.addEventListener("click",()=>{const nav=$("mainNav");const open=nav.classList.toggle("open");$("menuButton").setAttribute("aria-expanded",String(open))});
+$("mainNav")?.querySelectorAll("a").forEach(a=>a.addEventListener("click",()=>{$("mainNav").classList.remove("open");$("menuButton")?.setAttribute("aria-expanded","false")}));
 
-function escapeHTML(value) {
-  return String(value ?? "").replace(/[&<>"']/g, character => ({
-    "&": "&amp;",
-    "<": "&lt;",
-    ">": "&gt;",
-    '"': "&quot;",
-    "'": "&#39;"
-  })[character]);
-}
+$("registerBtn").addEventListener("click",async()=>{const name=clean($("fullName").value),email=clean($("email").value),password=$("password").value;if(!name||!email||password.length<6){message("Enter your name, valid email and password of at least 6 characters.");return}try{message("Creating account…");const result=await createUserWithEmailAndPassword(auth,email,password);await updateProfile(result.user,{displayName:name});await setDoc(doc(db,"users",result.user.uid),{name,email,role:"member",status:"pending",permissions:{viewFamily:false,addMembers:false,editOwnMembers:false,createEvents:false,requestEventDeletion:false,useSupport:false},createdAt:serverTimestamp()});message("Registration complete. Wait for owner approval.")}catch(e){console.error(e);message("Registration error: "+e.message)}});
+$("loginBtn").addEventListener("click",async()=>{try{message("Signing in…");await signInWithEmailAndPassword(auth,clean($("email").value),$("password").value)}catch(e){console.error(e);message("Login error: "+e.message)}});
+$("logoutBtn").addEventListener("click",async()=>{try{await signOut(auth);message("Signed out.")}catch(e){message("Sign-out failed: "+e.message)}});
 
-function message(text) {
-  $("accountStatus").textContent = text;
-}
-
-function showMessage(elementId, text) {
-  const element = $(elementId);
-  if (element) element.textContent = text;
-}
-
-function isOwner() {
-  return Boolean(
-    currentUser &&
-    currentUser.uid === OWNER_UID &&
-    currentProfile?.role === "owner"
-  );
-}
-
-function canUse() {
-  return Boolean(
-    currentUser &&
-    currentProfile &&
-    (currentProfile.status === "approved" || isOwner())
-  );
-}
-
-function dateText(value) {
-  if (!value) return "Date not provided";
-  const date = new Date(value + "T12:00:00");
-  return Number.isNaN(date.getTime())
-    ? "Date not provided"
-    : date.toLocaleDateString("en-IN", {
-        day: "numeric",
-        month: "short",
-        year: "numeric"
-      });
-}
-
-function setHidden(id, hidden) {
-  const element = $(id);
-  if (element) element.classList.toggle("hidden", hidden);
-}
-
-function showAuth() {
-  setHidden("authForms", Boolean(currentUser));
-  setHidden("logoutBtn", !currentUser);
-  setHidden("ownerPanel", !isOwner());
-  setHidden("ownerRequests", !isOwner());
-
-  if (!currentUser) {
-    message("Sign in or register. New accounts require owner approval.");
-    return;
-  }
-
-  if (isOwner()) {
-    message("Owner account signed in.");
-  } else if (currentProfile?.status === "approved") {
-    message("Your account is approved. Welcome!");
-  } else {
-    message("Your account is pending owner approval.");
-  }
-}
-
-async function loadPendingUsers() {
-  if (!isOwner()) return;
-
-  const container = $("pendingUsers");
-  container.replaceChildren();
-
-  try {
-    const snapshot = await getDocs(
-      query(collection(db, "users"), where("status", "==", "pending"))
-    );
-
-    if (snapshot.empty) {
-      container.textContent = "No pending account requests.";
-      return;
-    }
-
-    snapshot.forEach(userDoc => {
-      const user = userDoc.data();
-      const card = document.createElement("div");
-      card.className = "request-card";
-
-      const title = document.createElement("h3");
-      title.textContent = user.name || user.email || "New member";
-
-      const email = document.createElement("p");
-      email.textContent = user.email || "";
-
-      const approve = document.createElement("button");
-      approve.type = "button";
-      approve.className = "btn green";
-      approve.textContent = "Approve Account";
-
-      approve.addEventListener("click", async () => {
-        if (!isOwner()) return;
-
-        approve.disabled = true;
-        try {
-          await updateDoc(doc(db, "users", userDoc.id), {
-            status: "approved",
-            role: "member",
-            approvedAt: serverTimestamp()
-          });
-          await loadPendingUsers();
-          message("Account approved successfully.");
-        } catch (error) {
-          console.error(error);
-          message("Could not approve account. Check Firestore rules.");
-          approve.disabled = false;
-        }
-      });
-
-      card.append(title, email, approve);
-      container.append(card);
+async function loadPendingUsers(){
+ if(!isOwner())return;
+ const box=$("pendingUsers");box.replaceChildren();
+ try{
+  const snap=await getDocs(collection(db,"users"));
+  const users=snap.docs.map(s=>({id:s.id,...s.data()}));
+  $("accountTotal").textContent=String(users.length);
+  $("accountPending").textContent=String(users.filter(u=>u.status==="pending").length);
+  $("accountApproved").textContent=String(users.filter(u=>u.status==="approved").length);
+  $("accountDisabled").textContent=String(users.filter(u=>u.status==="disabled").length);
+  if(!users.length){box.textContent="No accounts found.";return}
+  users.sort((a,b)=>({pending:0,approved:1,disabled:2}[a.status]??3)-({pending:0,approved:1,disabled:2}[b.status]??3));
+  const permissionOptions=[
+   ["viewFamily","View family records"],
+   ["addMembers","Add family members"],
+   ["editOwnMembers","Edit records they created"],
+   ["createEvents","Create family events"],
+   ["requestEventDeletion","Request event deletion"],
+   ["useSupport","Submit support requests and comments"]
+  ];
+  users.forEach(u=>{
+   const card=document.createElement("div");card.className="request-card";
+   const title=document.createElement("h3");title.textContent=u.name||u.email||"Member account";
+   const email=document.createElement("p");email.textContent=(u.email||"")+" · Status: "+(u.status||"unknown");
+   const role=document.createElement("p");role.textContent="Role: "+(u.role||"member")+(u.id===OWNER_UID?" (protected owner account)":"");
+   card.append(title,email,role);
+   if(u.id!==OWNER_UID){
+    const perms=u.permissions||{};
+    const area=document.createElement("div");area.className="formgrid";
+    const checks={};
+    permissionOptions.forEach(([key,label])=>{
+     const wrap=document.createElement("label");wrap.style.cssText="display:flex;align-items:center;gap:8px;padding:7px 0;font-weight:normal";
+     const input=document.createElement("input");input.type="checkbox";input.checked=perms[key]===true;input.style.width="auto";input.style.margin="0";checks[key]=input;
+     const text=document.createElement("span");text.textContent=label;wrap.append(input,text);area.append(wrap);
     });
-  } catch (error) {
-    console.error(error);
-    container.textContent = "Could not load account requests.";
-  }
-}
-
-$("registerBtn").addEventListener("click", async () => {
-  const name = clean($("fullName").value);
-  const email = clean($("email").value);
-  const password = $("password").value;
-
-  if (!name || !email || password.length < 6) {
-    message("Enter your name, valid email and password of at least 6 characters.");
-    return;
-  }
-
-  try {
-    message("Creating your account…");
-
-    const result = await createUserWithEmailAndPassword(
-      auth, email, password
-    );
-
-    await updateProfile(result.user, { displayName: name });
-
-    await setDoc(doc(db, "users", result.user.uid), {
-      name,
-      email,
-      role: "member",
-      status: "pending",
-      createdAt: serverTimestamp()
-    });
-
-    currentProfile = {
-      name,
-      email,
-      role: "member",
-      status: "pending"
-    };
-
-    showAuth();
-    message("Registration successful. Wait for owner approval.");
-  } catch (error) {
-    console.error(error);
-    message(error.message || "Registration failed.");
-  }
-});
-
-$("loginBtn").addEventListener("click", async () => {
-  const email = clean($("email").value);
-  const password = $("password").value;
-
-  if (!email || !password) {
-    message("Enter your email and password.");
-    return;
-  }
-
-  try {
-    message("Signing in…");
-    await signInWithEmailAndPassword(auth, email, password);
-  } catch (error) {
-    console.error(error);
-    message("Login failed. Check your email and password.");
-  }
-});
-
-$("logoutBtn").addEventListener("click", async () => {
-  try {
-    await signOut(auth);
-    message("You have signed out.");
-  } catch (error) {
-    console.error(error);
-    message("Could not sign out. Please try again.");
-  }
-});
-
-$("menuButton").addEventListener("click", () => {
-  const nav = $("mainNav");
-  const opened = nav.classList.toggle("open");
-  $("menuButton").setAttribute("aria-expanded", String(opened));
-});
-
-$("mainNav").querySelectorAll("a").forEach(link => {
-  link.addEventListener("click", () => {
-    $("mainNav").classList.remove("open");
-    $("menuButton").setAttribute("aria-expanded", "false");
-  });
-});
-
-onAuthStateChanged(auth, async user => {
-  currentUser = user;
-  currentProfile = null;
-
-  if (!user) {
-    members = [];
-    events = [];
-    eventDeleteRequests = [];
-    helpRequests = [];
-    showAuth();
-    renderMembers();
-    renderBirthdays();
-    renderEvents();
-    renderFamilyTree();
-    renderMyRequests();
-    return;
-  }
-
-  try {
-    const profileSnapshot = await getDoc(doc(db, "users", user.uid));
-    currentProfile = profileSnapshot.exists()
-      ? profileSnapshot.data()
-      : null;
-
-    showAuth();
-
-    if (isOwner()) {
+    const save=document.createElement("button");save.type="button";save.className="btn green";save.textContent="Save Permissions";
+    save.addEventListener("click",async()=>{
+     if(!isOwner())return;
+     const chosen={};permissionOptions.forEach(([key])=>chosen[key]=checks[key].checked);
+     save.disabled=true;
+     try{
+      await updateDoc(doc(db,"users",u.id),{permissions:chosen,permissionsUpdatedAt:serverTimestamp(),permissionsUpdatedBy:currentUser.uid});
+      message("Permissions saved for "+(u.name||u.email||"member")+".");
       await loadPendingUsers();
-      await loadOwnerRequests();
-    }
-
-    if (canUse()) {
-      await loadMembers();
-      await loadEvents();
-      await loadMyRequests();
-    } else {
-      members = [];
-      events = [];
-      renderMembers();
-      renderBirthdays();
-      renderEvents();
-      renderFamilyTree();
-      renderMyRequests();
-    }
-  } catch (error) {
-    console.error(error);
-    message("Could not load your account. Check your internet and Firestore rules.");
-  }
-});
-
-
-async function loadMembers() {
-  if (!canUse()) return;
-
-  try {
-    const snapshot = await getDocs(collection(db, "members"));
-    members = snapshot.docs.map(item => ({
-      id: item.id,
-      ...item.data()
-    }));
-
-    renderMembers();
-    renderBirthdays();
-    renderFamilyTree();
-    loadRelatedMembers();
-  } catch (error) {
-    console.error(error);
-    showMessage("accountStatus", "Unable to load family members.");
-  }
-}
-
-function renderMembers() {
-  const container = $("familyList");
-  container.replaceChildren();
-
-  const term = clean($("search").value).toLowerCase();
-
-  const filtered = members.filter(member => {
-    const text = [
-      member.name,
-      member.relationship,
-      member.address,
-      member.lifeStatus
-    ].join(" ").toLowerCase();
-
-    return text.includes(term);
-  });
-
-  if (!filtered.length) {
-    const empty = document.createElement("div");
-    empty.className = "notice";
-    empty.textContent = term
-      ? "No family members match your search."
-      : "No family members added yet.";
-    container.append(empty);
-    return;
-  }
-
-  filtered.forEach(member => {
-    const card = document.createElement("div");
-    card.className = "person";
-
-    const icon = document.createElement("div");
-    icon.className = "icon";
-    icon.textContent = member.lifeStatus === "Deceased" ? "🕊️" : "👤";
-
-    const name = document.createElement("strong");
-    name.textContent = member.name || "Unnamed member";
-
-    const relation = document.createElement("p");
-    relation.textContent = member.relationship || "Family member";
-
-    const address = document.createElement("p");
-    address.textContent = member.address || "";
-
-    const status = document.createElement("span");
-    status.className = "tag";
-    status.textContent = member.lifeStatus || "Not specified";
-
-    card.append(icon, name, relation, address, status);
-
-    const canEdit = isOwner() ||
-      (currentUser && member.createdBy === currentUser.uid);
-
-    if (canEdit) {
-      const edit = document.createElement("button");
-      edit.type = "button";
-      edit.className = "btn green";
-      edit.style.marginTop = "10px";
-      edit.textContent = "Edit";
-      edit.addEventListener("click", () => startMemberEdit(member));
-      card.append(edit);
-    }
-
-    if (isOwner()) {
-      const remove = document.createElement("button");
-      remove.type = "button";
-      remove.className = "btn danger";
-      remove.style.marginTop = "8px";
-      remove.textContent = "Delete";
-      remove.addEventListener("click", () => deleteMember(member));
-      card.append(remove);
-    }
-
-    container.append(card);
-  });
-}
-
-function startMemberEdit(member) {
-  if (!canUse()) return;
-
-  if (!isOwner() && member.createdBy !== currentUser.uid) {
-    showMessage("accountStatus", "You can edit only records you created.");
-    return;
-  }
-
-  editingMemberId = member.id;
-  $("memberName").value = member.name || "";
-  $("relationship").value = member.relationship || "";
-  $("address").value = member.address || "";
-  $("relatedTo").value = member.relatedTo || "";
-  $("dob").value = member.dob || "";
-  $("lifeStatus").value = member.lifeStatus || "";
-  $("phone").value = member.phone || "";
-  $("memberEmail").value = member.memberEmail || "";
-
-  $("memberSaveBtn").textContent = "Update Family Member";
-  setHidden("memberCancelBtn", false);
-  $("addMember").scrollIntoView({ behavior: "smooth" });
-}
-
-function resetMemberForm() {
-  editingMemberId = null;
-  $("memberForm").reset();
-  $("memberSaveBtn").textContent = "Save Family Member";
-  setHidden("memberCancelBtn", true);
-}
-
-$("memberCancelBtn").addEventListener("click", resetMemberForm);
-
-$("memberForm").addEventListener("submit", async event => {
-  event.preventDefault();
-
-  if (!canUse()) {
-    showMessage("accountStatus", "An approved account is required.");
-    return;
-  }
-
-  const data = {
-    name: clean($("memberName").value),
-    relationship: clean($("relationship").value),
-    address: clean($("address").value),
-    relatedTo: clean($("relatedTo").value),
-    dob: $("dob").value || "",
-    lifeStatus: clean($("lifeStatus").value),
-    phone: clean($("phone").value),
-    memberEmail: clean($("memberEmail").value),
-    updatedAt: serverTimestamp()
-  };
-
-  if (!data.name || !data.relationship || !data.address || !data.lifeStatus) {
-    showMessage("accountStatus", "Fill all required family member fields.");
-    return;
-  }
-
-  try {
-    $("memberSaveBtn").disabled = true;
-
-    if (editingMemberId) {
-      const existing = members.find(item => item.id === editingMemberId);
-
-      if (!existing ||
-          (!isOwner() && existing.createdBy !== currentUser.uid)) {
-        throw new Error("You can edit only your own records.");
-      }
-
-      // Do not change createdBy when editing.
-      await updateDoc(doc(db, "members", editingMemberId), data);
-      showMessage("accountStatus", "Family member updated.");
-    } else {
-      data.createdBy = currentUser.uid;
-      data.createdAt = serverTimestamp();
-
-      await addDoc(collection(db, "members"), data);
-      showMessage("accountStatus", "Family member added.");
-    }
-
-    resetMemberForm();
-    await loadMembers();
-  } catch (error) {
-    console.error(error);
-    showMessage("accountStatus", error.message || "Could not save family member.");
-  } finally {
-    $("memberSaveBtn").disabled = false;
-  }
-});
-
-async function deleteMember(member) {
-  if (!isOwner()) {
-    showMessage("accountStatus", "Only the owner can delete family records.");
-    return;
-  }
-
-  if (!confirm(`Delete ${member.name || "this family member"}?`)) return;
-
-  try {
-    await deleteDoc(doc(db, "members", member.id));
-    await loadMembers();
-    showMessage("accountStatus", "Family member deleted.");
-  } catch (error) {
-    console.error(error);
-    showMessage("accountStatus", "Could not delete family member.");
-  }
-}
-
-function loadRelatedMembers() {
-  const select = $("relatedTo");
-  const previous = select.value;
-
-  select.replaceChildren();
-  const blank = document.createElement("option");
-  blank.value = "";
-  blank.textContent = "Choose family member";
-  select.append(blank);
-
-  members.forEach(member => {
-    const option = document.createElement("option");
-    option.value = member.id;
-    option.textContent = member.name || "Unnamed member";
-    select.append(option);
-  });
-
-  if (members.some(member => member.id === previous)) {
-    select.value = previous;
-  }
-}
-
-function renderBirthdays() {
-  const container = $("birthdayList");
-  container.replaceChildren();
-
-  const today = new Date();
-  const month = today.getMonth();
-  const day = today.getDate();
-
-  const upcoming = members
-    .filter(member => member.dob && member.lifeStatus !== "Deceased")
-    .map(member => {
-      const parts = member.dob.split("-").map(Number);
-      const date = new Date(today.getFullYear(), parts[1] - 1, parts[2]);
-      date.setHours(12, 0, 0, 0);
-
-      const todayDate = new Date(today.getFullYear(), month, day);
-      todayDate.setHours(12, 0, 0, 0);
-
-      if (date < todayDate) {
-        date.setFullYear(today.getFullYear() + 1);
-      }
-
-      return { ...member, birthdayDate: date };
-    })
-    .sort((a, b) => a.birthdayDate - b.birthdayDate);
-
-  if (!upcoming.length) {
-    const empty = document.createElement("div");
-    empty.className = "card";
-    empty.textContent = "No upcoming birthdays available.";
-    container.append(empty);
-    return;
-  }
-
-  upcoming.slice(0, 12).forEach(member => {
-    const card = document.createElement("div");
-    card.className = "card";
-
-    const icon = document.createElement("div");
-    icon.className = "icon";
-    icon.textContent = "🎂";
-
-    const name = document.createElement("h3");
-    name.textContent = member.name || "Family member";
-
-    const date = document.createElement("p");
-    date.textContent = member.birthdayDate.toLocaleDateString("en-IN", {
-      day: "numeric",
-      month: "long"
+     }catch(e){console.error(e);message("Could not save permissions: "+e.message);save.disabled=false}
     });
-
-    card.append(icon, name, date);
-    container.append(card);
-  });
-}
-
-function renderFamilyTree() {
-  const container = $("familyTreeView");
-  container.replaceChildren();
-
-  if (!members.length) {
-    const empty = document.createElement("p");
-    empty.className = "muted";
-    empty.textContent = "Add family members to build your family tree.";
-    container.append(empty);
-    return;
-  }
-
-  const term = clean($("search").value).toLowerCase();
-
-  const filtered = members.filter(member => {
-    const searchable = [
-      member.name,
-      member.relationship,
-      member.address
-    ].join(" ").toLowerCase();
-
-    return searchable.includes(term);
-  });
-
-  if (!filtered.length) {
-    container.textContent = "No matching family members.";
-    return;
-  }
-
-  filtered.forEach(member => {
-    const card = document.createElement("div");
-    card.className = "card";
-
-    const name = document.createElement("h3");
-    name.textContent = "🌳 " + (member.name || "Unnamed member");
-
-    const relation = document.createElement("p");
-    relation.textContent = "Relationship: " + (member.relationship || "Not specified");
-
-    const address = document.createElement("p");
-    address.textContent = "Village: " + (member.address || "Not specified");
-
-    card.append(name, relation, address);
-
-    if (member.relatedTo) {
-      const related = members.find(item => item.id === member.relatedTo);
-      const link = document.createElement("p");
-      link.textContent = "Connected to: " +
-        (related?.name || "Family member");
-      card.append(link);
+    card.append(area,save);
+    if(u.status==="pending"){
+     const approve=document.createElement("button");approve.type="button";approve.className="btn";approve.style.marginLeft="6px";approve.textContent="Approve Account";
+     approve.addEventListener("click",async()=>{
+      if(!isOwner())return;
+      const chosen={};permissionOptions.forEach(([key])=>chosen[key]=checks[key].checked);
+      approve.disabled=true;
+      try{
+       await updateDoc(doc(db,"users",u.id),{status:"approved",role:"member",permissions:chosen,approvedAt:serverTimestamp(),approvedBy:currentUser.uid,permissionsUpdatedAt:serverTimestamp(),permissionsUpdatedBy:currentUser.uid});
+       message("Account approved with selected permissions.");await loadPendingUsers();
+      }catch(e){console.error(e);message("Approval failed: "+e.message);approve.disabled=false}
+     });
+     card.append(approve);
     }
-
-    container.append(card);
-  });
-}
-
-$("search").addEventListener("input", () => {
-  renderMembers();
-  renderFamilyTree();
-  renderEvents();
-});
-  
-async function loadEvents() {
-  if (!canUse()) return;
-
-  try {
-    const snapshot = await getDocs(collection(db, "events"));
-    events = snapshot.docs.map(item => ({
-      id: item.id,
-      ...item.data()
-    }));
-
-    renderEvents();
-    checkEventReminders();
-  } catch (error) {
-    console.error(error);
-    showMessage("accountStatus", "Could not load family events.");
-  }
-}
-
-function renderEvents() {
-  const container = $("eventList");
-  if (!container) return;
-
-  container.replaceChildren();
-  const term = clean($("search").value).toLowerCase();
-
-  const filtered = events.filter(event => [
-    event.name, event.type, event.address, event.description
-  ].join(" ").toLowerCase().includes(term));
-
-  if (!filtered.length) {
-    const empty = document.createElement("div");
-    empty.className = "card";
-    empty.textContent = term
-      ? "No events match your search."
-      : "No family events have been added yet.";
-    container.append(empty);
-    return;
-  }
-
-  filtered.sort((a, b) => (a.date || "").localeCompare(b.date || ""));
-
-  filtered.forEach(item => {
-    const card = document.createElement("div");
-    card.className = "card event";
-
-    const date = document.createElement("div");
-    date.className = "datebox";
-
-    const dateValue = item.date ? new Date(item.date + "T12:00:00") : null;
-    const day = document.createElement("strong");
-    day.textContent = dateValue && !Number.isNaN(dateValue.getTime())
-      ? String(dateValue.getDate())
-      : "—";
-
-    const month = document.createElement("span");
-    month.textContent = dateValue && !Number.isNaN(dateValue.getTime())
-      ? dateValue.toLocaleDateString("en-IN", { month: "short" })
-      : "Date";
-
-    date.append(day, month);
-
-    const content = document.createElement("div");
-    content.style.flex = "1";
-    content.style.minWidth = "0";
-
-    const title = document.createElement("h3");
-    title.textContent = item.name || "Family event";
-
-    const type = document.createElement("p");
-    type.textContent = item.type || "Event";
-
-    const venue = document.createElement("p");
-    venue.textContent = "📍 " + (item.address || "Venue not provided");
-
-    const description = document.createElement("p");
-    description.textContent = item.description || "";
-
-    content.append(title, type, venue, description);
-    card.append(date, content);
-
-    const actions = document.createElement("div");
-    actions.className = "action-row full";
-
-    if (isOwner()) {
-      const edit = document.createElement("button");
-      edit.type = "button";
-      edit.className = "btn green";
-      edit.textContent = "Edit";
-      edit.addEventListener("click", () => startEventEdit(item));
-
-      const remove = document.createElement("button");
-      remove.type = "button";
-      remove.className = "btn danger";
-      remove.textContent = "Delete";
-      remove.addEventListener("click", () => deleteEvent(item));
-
-      actions.append(edit, remove);
-    } else {
-      const request = document.createElement("button");
-      request.type = "button";
-      request.className = "btn light";
-      request.textContent = "Request Deletion";
-      request.addEventListener("click", () => requestEventDeletion(item));
-      actions.append(request);
-    }
-
-    content.append(actions);
-    container.append(card);
-  });
-}
-
-function startEventEdit(item) {
-  if (!isOwner()) return;
-
-  editingEventId = item.id;
-  $("eventName").value = item.name || "";
-  $("eventType").value = item.type || "";
-  $("eventDate").value = item.date || "";
-  $("eventAddress").value = item.address || "";
-  $("eventDescription").value = item.description || "";
-  $("eventFormTitle").textContent = "Edit Family Event";
-  $("eventSaveBtn").textContent = "Update Event";
-  setHidden("eventCancelBtn", false);
-  $("events").scrollIntoView({ behavior: "smooth" });
-}
-
-function resetEventForm() {
-  editingEventId = null;
-  $("eventForm").reset();
-  $("eventFormTitle").textContent = "Add a Family Event";
-  $("eventSaveBtn").textContent = "Save Event";
-  setHidden("eventCancelBtn", true);
-}
-
-$("eventCancelBtn").addEventListener("click", resetEventForm);
-
-$("eventForm").addEventListener("submit", async event => {
-  event.preventDefault();
-
-  if (!canUse()) {
-    message("An approved account is required to create events.");
-    return;
-  }
-
-  const data = {
-    name: clean($("eventName").value),
-    type: clean($("eventType").value),
-    date: $("eventDate").value,
-    address: clean($("eventAddress").value),
-    description: clean($("eventDescription").value),
-    updatedAt: serverTimestamp()
-  };
-
-  if (!data.name || !data.type || !data.date || !data.address) {
-    message("Fill all required event fields.");
-    return;
-  }
-
-  try {
-    $("eventSaveBtn").disabled = true;
-
-    if (editingEventId) {
-      if (!isOwner()) throw new Error("Only the owner can edit events.");
-
-      await updateDoc(doc(db, "events", editingEventId), data);
-      message("Event updated successfully.");
-    } else {
-      data.createdBy = currentUser.uid;
-      data.createdAt = serverTimestamp();
-
-      await addDoc(collection(db, "events"), data);
-      message("Event created successfully.");
-    }
-
-    resetEventForm();
-    await loadEvents();
-  } catch (error) {
-    console.error(error);
-    message(error.message || "Could not save event.");
-  } finally {
-    $("eventSaveBtn").disabled = false;
-  }
-});
-
-async function deleteEvent(item) {
-  if (!isOwner()) return;
-
-  if (!confirm(`Delete event "${item.name}"?`)) return;
-
-  try {
-    await deleteDoc(doc(db, "events", item.id));
-    await loadEvents();
-    await loadOwnerRequests();
-    message("Event deleted successfully.");
-  } catch (error) {
-    console.error(error);
-    message("Could not delete event.");
-  }
-}
-
-async function requestEventDeletion(item) {
-  if (!canUse() || isOwner()) return;
-
-  const reason = prompt(
-    `Why should "${item.name}" be deleted? Please provide a reason:`
-  );
-
-  if (reason === null) return;
-
-  const cleanReason = clean(reason);
-  if (!cleanReason || cleanReason.length > 2000) {
-    message("Enter a reason between 1 and 2000 characters.");
-    return;
-  }
-
-  try {
-    await addDoc(collection(db, "eventDeleteRequests"), {
-      requesterUid: currentUser.uid,
-      eventId: item.id,
-      eventName: item.name || "Family event",
-      reason: cleanReason,
-      status: "pending",
-      createdAt: serverTimestamp()
+    const stateBtn=document.createElement("button");stateBtn.type="button";stateBtn.className="btn light";stateBtn.style.marginLeft="6px";stateBtn.textContent=u.status==="disabled"?"Re-enable Account":"Disable Account";
+    stateBtn.addEventListener("click",async()=>{
+     if(!isOwner())return;
+     const next=u.status==="disabled"?"approved":"disabled";
+     if(!confirm((next==="disabled"?"Disable":"Re-enable")+" this account?"))return;
+     try{await updateDoc(doc(db,"users",u.id),{status:next,statusUpdatedAt:serverTimestamp(),statusUpdatedBy:currentUser.uid});message("Account status updated.");await loadPendingUsers()}catch(e){console.error(e);message("Could not update account: "+e.message)}
     });
-
-    message("Event deletion request submitted to the owner.");
-    await loadMyRequests();
-    if (isOwner()) await loadOwnerRequests();
-  } catch (error) {
-    console.error(error);
-    message("Could not submit deletion request.");
-  }
-}
-
-async function loadMyRequests() {
-  if (!canUse()) {
-    renderMyRequests();
-    return;
-  }
-
-  try {
-    const [eventsSnapshot, helpSnapshot] = await Promise.all([
-      getDocs(query(
-        collection(db, "eventDeleteRequests"),
-        where("requesterUid", "==", currentUser.uid)
-      )),
-      getDocs(query(
-        collection(db, "helpRequests"),
-        where("requesterUid", "==", currentUser.uid)
-      ))
-    ]);
-
-    eventDeleteRequests = eventsSnapshot.docs.map(item => ({
-      id: item.id,
-      ...item.data(),
-      requestKind: "event"
-    }));
-
-    helpRequests = helpSnapshot.docs.map(item => ({
-      id: item.id,
-      ...item.data(),
-      requestKind: "help"
-    }));
-
-    renderMyRequests();
-  } catch (error) {
-    console.error(error);
-    showMessage("myRequestsList", "Could not load your requests.");
-  }
-}
-
-function renderMyRequests() {
-  const container = $("myRequestsList");
-  container.replaceChildren();
-
-  if (!canUse()) {
-    container.textContent = "Login with an approved account to view requests.";
-    return;
-  }
-
-  const all = [...eventDeleteRequests, ...helpRequests];
-
-  if (!all.length) {
-    container.textContent = "You have not submitted any requests yet.";
-    return;
-  }
-
-  all.sort((a, b) => {
-    const first = a.createdAt?.seconds || 0;
-    const second = b.createdAt?.seconds || 0;
-    return second - first;
+    if(u.status!=="pending")card.append(stateBtn);
+   }
+   box.append(card);
   });
-
-  all.forEach(item => {
-    const card = document.createElement("div");
-    card.className = "request-card";
-
-    const title = document.createElement("h3");
-    title.textContent = item.requestKind === "event"
-      ? "Event deletion: " + (item.eventName || "Family event")
-      : item.subject || "Support request";
-
-    const description = document.createElement("p");
-    description.textContent = item.reason || item.description || "";
-
-    const status = document.createElement("span");
-    status.className = item.status === "resolved"
-      ? "badge-resolved"
-      : "badge-pending";
-    status.textContent = item.status || "pending";
-
-    card.append(title, description, status);
-
-    if (item.requestKind === "help") {
-      const replyBox = document.createElement("div");
-      replyBox.className = "comment";
-      replyBox.textContent = item.ownerReply
-        ? "Owner reply: " + item.ownerReply
-        : "No owner reply yet.";
-
-      card.append(replyBox);
-
-      if (item.status !== "resolved" && item.status !== "rejected") {
-        const followUp = document.createElement("button");
-        followUp.type = "button";
-        followUp.className = "btn light";
-        followUp.textContent = "Add Comment";
-        followUp.addEventListener("click", () => addRequestComment(item));
-        card.append(followUp);
-      }
-    }
-
-    container.append(card);
-  });
+ }catch(e){console.error(e);box.textContent="Could not load accounts. Check Firestore rules."}
 }
 
-async function addRequestComment(item) {
-  if (!canUse() || item.requestKind !== "help") return;
-
-  const text = clean(prompt("Enter your follow-up comment:"));
-  if (!text) return;
-
-  if (text.length > 2000) {
-    message("Comment must be 2000 characters or less.");
-    return;
-  }
-
-  try {
-    await addDoc(
-      collection(db, "helpRequests", item.id, "comments"),
-      {
-        authorUid: currentUser.uid,
-        authorRole: isOwner() ? "owner" : "member",
-        text,
-        createdAt: serverTimestamp()
-      }
-    );
-
-    message("Comment added.");
-    await loadMyRequests();
-    if (isOwner()) await loadOwnerRequests();
-  } catch (error) {
-    console.error(error);
-    message("Could not add comment.");
-  }
-}
-
-$("helpForm").addEventListener("submit", async event => {
-  event.preventDefault();
-
-  if (!canUse()) {
-    message("Please sign in with an approved account first.");
-    return;
-  }
-
-  const subject = clean($("helpSubject").value);
-  const description = clean($("helpDescription").value);
-  const type = clean($("helpType").value);
-
-  if (!type || !subject || !description) {
-    message("Fill all support request fields.");
-    return;
-  }
-
-  try {
-    await addDoc(collection(db, "helpRequests"), {
-      requesterUid: currentUser.uid,
-      type,
-      subject,
-      description,
-      status: "pending",
-      createdAt: serverTimestamp(),
-      updatedAt: serverTimestamp()
-    });
-
-    $("helpForm").reset();
-    message("Support request submitted successfully.");
-    await loadMyRequests();
-    if (isOwner()) await loadOwnerRequests();
-  } catch (error) {
-    console.error(error);
-    message("Could not submit your support request.");
-  }
-});
-
-async function loadOwnerRequests() {
-  if (!isOwner()) return;
-
-  try {
-    const [eventSnapshot, helpSnapshot] = await Promise.all([
-      getDocs(collection(db, "eventDeleteRequests")),
-      getDocs(collection(db, "helpRequests"))
-    ]);
-
-    eventDeleteRequests = eventSnapshot.docs.map(item => ({
-      id: item.id,
-      ...item.data(),
-      requestKind: "event"
-    }));
-
-    helpRequests = helpSnapshot.docs.map(item => ({
-      id: item.id,
-      ...item.data(),
-      requestKind: "help"
-    }));
-
-    renderOwnerRequests();
-  } catch (error) {
-    console.error(error);
-    showMessage("eventRequestsList", "Could not load owner requests.");
-  }
-}
-
-function renderOwnerRequests() {
-  if (!isOwner()) return;
-
-  const eventContainer = $("eventRequestsList");
-  const helpContainer = $("helpRequestsList");
-
-  eventContainer.replaceChildren();
-  helpContainer.replaceChildren();
-
-  const pendingEvents = eventDeleteRequests.filter(
-    item => item.status === "pending"
-  );
-  const pendingHelp = helpRequests.filter(
-    item => item.status === "pending"
-  );
-
-  $("eventRequestCount").textContent =
-    `${pendingEvents.length} pending request(s)`;
-
-  $("helpRequestCount").textContent =
-    `${pendingHelp.length} pending request(s)`;
-
-  if (!eventDeleteRequests.length) {
-    eventContainer.textContent = "No event deletion requests.";
-  }
-
-  eventDeleteRequests.forEach(item => {
-    const card = document.createElement("div");
-    card.className = "request-card";
-
-    const title = document.createElement("h3");
-    title.textContent = item.eventName || "Event deletion request";
-
-    const reason = document.createElement("p");
-    reason.textContent = "Reason: " + (item.reason || "");
-
-    const status = document.createElement("p");
-    status.textContent = "Status: " + (item.status || "pending");
-
-    card.append(title, reason, status);
-
-    if (item.status === "pending") {
-      const approve = document.createElement("button");
-      approve.type = "button";
-      approve.className = "btn danger";
-      approve.textContent = "Approve & Delete Event";
-
-      approve.addEventListener("click", async () => {
-        if (!isOwner()) return;
-
-        if (!confirm("Approve this request and delete the event?")) return;
-
-        approve.disabled = true;
-
-        try {
-          const eventRef = doc(db, "events", item.eventId);
-          const eventSnapshot = await getDoc(eventRef);
-
-          if (eventSnapshot.exists()) {
-            await deleteDoc(eventRef);
-          }
-
-          await updateDoc(
-            doc(db, "eventDeleteRequests", item.id),
-            {
-              status: "approved",
-              reviewedAt: serverTimestamp(),
-              reviewedBy: currentUser.uid
-            }
-          );
-
-          await loadEvents();
-          await loadOwnerRequests();
-          await loadMyRequests();
-
-          message("Request approved. Event deletion processed.");
-        } catch (error) {
-          console.error(error);
-          message("Could not complete the deletion request.");
-          approve.disabled = false;
-        }
-      });
-
-      const reject = document.createElement("button");
-      reject.type = "button";
-      reject.className = "btn light";
-      reject.textContent = "Reject";
-
-      reject.addEventListener("click", async () => {
-        if (!isOwner()) return;
-
-        try {
-          await updateDoc(
-            doc(db, "eventDeleteRequests", item.id),
-            {
-              status: "rejected",
-              reviewedAt: serverTimestamp(),
-              reviewedBy: currentUser.uid
-            }
-          );
-
-          await loadOwnerRequests();
-          await loadMyRequests();
-          message("Event deletion request rejected.");
-        } catch (error) {
-          console.error(error);
-          message("Could not reject request.");
-        }
-      });
-
-      card.append(approve, reject);
-    }
-
-    eventContainer.append(card);
-  });
-
-  if (!helpRequests.length) {
-    helpContainer.textContent = "No support requests.";
-  }
-
-  helpRequests.forEach(item => {
-    const card = document.createElement("div");
-    card.className = "request-card";
-
-    const title = document.createElement("h3");
-    title.textContent = item.subject || "Support request";
-
-    const category = document.createElement("p");
-    category.textContent = "Category: " + (item.type || "Other");
-
-    const description = document.createElement("p");
-    description.textContent = item.description || "";
-
-    const status = document.createElement("p");
-    status.textContent = "Status: " + (item.status || "pending");
-
-    card.append(title, category, description, status);
-
-    const replyLabel = document.createElement("label");
-    replyLabel.textContent = "Owner reply";
-
-    const reply = document.createElement("textarea");
-    reply.rows = 3;
-    reply.maxLength = 3000;
-    reply.placeholder = "Write a reply to this member";
-    reply.value = item.ownerReply || "";
-
-    const saveReply = document.createElement("button");
-    saveReply.type = "button";
-    saveReply.className = "btn green";
-    saveReply.textContent = "Save Reply";
-
-    saveReply.addEventListener("click", async () => {
-      if (!isOwner()) return;
-
-      const text = clean(reply.value);
-
-      if (!text) {
-        message("Enter a reply first.");
-        return;
-      }
-
-      try {
-        await updateDoc(doc(db, "helpRequests", item.id), {
-          ownerReply: text,
-          repliedAt: serverTimestamp(),
-          updatedAt: serverTimestamp()
-        });
-
-        await loadOwnerRequests();
-        await loadMyRequests();
-        message("Owner reply saved.");
-      } catch (error) {
-        console.error(error);
-        message("Could not save reply.");
-      }
-    });
-
-    const statusSelect = document.createElement("select");
-    [
-      ["pending", "Pending"],
-      ["in progress", "In Progress"],
-      ["resolved", "Resolved"],
-      ["rejected", "Rejected"]
-    ].forEach(([value, label]) => {
-      const option = document.createElement("option");
-      option.value = value;
-      option.textContent = label;
-      statusSelect.append(option);
-    });
-
-    statusSelect.value = [
-      "pending", "in progress", "resolved", "rejected"
-    ].includes(item.status) ? item.status : "pending";
-
-    const updateStatus = document.createElement("button");
-    updateStatus.type = "button";
-    updateStatus.className = "btn light";
-    updateStatus.textContent = "Update Status";
-
-    updateStatus.addEventListener("click", async () => {
-      if (!isOwner()) return;
-
-      try {
-        await updateDoc(doc(db, "helpRequests", item.id), {
-          status: statusSelect.value,
-          updatedAt: serverTimestamp()
-        });
-
-        await loadOwnerRequests();
-        await loadMyRequests();
-        message("Request status updated.");
-      } catch (error) {
-        console.error(error);
-        message("Could not update request status.");
-      }
-    });
-
-    const commentsHeading = document.createElement("h3");
-    commentsHeading.textContent = "Comments";
-
-    const commentsArea = document.createElement("div");
-    commentsArea.textContent = "Loading comments…";
-
-    card.append(
-      replyLabel, reply, saveReply,
-      statusSelect, updateStatus,
-      commentsHeading, commentsArea
-    );
-
-    helpContainer.append(card);
-
-    loadRequestComments(item.id, commentsArea);
-  });
-}
-
-async function loadRequestComments(requestId, container) {
-  try {
-    const snapshot = await getDocs(
-      collection(db, "helpRequests", requestId, "comments")
-    );
-
-    container.replaceChildren();
-
-    if (snapshot.empty) {
-      container.textContent = "No comments yet.";
-      return;
-    }
-
-    snapshot.forEach(commentDoc => {
-      const data = commentDoc.data();
-      const comment = document.createElement("div");
-      comment.className = "comment";
-
-      const role = document.createElement("strong");
-      role.textContent = data.authorRole === "owner"
-        ? "Owner"
-        : "Member";
-
-      const text = document.createElement("p");
-      text.textContent = data.text || "";
-
-      comment.append(role, text);
-      container.append(comment);
-    });
-  } catch (error) {
-    console.error(error);
-    container.textContent = "Could not load comments.";
-  }
-}
-
-function checkEventReminders() {
-  if (!canUse()) return;
-
-  const today = new Date();
-  today.setHours(0, 0, 0, 0);
-
-  const tomorrow = new Date(today);
-  tomorrow.setDate(tomorrow.getDate() + 1);
-
-  const upcoming = events.filter(item => {
-    if (!item.date) return false;
-
-    const date = new Date(item.date + "T00:00:00");
-    return date.getTime() === today.getTime() ||
-      date.getTime() === tomorrow.getTime();
-  });
-
-  const previous = $("eventReminder");
-  if (previous) previous.remove();
-
-  if (!upcoming.length) return;
-
-  const reminder = document.createElement("div");
-  reminder.id = "eventReminder";
-  reminder.className = "notice";
-
-  const heading = document.createElement("strong");
-  heading.textContent = "🔔 Upcoming family events";
-
-  reminder.append(heading);
-
-  upcoming.forEach(item => {
-    const line = document.createElement("p");
-    const date = new Date(item.date + "T12:00:00");
-
-    line.textContent =
-      `${item.name || "Family event"} — ${date.toLocaleDateString("en-IN")}`;
-
-    reminder.append(line);
-  });
-
-  const searchSection = $("searchSection");
-  searchSection.insertAdjacentElement("afterend", reminder);
-}
-
-// Initial display
-renderMembers();
-renderBirthdays();
-renderEvents();
-renderFamilyTree();
-renderMyRequests();
+async function loadMembers(){if(!canViewFamily()){members=[];renderMembers();renderBirthdays();renderFamilyTree();return;}try{const snap=await getDocs(collection(db,"members"));members=snap.docs.map(d=>({id:d.id,...d.data()}));updateRelatedToOptions();renderMembers();renderBirthdays();renderFamilyTree()}catch(e){console.error(e);message("Cannot load family members: "+e.message)}}
+function renderMembers(){const list=$("familyList");list.replaceChildren();if(!canViewFamily()){list.textContent="Your account does not currently have permission to view family records.";return}const term=clean($("search").value).toLowerCase();const visible=members.filter(m=>[m.name,m.relationship,m.address,m.lifeStatus].join(" ").toLowerCase().includes(term));if(!visible.length){list.textContent="No family members found.";return}visible.forEach(m=>{const card=document.createElement("article");card.className="card";const title=document.createElement("h3");title.textContent="🌳 "+(m.name||"Unnamed member");const relation=document.createElement("p");relation.textContent="Relationship: "+(m.relationship||"Not specified");const address=document.createElement("p");address.textContent="Address: "+(m.address||"Not provided");const dob=document.createElement("p");dob.textContent="Date of birth: "+dateText(m.dob);const status=document.createElement("p");status.textContent="Status: "+(m.lifeStatus||"Not specified");card.append(title,relation,address,dob,status);if(m.phone){const p=document.createElement("p");p.textContent="Phone: "+m.phone;card.append(p)}if(m.memberEmail){const p=document.createElement("p");p.textContent="Email: "+m.memberEmail;card.append(p)}if(isOwner()||(canEditOwnMembers()&&m.createdBy===currentUser.uid)){const edit=document.createElement("button");edit.className="btn green";edit.textContent="Edit Member";edit.addEventListener("click",()=>startMemberEdit(m));card.append(edit)}if(isOwner()){const del=document.createElement("button");del.className="btn light";del.style.marginLeft="6px";del.textContent="Delete";del.addEventListener("click",()=>deleteMember(m));card.append(del)}list.append(card)})}
+function startMemberEdit(m){if(!canUse()||(!isOwner()&&(!canEditOwnMembers()||m.createdBy!==currentUser.uid))){message("You do not have permission to edit this record.");return}editingMemberId=m.id;for(const [id,key] of [["memberName","name"],["relationship","relationship"],["address","address"],["relatedTo","relatedTo"],["dob","dob"],["lifeStatus","lifeStatus"],["phone","phone"],["memberEmail","memberEmail"]])$(id).value=m[key]||"";$("memberSaveBtn").textContent="Update Family Member";hidden("memberCancelBtn",false);$("addMember").scrollIntoView({behavior:"smooth"})}
+function resetMemberForm(){editingMemberId=null;$("memberForm").reset();$("memberSaveBtn").textContent="Save Family Member";hidden("memberCancelBtn",true)}
+$("memberCancelBtn").addEventListener("click",resetMemberForm);
+$("memberForm").addEventListener("submit",async e=>{e.preventDefault();if(!canUse()||(!editingMemberId&&!canAddMembers())){message("Your account does not have permission to add family members.");return}const data={name:clean($("memberName").value),relationship:clean($("relationship").value),address:clean($("address").value),relatedTo:clean($("relatedTo").value),dob:$("dob").value||"",lifeStatus:clean($("lifeStatus").value),phone:clean($("phone").value),memberEmail:clean($("memberEmail").value),updatedAt:serverTimestamp()};if(!data.name||!data.relationship||!data.address||!data.lifeStatus){message("Complete all required fields.");return}try{if(editingMemberId){const old=members.find(m=>m.id===editingMemberId);if(!old||(!isOwner()&&old.createdBy!==currentUser.uid))throw Error("You can edit only your own records.");await updateDoc(doc(db,"members",editingMemberId),data);message("Family member updated.")}else{data.createdBy=currentUser.uid;data.createdAt=serverTimestamp();await addDoc(collection(db,"members"),data);message("Family member saved.")}resetMemberForm();await loadMembers()}catch(e){console.error(e);message("Could not save member: "+e.message)}});
+async function deleteMember(m){if(!isOwner())return;if(!confirm(`Delete ${m.name||"this family member"}?`))return;try{await deleteDoc(doc(db,"members",m.id));await loadMembers();message("Family member deleted.")}catch(e){console.error(e);message("Could not delete member: "+e.message)}}
+function updateRelatedToOptions(){const select=$("relatedTo"),previous=select.value;select.replaceChildren();const opt=document.createElement("option");opt.value="";opt.textContent="Choose family member";select.append(opt);members.forEach(m=>{const o=document.createElement("option");o.value=m.id;o.textContent=m.name||"Unnamed member";select.append(o)});if(members.some(m=>m.id===previous))select.value=previous}
+function renderBirthdays(){const list=$("birthdayList");list.replaceChildren();if(!canViewFamily()){list.textContent="Birthdays appear when your account has family-view permission.";return}const now=new Date();const upcoming=members.filter(m=>m.dob&&m.lifeStatus!=="Deceased").map(m=>{const parts=m.dob.split("-").map(Number);let d=new Date(now.getFullYear(),parts[1]-1,parts[2]);d.setHours(12,0,0,0);const today=new Date(now.getFullYear(),now.getMonth(),now.getDate());today.setHours(12,0,0,0);if(d<today)d.setFullYear(now.getFullYear()+1);return {...m,nextBirthday:d}}).sort((a,b)=>a.nextBirthday-b.nextBirthday).slice(0,12);if(!upcoming.length){list.textContent="No birthday dates available.";return}upcoming.forEach(m=>{const c=document.createElement("div");c.className="card";const h=document.createElement("h3");h.textContent="🎂 "+(m.name||"Family member");const p=document.createElement("p");p.textContent=m.nextBirthday.toLocaleDateString("en-IN",{day:"numeric",month:"long"});c.append(h,p);list.append(c)})}
+function renderFamilyTree(){const tree=$("familyTreeView");tree.replaceChildren();if(!canUse()){tree.textContent="Sign in and get approval to view the family tree.";return}const term=clean($("search").value).toLowerCase();const visible=members.filter(m=>[m.name,m.relationship,m.address].join(" ").toLowerCase().includes(term));if(!visible.length){tree.textContent="No family members found.";return}visible.forEach(m=>{const c=document.createElement("div");c.className="card";const h=document.createElement("h3");h.textContent="🌳 "+(m.name||"Family member");const r=document.createElement("p");r.textContent="Relationship: "+(m.relationship||"Not specified");c.append(h,r);if(m.relatedTo){const rel=members.find(x=>x.id===m.relatedTo);const p=document.createElement("p");p.textContent="Connected to: "+(rel?.name||"Family member");c.append(p)}tree.append(c)})}
+
+async function loadEvents(){if(!canViewFamily()){events=[];renderEvents();return;}try{const snap=await getDocs(collection(db,"events"));events=snap.docs.map(d=>({id:d.id,...d.data()}));renderEvents();checkEventReminders()}catch(e){console.error(e);message("Cannot load events: "+e.message)}}
+function renderEvents(){const list=$("eventList");list.replaceChildren();if(!canViewFamily()){list.textContent="Your account does not currently have permission to view events.";return}const term=clean($("search").value).toLowerCase();const visible=events.filter(e=>[e.name,e.type,e.address,e.description].join(" ").toLowerCase().includes(term)).sort((a,b)=>String(a.date||"").localeCompare(String(b.date||"")));if(!visible.length){list.textContent="No family events found.";return}visible.forEach(e=>{const card=document.createElement("div");card.className="card";const h=document.createElement("h3");h.textContent="📅 "+(e.name||"Family event");const type=document.createElement("p");type.textContent="Type: "+(e.type||"Other");const date=document.createElement("p");date.textContent="Date: "+dateText(e.date);const venue=document.createElement("p");venue.textContent="Venue: "+(e.address||"");const desc=document.createElement("p");desc.textContent=e.description||"";card.append(h,type,date,venue,desc);if(isOwner()){const edit=document.createElement("button");edit.className="btn green";edit.textContent="Edit";edit.addEventListener("click",()=>startEventEdit(e));const del=document.createElement("button");del.className="btn light";del.style.marginLeft="6px";del.textContent="Delete";del.addEventListener("click",()=>deleteEvent(e));card.append(edit,del)}else if(canRequestEventDeletion()){const req=document.createElement("button");req.className="btn light";req.textContent="Request Deletion";req.addEventListener("click",()=>requestEventDeletion(e));card.append(req)}list.append(card)})}
+function startEventEdit(e){if(!isOwner())return;editingEventId=e.id;$("eventName").value=e.name||"";$("eventType").value=e.type||"";$("eventDate").value=e.date||"";$("eventAddress").value=e.address||"";$("eventDescription").value=e.description||"";$("eventFormTitle").textContent="Edit Family Event";$("eventSaveBtn").textContent="Update Event";hidden("eventCancelBtn",false);$("events").scrollIntoView({behavior:"smooth"})}
+function resetEventForm(){editingEventId=null;$("eventForm").reset();$("eventFormTitle").textContent="Create a Family Event";$("eventSaveBtn").textContent="Create Event";hidden("eventCancelBtn",true)}
+$("eventCancelBtn").addEventListener("click",resetEventForm);
+$("eventForm").addEventListener("submit",async e=>{e.preventDefault();if(!canUse()||(!editingEventId&&!canCreateEvents())){message("Your account does not have permission to create events.");return}const data={name:clean($("eventName").value),type:clean($("eventType").value),date:$("eventDate").value,address:clean($("eventAddress").value),description:clean($("eventDescription").value),updatedAt:serverTimestamp()};if(!data.name||!data.type||!data.date||!data.address){message("Complete all required event fields.");return}try{if(editingEventId){if(!isOwner())throw Error("Only the owner can edit events.");await updateDoc(doc(db,"events",editingEventId),data);message("Event updated.")}else{data.createdBy=currentUser.uid;data.createdAt=serverTimestamp();await addDoc(collection(db,"events"),data);message("Event created.")}resetEventForm();await loadEvents()}catch(e){console.error(e);message("Could not save event: "+e.message)}});
+async function deleteEvent(e){if(!isOwner())return;if(!confirm(`Delete event ${e.name||"this event"}?`))return;try{await deleteDoc(doc(db,"events",e.id));await loadEvents();await loadOwnerRequests();message("Event deleted.")}catch(err){console.error(err);message("Could not delete event: "+err.message)}}
+async function requestEventDeletion(e){if(!canRequestEventDeletion()||isOwner())return;const reason=clean(prompt(`Why should “${e.name||"this event"}” be deleted?`));if(!reason)return;if(reason.length>2000){message("Reason must be under 2000 characters.");return}try{await addDoc(collection(db,"eventDeleteRequests"),{requesterUid:currentUser.uid,eventId:e.id,eventName:e.name||"Family event",reason,status:"pending",createdAt:serverTimestamp()});message("Deletion request sent to owner.");await loadMyRequests()}catch(err){console.error(err);message("Could not submit request: "+err.message)}}
+
+async function loadMyRequests(){if(!canUse()){renderMyRequests();return}try{const [a,b]=await Promise.all([getDocs(query(collection(db,"eventDeleteRequests"),where("requesterUid","==",currentUser.uid))),getDocs(query(collection(db,"helpRequests"),where("requesterUid","==",currentUser.uid)))]);eventDeleteRequests=a.docs.map(d=>({id:d.id,...d.data(),kind:"event"}));helpRequests=b.docs.map(d=>({id:d.id,...d.data(),kind:"help"}));renderMyRequests()}catch(e){console.error(e);$("myRequestsList").textContent="Could not load requests. Check rules."}}
+function renderMyRequests(){const box=$("myRequestsList");box.replaceChildren();if(!canUse()||(!canRequestEventDeletion()&&!canUseSupport())){box.textContent="Sign in with an approved account to view requests.";return}const all=[...eventDeleteRequests,...helpRequests].sort((a,b)=>(b.createdAt?.seconds||0)-(a.createdAt?.seconds||0));if(!all.length){box.textContent="You have not submitted any requests.";return}all.forEach(r=>{const c=document.createElement("div");c.className="request-card";const h=document.createElement("h3");h.textContent=r.kind==="event"?"Event deletion: "+(r.eventName||"Family event"):(r.subject||"Support request");const p=document.createElement("p");p.textContent=r.reason||r.description||"";const s=document.createElement("span");s.className=["resolved","approved"].includes(r.status)?"badge-resolved":"badge-pending";s.textContent="Status: "+(r.status||"pending");c.append(h,p,s);if(r.kind==="help"){if(r.ownerReply){const reply=document.createElement("div");reply.className="comment";reply.textContent="Owner reply: "+r.ownerReply;c.append(reply)}const comments=document.createElement("div");comments.className="comment";comments.textContent="Loading comments…";c.append(comments);loadRequestComments(r.id,comments);if(!["resolved","rejected"].includes(r.status)){const btn=document.createElement("button");btn.className="btn light";btn.textContent="Add Comment";btn.addEventListener("click",()=>addRequestComment(r));c.append(btn)}}box.append(c)})}
+async function addRequestComment(r){if(!canUse()||r.kind!=="help")return;const text=clean(prompt("Enter your follow-up comment:"));if(!text)return;if(text.length>2000){message("Comment must be 2000 characters or less.");return}try{await addDoc(collection(db,"helpRequests",r.id,"comments"),{authorUid:currentUser.uid,authorRole:isOwner()?"owner":"member",text,createdAt:serverTimestamp()});await loadMyRequests();if(isOwner())await loadOwnerRequests();message("Comment added.")}catch(e){console.error(e);message("Could not add comment: "+e.message)}}
+async function loadRequestComments(id,box){try{const snap=await getDocs(collection(db,"helpRequests",id,"comments"));box.replaceChildren();if(snap.empty){box.textContent="No comments yet.";return}snap.docs.sort((a,b)=>(a.data().createdAt?.seconds||0)-(b.data().createdAt?.seconds||0)).forEach(d=>{const p=document.createElement("p");p.textContent=(d.data().authorRole==="owner"?"Owner: ":"Member: ")+(d.data().text||"");box.append(p)})}catch(e){console.error(e);box.textContent="Could not load comments."}}
+$("helpForm").addEventListener("submit",async e=>{e.preventDefault();if(!canUseSupport()){message("Your account does not have permission to use Help & Support.");return}const type=clean($("helpType").value),subject=clean($("helpSubject").value),description=clean($("helpDescription").value);if(!type||!subject||!description){message("Complete all support fields.");return}try{await addDoc(collection(db,"helpRequests"),{requesterUid:currentUser.uid,type,subject,description,status:"pending",createdAt:serverTimestamp(),updatedAt:serverTimestamp()});$("helpForm").reset();message("Support request submitted.");await loadMyRequests();if(isOwner())await loadOwnerRequests()}catch(e){console.error(e);message("Could not submit request: "+e.message)}});
+
+async function loadOwnerRequests(){if(!isOwner())return;try{const [a,b]=await Promise.all([getDocs(collection(db,"eventDeleteRequests")),getDocs(collection(db,"helpRequests"))]);eventDeleteRequests=a.docs.map(d=>({id:d.id,...d.data(),kind:"event"}));helpRequests=b.docs.map(d=>({id:d.id,...d.data(),kind:"help"}));renderOwnerRequests()}catch(e){console.error(e);$("eventRequestsList").textContent="Could not load requests. Check Firestore rules."}}
+function renderOwnerRequests(){if(!isOwner())return;const eb=$("eventRequestsList"),hb=$("helpRequestsList");eb.replaceChildren();hb.replaceChildren();$("eventRequestCount").textContent=eventDeleteRequests.filter(r=>r.status==="pending").length+" pending";$("helpRequestCount").textContent=helpRequests.filter(r=>r.status==="pending").length+" pending";if(!eventDeleteRequests.length)eb.textContent="No event deletion requests.";eventDeleteRequests.forEach(r=>{const c=document.createElement("div");c.className="request-card";const h=document.createElement("h3");h.textContent=r.eventName||"Event deletion";const p=document.createElement("p");p.textContent="Reason: "+(r.reason||"");const s=document.createElement("p");s.textContent="Status: "+(r.status||"pending");c.append(h,p,s);if(r.status==="pending"){const approve=document.createElement("button");approve.className="btn green";approve.textContent="Approve & Delete";approve.addEventListener("click",async()=>{if(!isOwner()||!confirm("Approve and delete this event?"))return;try{const ref=doc(db,"events",r.eventId),snap=await getDoc(ref);if(snap.exists())await deleteDoc(ref);await updateDoc(doc(db,"eventDeleteRequests",r.id),{status:"approved",reviewedAt:serverTimestamp(),reviewedBy:currentUser.uid});await loadEvents();await loadOwnerRequests();await loadMyRequests();message("Deletion request processed.")}catch(e){console.error(e);message("Could not process request: "+e.message)}});const reject=document.createElement("button");reject.className="btn light";reject.style.marginLeft="5px";reject.textContent="Reject";reject.addEventListener("click",async()=>{try{await updateDoc(doc(db,"eventDeleteRequests",r.id),{status:"rejected",reviewedAt:serverTimestamp(),reviewedBy:currentUser.uid});await loadOwnerRequests();await loadMyRequests()}catch(e){message("Could not reject request: "+e.message)}});c.append(approve,reject)}eb.append(c)});if(!helpRequests.length)hb.textContent="No support requests.";helpRequests.forEach(r=>{const c=document.createElement("div");c.className="request-card";const h=document.createElement("h3");h.textContent=r.subject||"Support request";const type=document.createElement("p");type.textContent="Category: "+(r.type||"Other");const desc=document.createElement("p");desc.textContent=r.description||"";const status=document.createElement("p");status.textContent="Status: "+(r.status||"pending");const reply=document.createElement("textarea");reply.rows=3;reply.maxLength=3000;reply.placeholder="Owner reply";reply.value=r.ownerReply||"";const save=document.createElement("button");save.className="btn green";save.textContent="Save Reply";save.addEventListener("click",async()=>{if(!isOwner())return;const text=clean(reply.value);if(!text){message("Enter a reply first.");return}try{await updateDoc(doc(db,"helpRequests",r.id),{ownerReply:text,repliedAt:serverTimestamp(),updatedAt:serverTimestamp()});await loadOwnerRequests();await loadMyRequests();message("Reply saved.")}catch(e){message("Could not save reply: "+e.message)}});const select=document.createElement("select");[["pending","Pending"],["in progress","In Progress"],["resolved","Resolved"],["rejected","Rejected"]].forEach(([v,t])=>{const o=document.createElement("option");o.value=v;o.textContent=t;select.append(o)});select.value=["pending","in progress","resolved","rejected"].includes(r.status)?r.status:"pending";const update=document.createElement("button");update.className="btn light";update.textContent="Update Status";update.addEventListener("click",async()=>{try{await updateDoc(doc(db,"helpRequests",r.id),{status:select.value,updatedAt:serverTimestamp()});await loadOwnerRequests();await loadMyRequests();message("Status updated.")}catch(e){message("Could not update status: "+e.message)}});const comments=document.createElement("div");comments.className="comment";comments.textContent="Loading comments…";c.append(h,type,desc,status,reply,save,select,update,comments);hb.append(c);loadRequestComments(r.id,comments)})}
+
+function checkEventReminders(){if(!canUse())return;const today=new Date();today.setHours(0,0,0,0);const soon=events.filter(e=>{if(!e.date)return false;const d=new Date(e.date+"T00:00:00");const days=Math.round((d-today)/86400000);return days>=0&&days<=1});const old=$("eventReminderNotice");if(old)old.remove();if(!soon.length)return;const box=document.createElement("div");box.id="eventReminderNotice";box.className="notice";box.textContent="🔔 Upcoming family events: "+soon.map(e=>`${e.name} (${dateText(e.date)})`).join(" · ");$("events").prepend(box)}
+$("search").addEventListener("input",()=>{renderMembers();renderEvents();renderFamilyTree()});
+
+onAuthStateChanged(auth,async user=>{currentUser=user;currentProfile=null;showAuth();if(!user){members=[];events=[];eventDeleteRequests=[];helpRequests=[];renderMembers();renderBirthdays();renderEvents();renderFamilyTree();renderMyRequests();return}try{const snap=await getDoc(doc(db,"users",user.uid));currentProfile=snap.exists()?snap.data():null;showAuth();if(isOwner())await loadPendingUsers();if(canUse()){await Promise.all([loadMembers(),loadEvents(),loadMyRequests()]);if(isOwner())await loadOwnerRequests()}else{members=[];events=[];renderMembers();renderBirthdays();renderEvents();renderFamilyTree();renderMyRequests()}}catch(e){console.error(e);message("Profile or data unavailable. Check Firestore rules: "+e.message)}});
 </script>
 </body>
-</html>      
+</html>
