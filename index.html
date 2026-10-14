@@ -2047,19 +2047,42 @@ function renderBirthdays() {
     return;
   }
 
-  list.innerHTML = upcoming.map(member => `
-    <div class="card">
-      <h3>🎂 ${escapeHTML(member.name || "Family Member")}</h3>
-      <p><strong>Birthday:</strong> ${escapeHTML(member.birthdayText)}</p>
-      <p class="birthday-wish">
-  ${member.gender === "Male"
-    ? "🎉 Happy Birthday! Wishing you strength, success, and happiness always!"
-    : member.gender === "Female"
-    ? "🌸 Happy Birthday! May your life bloom with joy, love, and beautiful moments!"
-    : "🎂 Wishing you a wonderful birthday filled with happiness and love!"}
-</p>
+  list.innerHTML = upcoming.map(member => {
+const today = new Date();
+today.setHours(0, 0, 0, 0);
+
+const birthday = new Date(member.nextBirthday);
+birthday.setHours(0, 0, 0, 0);
+
+const daysUntil = Math.round(
+(birthday - today) / (1000 * 60 * 60 * 24)
+);
+
+const commentsOpen = daysUntil >= 0 && daysUntil <= 3;
+
+return `
+<div class="card">
+<h3>🎂 ${escapeHTML(member.name || "Family Member")}</h3>
+<p><strong>Birthday:</strong> ${escapeHTML(member.birthdayText)}</p>
+
+  <p class="birthday-wish">
+    ${member.gender === "Male"
+      ? "🎉 Happy Birthday! Wishing you strength, success, and happiness always!"
+      : member.gender === "Female"
+      ? "🌸 Happy Birthday! May your life bloom with joy, love, and beautiful moments!"
+      : "🎂 Wishing you a wonderful birthday filled with happiness and love!"}
+  </p>
+
+  ${commentsOpen ? `
+    <div class="birthday-comments">
+      <h4>💌 Birthday Wishes & Comments</h4>
+      <p>Birthday wishes section</p>
     </div>
-  `).join("");
+  ` : ""}
+</div>
+
+`;
+}).join("");
 }
 
 $("familySearch")?.addEventListener("input", renderMembers);
