@@ -720,8 +720,17 @@ footer p {
           <input id="dob" type="date">
         </div>
 
-        <div class="field">
-          <label for="lifeStatus">Living Status *</label>
+<div class="field">
+  <label for="gender">Gender</label>
+  <select id="gender">
+    <option value="">Select Gender</option>
+    <option value="Male">Male</option>
+    <option value="Female">Female</option>
+    <option value="Other">Other</option>
+  </select>
+</div>
+          
+        <div class="field">  <label for="lifeStatus">Living Status *</label>
           <select id="lifeStatus" required>
             <option value="">Choose Status</option>
             <option value="Living">Living</option>
@@ -2042,7 +2051,13 @@ function renderBirthdays() {
     <div class="card">
       <h3>🎂 ${escapeHTML(member.name || "Family Member")}</h3>
       <p><strong>Birthday:</strong> ${escapeHTML(member.birthdayText)}</p>
-      <p><strong>Relationship:</strong> ${escapeHTML(member.relationship || "")}</p>
+      <p class="birthday-wish">
+  ${member.gender === "Male"
+    ? "🎉 Happy Birthday! Wishing you strength, success, and happiness always!"
+    : member.gender === "Female"
+    ? "🌸 Happy Birthday! May your life bloom with joy, love, and beautiful moments!"
+    : "🎂 Wishing you a wonderful birthday filled with happiness and love!"}
+</p>
     </div>
   `).join("");
 }
@@ -2076,6 +2091,7 @@ $("memberForm")?.addEventListener("submit", async event => {
     name,
     relationship,
     relatedTo,
+    gender: clean($("gender")?.value),
     address: clean($("address")?.value),
     dob: $("dob")?.value || "",
     lifeStatus: clean($("lifeStatus")?.value),
@@ -2162,6 +2178,7 @@ $("familyList")?.addEventListener("click", async event => {
     $("memberName").value = member.name || "";
     $("relationship").value = member.relationship || "";
     $("relatedTo").value = member.relatedTo || "";
+    $("gender").value = member.gender || "";
     $("address").value = member.address || "";
     $("dob").value = member.dob || "";
     $("lifeStatus").value = member.lifeStatus || "Living";
