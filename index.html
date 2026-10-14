@@ -687,6 +687,7 @@ onAuthStateChanged(auth, async user => {
 
   try {
     await loadProfile(user);
+    await loadRelatedMembers();
   } catch (error) {
     message("Profile unavailable. Check Firestore security rules.");
   }
