@@ -558,7 +558,25 @@ card.innerHTML = `
   <button type="button" class="btn edit-member-btn">Edit Member</button>
 `;
 list.appendChild(card);
+card.querySelector(".edit-member-btn").addEventListener("click", () => {
+  if (!isOwner()) {
+    message("Only the website owner can edit family members.");
+    return;
+  }
 
+  editingMemberId = m.id;
+
+  $("memberName").value = m.name || "";
+  $("relationship").value = m.relationship || "";
+  $("address").value = m.address || "";
+  $("dob").value = m.dob || "";
+  $("lifeStatus").value = m.lifeStatus || "";
+  $("phone").value = m.phone || "";
+  $("memberEmail").value = m.memberEmail || "";
+
+  message("Edit the details in the family member form, then save.");
+  document.getElementById("addMember").scrollIntoView({ behavior: "smooth" });
+});
   });
 }
 
@@ -606,26 +624,37 @@ $("memberForm").addEventListener("submit", async event => {
     return;
   }
 
-  const data = {
-    name: clean($("memberName").value),
-    relationship: $("relationship").value,
-    address: clean($("address").value),
-    dob: $("dob").value,
-    lifeStatus: $("lifeStatus").value,
-    phone: clean($("phone").value),
-    memberEmail: clean($("memberEmail").value),
-    createdBy: currentUser.uid,
-    createdAt: serverTimestamp()
-  };
+  
+const data = {
+  name: clean($("memberName").value),
+  relationship: $("relationship").value,
+  address: clean($("address").value),
+  dob: $("dob").value,
+  lifeStatus: $("lifeStatus").value,
+  phone: clean($("phone").value),
+  memberEmail: clean($("memberEmail").value),
+  createdBy: editingMemberId
+    ? (members.find(m => m.id === editingMemberId)?.createdBy || currentUser.uid)
+    : currentUser.uid,
+  ...(editingMemberId ? {} : { createdAt: serverTimestamp() })
+};
 
-  try {
+try {
+  if (editingMemberId) {
+    await updateDoc(doc(db, "members", editingMemberId), data);
+    editingMemberId = null;
+    message("Family member updated successfully!");
+  } else {
     await addDoc(collection(db, "members"), data);
-    $("memberForm").reset();
     message("Family member saved.");
-    await loadMembers();
-  } catch (error) {
-    message("Could not save member. Check Firestore security rules.");
   }
+
+  $("memberForm").reset();
+  await loadMembers();
+} catch (error) {
+  message("Could not save member: " + error.message);
+}
+
 });
 
 async function loadEvents() {
