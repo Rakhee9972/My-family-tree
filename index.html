@@ -299,7 +299,8 @@ import {
   getDocs,
   query,
   where,
-  serverTimestamp
+  serverTimestamp,
+  updateDoc
 } from "https://www.gstatic.com/firebasejs/13.0.0/firebase-firestore.js";
 
 const firebaseConfig = {
@@ -319,7 +320,7 @@ const $ = id => document.getElementById(id);
 
 let currentUser = null;
 let currentProfile = null;
-let members = [];
+let editingMemberId = null;
 let events = [];
 
 function message(text) {
