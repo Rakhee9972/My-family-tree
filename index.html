@@ -2541,24 +2541,46 @@ async function loadMyRequests() {
     renderHelpRequests();
     return;
     }
-  try {
-    const deleteQuery = query(collection(db, "eventDeleteRequests"), where("requesterUid", "==", currentUser.uid));
-    const helpQuery = query(collection(db, "helpRequests"), where("requesterUid", "==", currentUser.uid));
-    const [deleteSnapshot, helpSnapshot] = await Promise.all([getDocs(deleteQuery), getDocs(helpQuery)]);
+    
+try {
+  const deleteQuery = query(
+  collection(db, "eventDeletionRequests"),
+  where("requesterUid", "==", currentUser.uid)
+);
 
-    myEventDeleteRequests = deleteSnapshot.docs.map(item => ({
-      id: item.id, requestType: "Event Deletion", ...item.data()
-    }));
-    myHelpRequests = helpSnapshot.docs.map(item => ({
-      id: item.id, requestType: "Help & Support", ...item.data()
-    }));
+const helpQuery = query(
+  collection(db, "helpRequests"),
+  where("createdBy", "==", currentUser.uid)
+);
 
-    renderMyRequests();
-    renderHelpRequests();
-  } catch (error) {
-    console.error("Load requests error:", error);
-    showMessage("Unable to load your requests: " + error.message, "error");
-  }
+const [deleteSnapshot, helpSnapshot] = await Promise.all([
+  getDocs(deleteQuery),
+  getDocs(helpQuery)
+]);
+
+  myEventDeleteRequests = deleteSnapshot.docs.map(item => ({
+    id: item.id,
+    requestType: "Event Deletion",
+    ...item.data()
+  }));
+
+  myHelpRequests = helpSnapshot.docs.map(item => ({
+    id: item.id,
+    requestType: "Help & Support",
+    ...item.data()
+  }));
+
+  renderMyRequests();
+  renderHelpRequests();
+
+} catch (error) {
+  console.error("Load requests error:", error);
+  showMessage(
+    "Unable to load your requests: " + error.message,
+    "error"
+  );
+}
+
 }
 
 function renderMyRequests() {
