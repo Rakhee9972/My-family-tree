@@ -2645,10 +2645,12 @@ async function loadOwnerRequests() {
   if (!isOwner()) return;
 
   try {
-    const [deleteSnapshot, helpSnapshot] = await Promise.all([
-      getDocs(collection(db, "eventDeleteRequests")),
-      getDocs(collection(db, "helpRequests"))
-    ]);
+    
+const [deleteSnapshot, helpSnapshot] = await Promise.all([
+  getDocs(collection(db, "eventDeletionRequests")),
+  getDocs(collection(db, "helpRequests"))
+]);
+
 
     eventDeleteRequests = deleteSnapshot.docs.map(item => ({
       id: item.id,
