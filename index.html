@@ -916,12 +916,24 @@ footer p {
           <label for="phone">Phone Number (Optional)</label>
           <input id="phone" type="tel" maxlength="20" placeholder="Phone number">
         </div>
+        <div class="field">
+  <label for="marriageDate">Marriage Date (Optional)</label>
+  <input id="marriageDate" type="date">
+        </div>
 
         <div class="field">
-          <label for="memberEmail">Email (Optional)</label>
-          <input id="memberEmail" type="email" maxlength="200" placeholder="Email address">
-        </div>
-      </div>
+  <label for="memberEmail">Email (Optional)</label>
+  <input id="memberEmail" type="email" maxlength="200">
+</div>
+
+<div class="field">
+  <label for="memberPhoto">Profile Photo (Optional)</label>
+  <input
+    id="memberPhoto"
+    type="file"
+    accept="image/*"
+  >
+</div>
 
       <div class="button-row">
         <button class="btn btn-primary" type="submit" id="memberSaveBtn">
