@@ -316,12 +316,36 @@ textarea {
   font-size: 14px;
 }
 
+.
 .stats-grid {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 12px;
-  margin-bottom: 20px;
+  gap: 16px;
+  margin-bottom: 24px;
 }
+
+.stats-grid .card {
+  background: linear-gradient(135deg, #ffffff, #f0f6ff);
+  border: 1px solid #dbe7f5;
+  border-radius: 16px;
+  padding: 20px 16px;
+  box-shadow: 0 4px 14px rgba(30, 64, 110, 0.08);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.stats-grid .card h3 {
+  font-size: 15px;
+  margin: 0 0 8px;
+  color: #334155;
+}
+
+.stats-grid .stat-number {
+  font-size: 30px;
+  font-weight: 800;
+  color: #2563eb;
+  margin: 4px 0;
+}
+
 
 .stat-number {
   font-size: 30px;
