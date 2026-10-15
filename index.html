@@ -117,8 +117,20 @@ nav a {
   font-size: 13px;
 }
 
-nav a:hover {
+nav a:hover,
+nav .nav-logout:hover {
   background: rgba(255,255,255,.15);
+}
+
+nav .nav-logout {
+  border: 1px solid rgba(255,255,255,.35);
+  color: white;
+  background: transparent;
+  border-radius: 7px;
+  padding: 8px 10px;
+  font: inherit;
+  font-size: 13px;
+  cursor: pointer;
 }
 
 main {
@@ -229,7 +241,7 @@ section {
   font-size: 14px;
 }
 
-input,
+  input,
 select,
 textarea {
   width: 100%;
@@ -383,18 +395,50 @@ summary {
 
 .tree-grid {
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  width: 100%;
+  overflow-x: auto;
+  padding: 8px 2px 22px;
+}
+
+.tree-note {
+  color: var(--muted);
+  font-size: 13px;
+  text-align: center;
+  max-width: 720px;
+  margin: 0 auto 8px;
+}
+
+.tree-unit {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: max-content;
+  min-width: 100%;
+  position: relative;
+}
+
+.tree-couple {
+  display: flex;
   justify-content: center;
-  gap: 14px;
+  align-items: stretch;
+  gap: 10px;
+  position: relative;
+  max-width: 100%;
 }
 
 .tree-person {
-  width: min(100%, 220px);
-  padding: 16px;
+  width: 205px;
+  max-width: calc(50vw - 30px);
+  padding: 14px 12px;
   text-align: center;
-  background: white;
+  background: #fff;
   border: 2px solid #c8d9c7;
-  border-radius: 12px;
+  border-radius: 15px;
+  box-shadow: 0 4px 12px rgba(32,57,37,.06);
+  overflow-wrap: anywhere;
 }
 
 .tree-person strong,
@@ -405,13 +449,118 @@ summary {
 
 .tree-person strong {
   color: var(--green);
-  font-size: 17px;
+  font-size: 16px;
+  line-height: 1.35;
 }
 
 .tree-person span {
   color: var(--muted);
-  font-size: 13px;
-  margin-top: 4px;
+  font-size: 12px;
+  margin-top: 5px;
+}
+
+.tree-spouse-link {
+  align-self: center;
+  flex: 0 0 auto;
+  color: #bd6c75;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.tree-marriage-label {
+  color: #9b6268;
+  font-size: 11px;
+  text-align: center;
+  margin-top: 5px;
+}
+
+.tree-connector-down {
+  height: 24px;
+  width: 2px;
+  background: #9fbea5;
+}
+
+.tree-children {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 18px;
+  position: relative;
+  padding-top: 20px;
+  width: max-content;
+  min-width: 100%;
+}
+
+.tree-children::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  height: 20px;
+  width: 2px;
+  background: #9fbea5;
+}
+
+.tree-child-branch {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  padding-top: 13px;
+}
+
+.tree-child-branch::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  height: 13px;
+  width: 2px;
+  background: #9fbea5;
+}
+
+.tree-child-branch::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: #9fbea5;
+}
+
+.tree-child-branch:first-child::after { left: 50%; }
+.tree-child-branch:last-child::after { right: 50%; }
+.tree-child-branch:only-child::after { display: none; }
+
+.tree-other-heading {
+  width: 100%;
+  text-align: center;
+  color: var(--green);
+  margin: 8px 0 0;
+}
+
+.tree-other-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+  gap: 12px;
+  width: 100%;
+}
+
+.tree-empty-label {
+  color: var(--muted);
+  font-size: 12px;
+  text-align: center;
+  margin: 0 0 7px;
+  }
+
+  
+@media (max-width: 520px) {
+  .tree-couple { gap: 6px; }
+  .tree-person { width: 164px; max-width: calc(50vw - 25px); padding: 12px 8px; }
+  .tree-person strong { font-size: 14px; }
+  .tree-person span { font-size: 11px; }
+  .tree-children { gap: 10px; }
 }
 
 footer {
@@ -495,6 +644,11 @@ footer p {
     font-size: 18px;
   }
 }
+
+.family-search-sticky { position: sticky; top: 76px; z-index: 50; background: var(--surface, #fff); box-shadow: 0 3px 12px rgba(0,0,0,.08); }
+.birthday-month { grid-column: 1 / -1; margin: 16px 0 4px; color: var(--green); border-bottom: 1px solid #d8e4d5; padding-bottom: 6px; }
+.birthday-name-button { border: 0; background: transparent; color: var(--green); font: inherit; font-weight: 700; padding: 0; text-align: left; text-decoration: underline; cursor: pointer; }
+@media (max-width: 700px) { .family-search-sticky { top: 64px; } }
 </style>
 </head>
 
@@ -527,6 +681,8 @@ footer p {
       <a href="#myRequests">My Requests</a>
       <a href="#helpSupport">Help &amp; Support</a>
       <a href="#account">Account</a>
+      <a href="#account" id="navLoginLink">Login / Register</a>
+      <button type="button" class="nav-logout" id="navLogoutBtn" hidden>Logout</button>
     </nav>
   </div>
   </header>
@@ -536,23 +692,17 @@ footer p {
   <div class="hero">
     <h2>🌳 Welcome to Our Family Tree</h2>
     <p>
-      Bring generations together in one place. Preserve family names,
-      relationships, birthdays, events and memories for future generations.
+      One family, many generations, endless love. ❤️ Keep our names, relationships,
+      birthdays and family celebrations together in one place. 🌳
     </p>
     <div class="hero-buttons">
-      <a href="#familyTree" class="btn btn-gold">Explore Family Tree</a>
-      <a href="#family" class="btn btn-light">View Family</a>
-      <a href="#events" class="btn btn-light">Family Events</a>
+      <a href="#familyTree" class="btn btn-gold">🌳 Family Tree</a>
+      <a href="#birthdays" class="btn btn-light">🎂 Birthdays</a>
+      <a href="#events" class="btn btn-light">🎉 Events</a>
     </div>
   </div>
 
   <div class="grid" style="margin-top:18px">
-    <div class="card">
-      <h3>🌳 Family Tree</h3>
-      <p>Explore family members and their relationships.</p>
-      <a href="#familyTree" class="btn btn-secondary">Open Family Tree</a>
-    </div>
-
     <div class="card">
       <h3>🎂 Birthdays</h3>
       <p>Remember birthdays and celebrate family milestones.</p>
@@ -698,8 +848,8 @@ footer p {
         </div>
 
         <div class="field full">
-          <label for="relatedTo">Related To / ఏ కుటుంబ సభ్యునితో సంబంధం?</label>
-          <select id="relatedTo">
+          <label for="relatedTo">Related To / ఏ కుటుంబ సభ్యునితో సంబంధం? *</label>
+          <select id="relatedTo" required>
             <option value="">Select Family Member</option>
           </select>
         </div>
@@ -712,7 +862,7 @@ footer p {
             required
             maxlength="300"
             placeholder="Village, Mandal, District, State"
-          >
+               >
         </div>
 
         <div class="field">
@@ -721,8 +871,8 @@ footer p {
         </div>
 
 <div class="field">
-  <label for="gender">Gender</label>
-  <select id="gender">
+  <label for="gender">Gender *</label>
+  <select id="gender" required>
     <option value="">Select Gender</option>
     <option value="Male">Male</option>
     <option value="Female">Female</option>
@@ -764,9 +914,9 @@ footer p {
     </div>
   </div>
 
-  <div class="form-card">
+  <div class="form-card family-search-sticky">
     <div class="field">
-      <label for="familySearch">Search Family Members</label>
+      <label for="familySearch">🔎 Search Family Members</label>
       <input id="familySearch" type="search" placeholder="Search by name or relationship">
     </div>
   </div>
@@ -956,9 +1106,8 @@ footer p {
         <button id="registerBtn" class="btn btn-primary" type="submit" style="margin-top:15px">
           Register
         </button>
-      </form>
-
-      <p class="notice">
+  </form>
+               <p class="notice">
         New accounts require owner approval before accessing protected family information.
          </p>
     </div>
@@ -1142,6 +1291,8 @@ function updateAccountView() {
   setHidden($("authForms"), loggedIn);
   setHidden($("signedInPanel"), !loggedIn);
   setHidden($("ownerAccountPanel"), !isOwner());
+  setHidden($("navLoginLink"), loggedIn);
+  setHidden($("navLogoutBtn"), !loggedIn);
 
   if ($("signedInName")) {
     $("signedInName").textContent =
@@ -1177,8 +1328,7 @@ function updateAccountView() {
       $("accountStatus").textContent =
         "Your account profile needs attention.";
     }
-  }
-
+  }          
   const canViewFamily = canUse("viewFamily");
   const canViewEvents = canUse("viewEvents");
 
@@ -1256,14 +1406,19 @@ $("loginForm")?.addEventListener("submit", async event => {
   }
 });
 
-$("logoutBtn")?.addEventListener("click", async () => {
+async function performLogout() {
   try {
     await signOut(auth);
+    $("mainNav")?.classList.remove("open");
+    $("menuToggle")?.setAttribute("aria-expanded", "false");
     showMessage("Logged out successfully.");
   } catch (error) {
     showMessage("Logout failed: " + error.message, "error");
   }
-});
+}
+
+$("logoutBtn")?.addEventListener("click", performLogout);
+$("navLogoutBtn")?.addEventListener("click", performLogout);
 
 $("menuToggle")?.addEventListener("click", () => {
   const nav = $("mainNav");
@@ -1274,7 +1429,7 @@ $("menuToggle")?.addEventListener("click", () => {
 });
 
 $("mainNav")?.addEventListener("click", event => {
-  if (event.target.closest("a")) {
+  if (event.target.closest("a") || event.target.closest("#navLogoutBtn")) {
     $("mainNav").classList.remove("open");
     $("menuToggle")?.setAttribute("aria-expanded", "false");
   }
@@ -1422,7 +1577,6 @@ function renderOwnerAccounts() {
 
     <div id="ownerAccountsList" style="margin-top:15px"></div>
   `;
-
   const search = $("accountSearch");
 
   function displayAccounts(searchText = "") {
@@ -1648,6 +1802,11 @@ function loadRelatedMembers() {
   defaultOption.textContent = "Select Family Member";
   select.appendChild(defaultOption);
 
+  const rootOption = document.createElement("option");
+  rootOption.value = "__root__";
+  rootOption.textContent = "Starting / Root Family Member (no parent)";
+  select.appendChild(rootOption);
+
   members.forEach(member => {
     const option = document.createElement("option");
     option.value = member.id;
@@ -1710,7 +1869,7 @@ async function loadEvents() {
       <div class="button-row">
         ${isOwner() ? `<button class="btn btn-secondary" type="button" data-edit-event="${item.id}">Edit</button>` : ""}
         ${isOwner() ? `<button class="btn btn-danger" type="button" data-delete-event="${item.id}">Delete</button>` : (currentUser && currentProfile?.status === "approved" ? `<button class="btn btn-secondary" type="button" data-request-event-delete="${item.id}">Request Deletion</button>` : "")}
-      </div>
+        </div>
     </article>
   `).join("");
 }
@@ -1911,7 +2070,6 @@ function renderMembers() {
     return `
       <article class="card">
         <h3>🌳 ${escapeHTML(member.name || "Family Member")}</h3>
-
         <p><strong>Relationship:</strong>
           ${escapeHTML(member.relationship || "Other Relative")}
         </p>
@@ -1960,145 +2118,246 @@ function renderFamilyTree() {
   if (!tree) return;
 
   if (!canUse("viewFamily")) {
-    tree.innerHTML =
-      '<div class="empty-state">You do not have permission to view the family tree.</div>';
+    tree.innerHTML = '<div class="empty-state">You do not have permission to view the family tree.</div>';
     return;
   }
-
   if (!members.length) {
-    tree.innerHTML =
-      '<div class="empty-state">Add family members to start building your family tree.</div>';
+    tree.innerHTML = '<div class="empty-state">Add family members to start building your family tree.</div>';
     return;
   }
 
-  tree.innerHTML = members.map(member => {
-    const relative = members.find(person => person.id === member.relatedTo);
+  const list = members.map(m => ({ ...m, id: String(m.id), relatedTo: String(m.relatedTo || "") }));
+  const byId = new Map(list.map(m => [m.id, m]));
+  const relationText = m => String(m.relationship || "").toLowerCase();
+  const isWife = m => /wife|భార్య|వదిన|కోడలు/.test(relationText(m));
+  const isHusband = m => /husband|భర్త/.test(relationText(m));
+  const isChild = m => /son|daughter|కొడుకు|కూతురు|దత్తత కొడుకు|దత్తత కూతురు|grandson|granddaughter|మనవడు|మనవరాలు|great-grandson|great-granddaughter|మునిమనవడు|మునిమనవరాలు/.test(relationText(m));
+  const isChildWord = m => /son|daughter|కొడుకు|కూతురు|దత్తత కొడుకు|దత్తత కూతురు/.test(relationText(m));
+  const isGrandchildWord = m => /grandson|granddaughter|మనవడు|మనవరాలు|great-grandson|great-granddaughter|మునిమనవడు|మునిమనవరాలు/.test(relationText(m));
+  const isSpouse = m => isWife(m) || isHusband(m);
+  const esc = value => escapeHTML(value ?? "");
 
-    return `
-      <div class="tree-person">
-        <strong>🌳 ${escapeHTML(member.name || "Family Member")}</strong>
-        <span>${escapeHTML(member.relationship || "Other Relative")}</span>
-        ${
-          relative
-            ? `<span>↕ ${escapeHTML(relative.name || "")}</span>`
-            : ""
-        }
-        <span>${escapeHTML(member.lifeStatus || "Living")}</span>
-      </div>
-    `;
+  // Pair spouses only when one record explicitly points to the other.
+  const spouseOf = new Map();
+  const paired = new Set();
+  list.forEach(m => {
+    if (!isSpouse(m) || !byId.has(m.relatedTo) || m.relatedTo === m.id) return;
+    const other = byId.get(m.relatedTo);
+    if (!other) return;
+    spouseOf.set(m.id, other.id);
+    spouseOf.set(other.id, m.id);
+    paired.add(m.id);
+    paired.add(other.id);
+  });
+
+  // A child/descendant points to a parent in the existing Related To field.
+  const parentOf = new Map();
+  list.forEach(m => {
+    if (!m.relatedTo || !byId.has(m.relatedTo) || m.relatedTo === m.id) return;
+    if (isChild(m)) parentOf.set(m.id, m.relatedTo);
+  });
+
+  // Convert spouse pairs into family units, so children linked to either spouse
+  // appear below the same couple. Unpaired members become single-parent units.
+  const unitByMember = new Map();
+  const units = [];
+  list.forEach(m => {
+    if (unitByMember.has(m.id)) return;
+    const spouseId = spouseOf.get(m.id);
+    const spouse = spouseId ? byId.get(spouseId) : null;
+    const unit = { id: m.id, members: spouse && spouse.id !== m.id ? [m, spouse] : [m], children: [] };
+    units.push(unit);
+    unit.members.forEach(person => unitByMember.set(person.id, unit));
+  });
+
+  const parentUnitByChild = new Map();
+  parentOf.forEach((parentId, childId) => {
+    const parentUnit = unitByMember.get(parentId);
+    const childUnit = unitByMember.get(childId);
+    if (parentUnit && childUnit && parentUnit !== childUnit) {
+      parentUnit.children.push(childUnit);
+      parentUnitByChild.set(childUnit.id, parentUnit.id);
+    }
+  });
+  units.forEach(unit => {
+    const seen = new Set();
+    unit.children = unit.children.filter(child => {
+      if (seen.has(child.id)) return false;
+      seen.add(child.id);
+      return true;
+    });
+  });
+
+  const relationForCard = person => {
+    const rel = person.relationship || "కుటుంబ సభ్యుడు (Family Member)";
+    const related = byId.get(person.relatedTo);
+    if (related && isSpouse(person)) {
+      const english = isWife(person) ? "Wife of" : "Husband of";
+      const telugu = isWife(person) ? "భార్య" : "భర్త";
+      return `${telugu} (${english} ${esc(related.name)})`;
+    }
+    if (related && isChild(person)) {
+      const lower = relationText(person);
+      const english = /great-granddaughter|మునిమనవరాలు/.test(lower) ? "Great-granddaughter of" :
+        /great-grandson|మునిమనవడు/.test(lower) ? "Great-grandson of" :
+        /granddaughter|మనవరాలు/.test(lower) ? "Granddaughter of" :
+        /grandson|మనవడు/.test(lower) ? "Grandson of" :
+        /daughter|కూతురు/.test(lower) ? "Daughter of" : "Son of";
+      const telugu = /great-granddaughter|మునిమనవరాలు/.test(lower) ? "మునిమనవరాలు" :
+        /great-grandson|మునిమనవడు/.test(lower) ? "మునిమనవడు" :
+        /granddaughter|మనవరాలు/.test(lower) ? "మనవరాలు" :
+        /grandson|మనవడు/.test(lower) ? "మనవడు" :
+        /daughter|కూతురు/.test(lower) ? "కూతురు" : "కొడుకు";
+      return `${telugu} (${english} ${esc(related.name)})`;
+    }
+    return esc(rel);
+  };
+  const cardHTML = person => `
+    <article class="tree-person" aria-label="${esc(person.name)}">
+      <strong>🌳 ${esc(person.name || "Family Member")}</strong>
+      <span>${relationForCard(person)}</span>
+      <span>${person.lifeStatus === "Deceased" ? "మరణించారు · Deceased" : "జీవించి ఉన్నారు · Living"}</span>
+      ${person.dob ? `<span>🎂 ${esc(dateText(person.dob))}</span>` : ""}
+    </article>`;
+
+  const renderUnit = (unit, path = new Set(), depth = 0) => {
+    if (path.has(unit.id) || depth > 12) {
+      return `<div class="tree-child-branch">${unit.members.map(cardHTML).join("")}</div>`;
+    }
+    const nextPath = new Set(path);
+    nextPath.add(unit.id);
+    const couple = unit.members.length > 1;
+    const membersHTML = couple
+      ? `<div class="tree-couple">${cardHTML(unit.members[0])}<div class="tree-spouse-link" aria-label="spouses">♥</div>${cardHTML(unit.members[1])}</div><div class="tree-marriage-label">భార్యాభర్తలు · Husband &amp; Wife</div>`
+      : `<div class="tree-couple">${cardHTML(unit.members[0])}</div>`;
+    const children = unit.children.filter(child => !nextPath.has(child.id));
+    const childrenHTML = children.length
+      ? `<div class="tree-connector-down"></div><div class="tree-children">${children.map(child => `<div class="tree-child-branch">${renderUnit(child, nextPath, depth + 1)}</div>`).join("")}</div>`
+      : "";
+    return `<div class="tree-unit">${membersHTML}${childrenHTML}</div>`;
+  };
+
+  const rootUnits = units.filter(unit => !parentUnitByChild.has(unit.id));
+  const renderedIds = new Set();
+  const rootHTML = rootUnits.map(unit => {
+    const html = renderUnit(unit);
+    const mark = current => {
+      if (renderedIds.has(current.id)) return;
+      renderedIds.add(current.id);
+      current.children.forEach(mark);
+    };
+    mark(unit);
+    return html;
   }).join("");
+
+  // Keep all other relatives visible too; they are not incorrectly treated as children.
+  const unconnected = units.filter(unit => !renderedIds.has(unit.id));
+  const otherHTML = unconnected.length
+    ? `<h3 class="tree-other-heading">ఇతర కుటుంబ సభ్యులు · Other Family Members</h3><div class="tree-other-grid">${unconnected.map(unit => unit.members.map(cardHTML).join("")).join("")}</div>`
+    : "";
+
+  tree.innerHTML = `<p class="tree-note">భార్యాభర్తలు పక్కపక్కన · పిల్లలు వారి కింద కనెక్షన్ లైన్లతో కనిపిస్తారు. Existing relationship records are used; missing links must be selected in “Related To”.</p>${rootHTML}${otherHTML}`;
 }
 
 function renderBirthdays() {
   const list = $("birthdayList");
   if (!list) return;
-
   if (!canUse("viewFamily")) {
-    list.innerHTML =
-      '<div class="empty-state">You do not have permission to view birthdays.</div>';
+    list.innerHTML = '<div class="empty-state">You do not have permission to view birthdays.</div>';
     return;
   }
-
-  const today = new Date();
-
-  const upcoming = members
-    .filter(member => member.dob)
-    .map(member => {
-      const parts = String(member.dob).split("-");
-      if (parts.length !== 3) return null;
-
-      const month = Number(parts[1]);
-      const day = Number(parts[2]);
-
-      if (!month || !day) return null;
-
-      let nextBirthday = new Date(
-        today.getFullYear(),
-        month - 1,
-        day
-      );
-
-      nextBirthday.setHours(0, 0, 0, 0);
-
-      const todayOnly = new Date(today);
-      todayOnly.setHours(0, 0, 0, 0);
-
-      if (nextBirthday < todayOnly) {
-        nextBirthday = new Date(
-          today.getFullYear() + 1,
-          month - 1,
-          day
-        );
-      }
-
-      return {
-        ...member,
-        nextBirthday,
-        birthdayText: `${String(day).padStart(2, "0")}/${String(month).padStart(2, "0")}`
-      };
-    })
-    .filter(Boolean)
-    .sort((a, b) => a.nextBirthday - b.nextBirthday)
-    .slice(0, 20);
-
-  if (!upcoming.length) {
-    list.innerHTML =
-      '<div class="empty-state">No birthday dates have been added yet.</div>';
-    return;
-  }
-
-  list.innerHTML = upcoming.map(member => {
-const today = new Date();
-today.setHours(0, 0, 0, 0);
-
-const birthday = new Date(member.nextBirthday);
-birthday.setHours(0, 0, 0, 0);
-
-const daysUntil = Math.round(
-(birthday - today) / (1000 * 60 * 60 * 24)
-);
-
-const commentsOpen = daysUntil >= 0 && daysUntil <= 3;
-
-return `
-<div class="card">
-<h3>🎂 ${escapeHTML(member.name || "Family Member")}</h3>
-<p><strong>Birthday:</strong> ${escapeHTML(member.birthdayText)}</p>
-
-  <p class="birthday-wish">
-    ${member.gender === "Male"
-      ? "🎉 Happy Birthday! Wishing you strength, success, and happiness always!"
-      : member.gender === "Female"
-      ? "🌸 Happy Birthday! May your life bloom with joy, love, and beautiful moments!"
-      : "🎂 Wishing you a wonderful birthday filled with happiness and love!"}
-  </p>
-
-
-${commentsOpen ? `
-  <div class="birthday-comments">
-    <h4>💌 Birthday Wishes & Comments</h4>
-    <div id="birthdayComments-${escapeHTML(member.id)}">
-      <p>Loading birthday wishes...</p>
-    </div>
-    <form class="birthday-comment-form"
-          data-member-id="${escapeHTML(member.id)}">
-      <textarea name="comment"
-        rows="2"
-        maxlength="500"
-        placeholder="Write your birthday wish..."
-        required></textarea>
-      <button class="btn green" type="submit">
-        Send Wish 💌
-      </button>
-    </form>
-  </div>
-` : ""}
-
-</div>
-
-`;
-}).join("");
+  const today = new Date(); today.setHours(0,0,0,0);
+  const monthNames = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+  const birthdayPeople = members.filter(m => m.dob && /^\d{4}-\d{2}-\d{2}$/.test(String(m.dob))).map(m => {
+    const parts = String(m.dob).split("-");
+    const month = Number(parts[1]), day = Number(parts[2]);
+    let next = new Date(today.getFullYear(), month - 1, day); next.setHours(0,0,0,0);
+    if (next < today) next = new Date(today.getFullYear()+1, month-1, day);
+    next.setHours(0,0,0,0);
+    return {...m, birthMonth: month, birthDay: day, nextBirthday: next};
+  }).sort((a,b) => a.birthMonth-b.birthMonth || a.birthDay-b.birthDay || String(a.name).localeCompare(String(b.name)));
+  if (!birthdayPeople.length) { list.innerHTML = '<div class="empty-state">No birthday dates have been added yet.</div>'; return; }
+  list.innerHTML = birthdayPeople.reduce((html, member) => {
+    const monthHeading = member.birthMonth !== birthdayPeople[birthdayPeople.indexOf(member)-1]?.birthMonth ? `<h3 class="birthday-month">🎂 ${monthNames[member.birthMonth-1]}</h3>` : "";
+    const daysUntil = Math.round((member.nextBirthday - today)/(1000*60*60*24));
+    const commentsOpen = daysUntil >= 0 && daysUntil <= 3;
+    return html + monthHeading + `<article class="card"><h3><button type="button" class="birthday-name-button" data-birthday-toggle="${escapeHTML(member.id)}" aria-expanded="false">🎂 ${escapeHTML(member.name || "Family Member")}</button></h3><p id="birthday-date-${escapeHTML(member.id)}" hidden><strong>Date of Birth:</strong> ${escapeHTML(dateText(member.dob))}</p>${daysUntil <= 7 ? `<p>📅 ${daysUntil === 0 ? "Birthday is today!" : `Birthday in ${daysUntil} day(s)`}</p>` : ""}${commentsOpen ? `<div class="birthday-comments"><h4>💌 Birthday Wishes</h4><div id="birthdayComments-${escapeHTML(member.id)}"><p>Wishes appear here when available.</p></div><form class="birthday-comment-form" data-member-id="${escapeHTML(member.id)}"><textarea name="comment" rows="2" maxlength="500" placeholder="Write your birthday wish..." required></textarea><button class="btn green" type="submit">Send Wish 💌</button></form></div>` : ""}</article>`;
+  }, "");
 }
+
+// Reveal the exact date only when the family member's name is tapped.
+$("birthdayList")?.addEventListener("click", event => {
+  const button = event.target.closest("[data-birthday-toggle]");
+  if (!button) return;
+  const date = $("birthday-date-" + button.dataset.birthdayToggle);
+  if (!date) return;
+  date.hidden = !date.hidden;
+  button.setAttribute("aria-expanded", String(!date.hidden));
+  if (!date.hidden) {
+    const article = button.closest("article");
+    const wishes = article?.querySelector('[id^="birthdayComments-"]');
+    if (wishes && !wishes.dataset.loaded) loadBirthdayWishHistory(button.dataset.birthdayToggle, wishes);
+  }
+});
+
+async function loadBirthdayWishHistory(memberId, container) {
+  if (!container || container.dataset.loading === "true" || container.dataset.loaded === "true") return;
+  container.dataset.loading = "true";
+  container.innerHTML = "<p>Loading wishes…</p>";
+  try {
+    const wishesQuery = query(collection(db, "birthdayWishes"), where("memberId", "==", String(memberId)));
+    const snapshot = await getDocs(wishesQuery);
+    const wishes = snapshot.docs.map(item => ({ id: item.id, ...item.data() }));
+    wishes.sort((a, b) => {
+      const aTime = a.createdAt?.toMillis ? a.createdAt.toMillis() : 0;
+      const bTime = b.createdAt?.toMillis ? b.createdAt.toMillis() : 0;
+      return bTime - aTime;
+    });
+    container.innerHTML = wishes.length
+      ? wishes.map(wish => `<p class="birthday-wish"><strong>${escapeHTML(wish.senderName || "Family Member")}</strong>: ${escapeHTML(wish.message || "")}<br><small>${wish.createdAt?.toDate ? escapeHTML(wish.createdAt.toDate().toLocaleString()) : "Recently sent"}</small></p>`).join("")
+      : "<p>No wishes yet. Be the first to send one! 💌</p>";
+    container.dataset.loaded = "true";
+  } catch (error) {
+    console.error("Load birthday wishes error:", error);
+    container.innerHTML = "<p>Wishes could not be loaded. You can still try sending one below.</p>";
+  } finally {
+    container.dataset.loading = "false";
+  }
+}
+
+// Keep birthday wishes responsive: always restore the submit button and show errors.
+$("birthdayList")?.addEventListener("submit", async event => {
+  const form = event.target.closest(".birthday-comment-form");
+  if (!form) return;
+  event.preventDefault();
+  const button = form.querySelector('button[type="submit"]');
+  const textarea = form.querySelector('textarea[name="comment"]');
+  const message = clean(textarea?.value);
+  if (!currentUser || currentProfile?.status !== "approved") { showMessage("Please log in with an approved account to send a wish.", "error"); return; }
+  if (!message) { showMessage("Please write a wish first.", "error"); return; }
+  if (button) { button.disabled = true; button.textContent = "Sending..."; }
+  try {
+    await addDoc(collection(db, "birthdayWishes"), {
+      memberId: String(form.dataset.memberId),
+      message,
+      senderUid: currentUser.uid,
+      senderName: clean(currentProfile?.name || currentUser.displayName || currentUser.email),
+      createdAt: serverTimestamp()
+    });
+    textarea.value = "";
+    showMessage("Birthday wish sent successfully.");
+    const history = form.closest("article")?.querySelector('[id^="birthdayComments-"]');
+    if (history) {
+      history.dataset.loaded = "false";
+      await loadBirthdayWishHistory(String(form.dataset.memberId), history);
+    }
+  } catch (error) {
+    console.error("Birthday wish error:", error);
+    showMessage("Could not send wish. Please check your connection and Firestore rules.", "error");
+  } finally {
+    if (button) { button.disabled = false; button.textContent = "Send Wish 💌"; }
+  }
+});
 
 $("familySearch")?.addEventListener("input", renderMembers);
 
@@ -2108,15 +2367,16 @@ $("memberForm")?.addEventListener("submit", async event => {
   if (!currentUser) {
     showMessage("Please log in first.", "error");
     return;
-  }
+    }
 
-  const name = clean($("memberName")?.value);
+                                  const name = clean($("memberName")?.value);
   const relationship = clean($("relationship")?.value);
-  const relatedTo = clean($("relatedTo")?.value);
+  const relatedToSelection = clean($("relatedTo")?.value);
+  const relatedTo = relatedToSelection === "__root__" ? "" : relatedToSelection;
 
-  if (!name || !relationship || !clean($("address")?.value) ||
-      !clean($("lifeStatus")?.value)) {
-    showMessage("Please complete all required fields.", "error");
+  if (!name || !relationship || !relatedToSelection || !clean($("gender")?.value) ||
+      !clean($("address")?.value) || !clean($("lifeStatus")?.value)) {
+    showMessage("Please complete all required fields, including Gender and Related To.", "error");
     return;
   }
 
@@ -2215,7 +2475,7 @@ $("familyList")?.addEventListener("click", async event => {
 
     $("memberName").value = member.name || "";
     $("relationship").value = member.relationship || "";
-    $("relatedTo").value = member.relatedTo || "";
+    $("relatedTo").value = member.relatedTo || "__root__";
     $("gender").value = member.gender || "";
     $("address").value = member.address || "";
     $("dob").value = member.dob || "";
@@ -2280,8 +2540,7 @@ async function loadMyRequests() {
     renderMyRequests();
     renderHelpRequests();
     return;
-  }
-
+    }
   try {
     const deleteQuery = query(collection(db, "eventDeleteRequests"), where("requesterUid", "==", currentUser.uid));
     const helpQuery = query(collection(db, "helpRequests"), where("requesterUid", "==", currentUser.uid));
@@ -2377,7 +2636,7 @@ async function loadOwnerRequests() {
     helpRequests = helpSnapshot.docs.map(item => ({
       id: item.id,
       ...item.data()
-    }));
+    })).filter(item => item.status !== "resolved");
 
     renderOwnerRequests();
     renderMyRequests();
@@ -2513,7 +2772,6 @@ function renderOwnerRequests() {
 
       showMessage("Deletion request rejected.");
     }
-
     await loadEvents();
     await loadOwnerRequests();
   } catch (error) {
@@ -2537,7 +2795,10 @@ $("ownerHelpRequests")?.addEventListener("click", async event => {
       updatedAt: serverTimestamp()
     });
 
-    showMessage("Support request updated.");
+    if (status === "resolved") {
+      helpRequests = helpRequests.filter(item => item.id !== requestId);
+    }
+    showMessage(status === "resolved" ? "Support request resolved and removed from pending list." : "Support request updated.");
     await loadOwnerRequests();
   } catch (error) {
     console.error("Update help request error:", error);
